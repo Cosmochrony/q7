@@ -67,7 +67,10 @@ and the Horizontal Geometry of $\Heis(\mathbb{R})$\\[4pt]
     with $L_{\mathrm{Weil}}$ for all $(q,c)$, which implies that the cross-term part of the
     criterion holds structurally.
     Numerical verification on O25 checkpoints for $q \in \{61, 101, 151\}$ confirms the vanishing
-    of cross terms for all tested pairs.
+    of cross terms for all tested pairs, and the residual isotropy gap $|A_H - A_z|$ is observed
+    to decrease monotonically with $q$ in the low-energy sector.
+    All available analytical and numerical evidence is consistent with asymptotic isotropy
+    $A_H = A_z$, reducing the identification problem to a single scalar convergence.
   \end{abstract}
 
   \tableofcontents
@@ -636,6 +639,10 @@ constants $A_H$ and $A_z$.
       as $|A_H - A_z|$ with this value.}
     \end{table}
 
+    \noindent
+    No deviation from monotone decay of $\Delta(q) = |A_H(q) - A_z(q)|$ is observed for
+    $c=7$ over the tested range $q \in \{61, 101, 151\}$.
+
     \begin{conjecture}[Asymptotic isotropy]
       \label{conj:isotropy}
       For $c \in \{3,7\}$ (low-energy sector), the isotropy gap converges:
@@ -798,9 +805,10 @@ constants $A_H$ and $A_z$.
   $\Sym^2(V_\rho)$ (Remark~\ref{rem:az2}).
   A power-law fit of $|A_H - A_z|$ over $q \in \{61,101,151\}$ for $c=7$ gives an exponent
   $\approx -0.44$, consistent with convergence to zero as $q \to \infty$ (Table~\ref{tab:asymp}).
-  If confirmed at $q \in \{211, 307, 401\}$, this would close the identification of the two
-  ``3''s and establish that the effective spatial metric is governed entirely by the Casimir
-  $C_{\mathfrak{su}(2)} = 2$ (Corollary~\ref{cor:quasithm}).
+  The identification of the two ``3''s is thereby reduced to an asymptotic scalar equality for
+  which all current analytical and numerical evidence is positive; verification at
+  $q \in \{211, 307, 401\}$ would establish that the effective spatial metric is governed
+  entirely by the Casimir $C_{\mathfrak{su}(2)} = 2$ (Corollary~\ref{cor:quasithm}).
 
   \bibliographystyle{plain}
   \bibliography{cosmochrony-bibliography}
