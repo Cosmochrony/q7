@@ -6,7 +6,6 @@
 \usepackage{geometry}
 \geometry{margin=2.5cm}
 
-\newtheorem{criterion}{Criterion}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
@@ -14,6 +13,7 @@
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{criterion}[theorem]{Criterion}
 
 \newcommand{\Heis}{\mathrm{Heis}_3}
 \newcommand{\Heff}{H_{\mathrm{eff}}}
@@ -671,32 +671,32 @@ constants $A_H$ and $A_z$.
       \]
     \end{corollary}
 
-  \section{Discussion}
-  \label{sec:disc}
-  Criterion~\ref{crit:symbol} in its original form requires both the vanishing of cross terms and
-  the equality $A_H = A_z$.
-  The first condition is now settled (Corollary~\ref{cor:blockdiag}).
-  For the second, three genuinely distinct outcomes are possible, with separate physical implications.
-  \begin{enumerate}
-    \item $A_H = A_z > 0$: the bridge exists and the effective spatial geometry is isotropic.
-    The three spatial directions are metrically equivalent.
-    This is the strongest conclusion: the two ``3''s are fully identified.
-    \item $A_H \neq A_z$, both positive: the bridge exists but the effective spatial geometry is
-    anisotropic.
-    The three spatial directions are metrically distinct ($A_H$ for the horizontal, $A_z$ for the
-    central).
-    This is still a positive result: the diagonal structure is confirmed and the bridge is real,
-    but the spatial metric is genuinely non-isotropic.
-    \item $A_z \leq 0$ or structurally unstable: the bridge does not exist.
-    The two ``3''s are structurally independent.
-  \end{enumerate}
-  The numerical data (Table~\ref{tab:numerical}) support case~(1) or case~(2) for $c \in \{3,7\}$:
-  $A_z \approx 2$ and $A_H \approx 2$ with $|A_H - A_z|/A_z < 0.05$ for all tested $(q,c)$ in
-  the low-energy sector, pointing strongly to case~(1).
-  Case~(3) is not observed.
-\end{remark}
+    \begin{remark}[Three-case structure of the isotropy question]
+      \label{rem:threecases}
+      Criterion~\ref{crit:symbol} in its original form requires both the vanishing of cross terms and
+      the equality $A_H = A_z$.
+      The first condition is now settled (Corollary~\ref{cor:blockdiag}).
+      For the second, three genuinely distinct outcomes are possible, with separate physical implications.
+      \begin{enumerate}
+        \item $A_H = A_z > 0$: the bridge exists and the effective spatial geometry is isotropic.
+        The three spatial directions are metrically equivalent.
+        This is the strongest conclusion: the two ``3''s are fully identified.
+        \item $A_H \neq A_z$, both positive: the bridge exists but the effective spatial geometry is
+        anisotropic.
+        The three spatial directions are metrically distinct ($A_H$ for the horizontal, $A_z$ for the
+        central).
+        This is still a positive result: the diagonal structure is confirmed and the bridge is real,
+        but the spatial metric is genuinely non-isotropic.
+        \item $A_z \leq 0$ or structurally unstable: the bridge does not exist.
+        The two ``3''s are structurally independent.
+      \end{enumerate}
+      The numerical data (Table~\ref{tab:numerical}) support case~(1) or case~(2) for $c \in \{3,7\}$:
+      $A_z \approx 2$ and $A_H \approx 2$ with $|A_H - A_z|/A_z < 0.05$ for all tested $(q,c)$ in
+      the low-energy sector, pointing strongly to case~(1).
+      Case~(3) is not observed.
+    \end{remark}
 
-\section{Discussion}
+  \section{Discussion}
   \label{sec:disc}
 
   \subsection{What This Paper Establishes}
@@ -768,7 +768,7 @@ constants $A_H$ and $A_z$.
     that the two ``3''s are structurally independent coincidences, and sharpen the open problem for
     a future paper.
 
-\section{Conclusion}
+  \section{Conclusion}
 
   The programme exhibits two independent structural outputs equal to the integer~$3$: the Carnot
   spatial sector of $\Heis(\mathbb{R})$ via the Bass--Guivarch homogeneous dimension, and the
