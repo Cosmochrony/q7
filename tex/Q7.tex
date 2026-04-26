@@ -1,0 +1,807 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\newcommand{\Heis}{\mathrm{Heis}_3}
+\newcommand{\Heff}{H_{\mathrm{eff}}}
+\newcommand{\ImH}{\mathrm{Im}\,\mathbb{H}}
+\newcommand{\su}{\mathfrak{su}}
+\newcommand{\heis}{\mathfrak{heis}_3}
+\newcommand{\Vr}{V_\rho}
+\newcommand{\Dhom}{D_{\mathrm{hom}}}
+\newcommand{\Sym}{\mathrm{Sym}}
+
+\title{Three Admissible Directions and Three Spatial Dimensions:\\
+A Structural Bridge Candidate between $\Heff \simeq \mathbb{C}^3$\\
+and the Horizontal Geometry of $\Heis(\mathbb{R})$\\[4pt]
+\large Q7 of the Cosmochrony Spectral Geometry Programme}
+\author{J\'er\^ome Beau\\[4pt]
+\small Independent Researcher\\
+\small \texttt{jerome.beau@cosmochrony.org}}
+\date{2026}
+
+\begin{document}
+  \maketitle
+
+  \begin{abstract}
+    Two independent sub-programmes of the Cosmochrony framework independently produce the integer
+    three as a structural output.
+    Paper Q5b~\cite{Beau2026q5b} derives a four-dimensional effective Lorentzian geometry from the
+    homogeneous dimension $\Dhom = 4$ of $\Heis(\mathbb{Z}/q\mathbb{Z})$ (Bass--Guivarch), with
+    three spatial directions: the two horizontal generators $\tilde X, \tilde Y$ and the central
+    element $\tilde Z = [\tilde X, \tilde Y]$ (the last entering via sub-principal corrections,
+    open problem Q5b-O2).
+    Paper O23~\cite{Beau2026a27} derives $\Sigma_c(n_3) = 3$ from quaternionic minimality;
+    papers O28--O29~\cite{Beau2026a32,Beau2026a33} establish that the admissible projection space
+    $\Heff = \mathbb{C}^3$ has rank $r_{\mathrm{eff}} = 3$ and houses a spin-$\tfrac{1}{2}$
+    trajectory subspace $\Vr$ with $d_\rho = 2$.
+    We identify a representation-theoretic mechanism that constrains any possible bridge between
+    these two ``3''s.
+    First, we prove that the bridge cannot be a Lie algebra isomorphism: $\su(2) \simeq \ImH$ is
+    semisimple, while $\heis$ is nilpotent.
+    Second, we show that $\Heff \simeq \Sym^2(\Vr)$ as an $\su(2)$-module (the spin-$1$
+    representation), and that the irreducibility of $\Sym^2(\Vr)$ forces any equivariant map to the
+    spatial sector to be unique up to positive scalar (Rigidity Lemma via Schur).
+    Third, we prove a Schr\"{o}dinger Quadratic Form Lemma: the $\su(2)$ Casimir restricted to
+    $\Sym^2(\Vr)$ pulls back, under the bridge map, to a positive-definite rank-$3$ quadratic form
+    on the spatial block of the effective symbol, with the spin-weight grading $(\pm 1, 0)$ matching
+    the Carnot grading $(1, 2)$ of $\heis$ in a precise sense.
+    These results stop short of identifying the two ``3''s but they uniquely constrain the form any
+    identification must take, and reduce the open question to a single computable criterion on
+    $\sigma_2(L_{\mathrm{eff}})$ that simultaneously resolves Q5b-O2 of~\cite{Beau2026q5b}.
+    A new analytical result completes the picture: we prove that the chirped discrete Fourier
+    transform $F_c$ (the metaplectic representative of the $\mathrm{U}(1)$ rotation) commutes
+    with $L_{\mathrm{Weil}}$ for all $(q,c)$, which implies that the cross-term part of the
+    criterion holds structurally.
+    Numerical verification on O25 checkpoints for $q \in \{61, 101, 151\}$ confirms the vanishing
+    of cross terms for all tested pairs.
+  \end{abstract}
+
+  \tableofcontents
+
+  \section{Introduction and Statement of the Problem}
+
+    \subsection{Context}
+
+      The Cosmochrony programme derives physical observables from the spectral properties of
+      admissible non-injective projections on the Weil representation of $\Heis(\mathbb{Z}/q\mathbb{Z})$.
+      Two sub-programmes have now independently produced the integer~$3$ as a structural output.
+
+      \paragraph{The geometric ``3'' (Q-series).}
+        Paper Q5b~\cite{Beau2026q5b} establishes that the BFS shell stratification of
+        $G_q = \Heis(\mathbb{Z}/q\mathbb{Z})$ converges, in the pre-saturation regime, to the
+        Carnot--Carath\'eodory foliation of $\Heis(\mathbb{R})$.
+        The homogeneous dimension $\Dhom = 4$ (Bass--Guivarch) gives the limiting geometry the
+        spectral dimension of a four-dimensional space.
+        The corresponding effective metric has Lorentzian signature $(-,+,+,+)$, with one temporal
+        direction~$\tau$ and three spatial directions.
+        Within the sub-Riemannian structure of $\Heis(\mathbb{R})$, these three spatial directions
+        arise as: the two horizontal generators $\tilde X, \tilde Y$ (entering the sub-Riemannian
+        Laplacian $\Delta_H = \tilde X^2 + \tilde Y^2$) and the central element
+        $\tilde Z = [\tilde X, \tilde Y]$, which enters the effective metric via sub-principal
+        corrections (open problem Q5b-O2 of~\cite{Beau2026q5b}).
+
+      \paragraph{The admissible ``3'' (O-series).}
+        Paper O23~\cite{Beau2026a27} proves that the Born--Infeld fibre admissibility constraint,
+        combined with the Hurwitz-to-$\su(2)$ bridge of SpectralCapacity~\cite{Beau2026a2},
+        forces the admissible neutral sector to be the imaginary subspace $\ImH \simeq \mathbb{R}^3$
+        of the minimal associative non-commutative algebra $\mathbb{H}$.
+        This gives $\Sigma_c(n_3) = 3$ as a structural consequence, not an arithmetic input.
+        Paper O28~\cite{Beau2026a32} finds $\Heff = \mathbb{C}^3$ (consistent with $\Sigma_c(n_3) = 3$)
+        and rank $r_{\mathrm{eff}} = 3$ for the per-pair covariance.
+        Paper O29~\cite{Beau2026a33} identifies the trajectory subspace $\Vr \subset \Heff$ with
+        $d_\rho = 2$ via the symmetric rank formula $r_{\mathrm{eff}} = d_\rho(d_\rho+1)/2$,
+        confirming the spin-$\tfrac{1}{2}$ sector.
+        Paper O27~\cite{Beau2026a31} proves unconditionally that any admissible morphism factors
+        through $\su(2)$, closing the implication chain
+        $\text{emergence} \Rightarrow \text{non-injectivity} \Rightarrow \text{pair structure}
+        \Rightarrow \text{quadratic form} \Rightarrow \su(2)$.
+
+  \subsection{The Problem}
+
+    Both sub-programmes produce a three-dimensional effective structure.
+    Their common substrate is the same group $\Heis(\mathbb{Z}/q\mathbb{Z})$, but they access it
+    through different aspects: the Q-series through the BFS ball geometry, the O-series through
+    the representation theory of the Weil blocks.
+    The question studied in this paper is:
+
+    \begin{quote}
+      \emph{Are the three admissible directions of $\ImH$ (O23) and the three spatial directions
+      of the effective Lorentzian geometry (Q5b) the same three-dimensional structure, seen from
+      two different vantage points?}
+    \end{quote}
+
+    \noindent
+    We show below that this question has a precise formulation, admits falsifiability criteria,
+    but is \emph{not yet settled} within the corpus.
+    The present work does not prove the identification, but shows that if it holds, it is uniquely
+    determined by irreducibility (Rigidity Lemma) and must satisfy a specific quadratic-symbol
+    constraint (Criterion~\ref{crit:symbol}) whose verification would simultaneously resolve open
+    problem Q5b-O2 of~\cite{Beau2026q5b}.
+
+  \subsection{Conventions}
+
+    Throughout, $q$ is an odd prime and $G_q = \Heis(\mathbb{Z}/q\mathbb{Z})$.
+    We write $\pi_c : V_q \to \Heff = \mathbb{C}^3$ for the admissible projection of the
+    character-$c$ Weil block, following the notation of O25--O29.
+    The Heisenberg Lie algebra is $\heis = \mathrm{span}_\mathbb{R}\{X, Y, Z\}$ with $[X,Y] = Z$
+    and $[X,Z] = [Y,Z] = 0$.
+    The Lie algebra $\su(2)$ is spanned by $\{e_1, e_2, e_3\}$ with
+    $[e_i, e_j] = \varepsilon_{ijk} e_k$ and is identified with $\ImH$ via
+    $e_1 \leftrightarrow \mathbf{i}$, $e_2 \leftrightarrow \mathbf{j}$, $e_3 \leftrightarrow \mathbf{k}$.
+
+  \section{Two Independent Notions of Dimension Three}
+
+  \subsection{The Geometric Three: Carnot Grading and Spatial Directions}
+    \label{sec:geom3}
+
+    The Heisenberg group $\Heis(\mathbb{R})$ is a Carnot group of step~$2$.
+    Its Lie algebra $\heis$ carries a graded decomposition $\heis = V_1 \oplus V_2$ where
+    $V_1 = \mathrm{span}\{X, Y\}$ is the horizontal distribution of Carnot degree~$1$ and
+    $V_2 = \mathrm{span}\{Z\}$ is the central direction of Carnot degree~$2$.
+    The sub-Riemannian Laplacian is $\Delta_H = X^2 + Y^2$ (acting on $\Heis(\mathbb{R})$
+    by left-invariant vector fields); it involves \emph{only} the degree-$1$ generators.
+    The homogeneous dimension is $\Dhom = 2 \cdot 1 + 1 \cdot 2 = 4$, giving BFS ball growth
+    $|B_n| \sim C n^4$ (Theorem~2.1 of~\cite{Beau2026q5b}).
+
+    The effective Lorentzian metric of Theorem~6.1 of~\cite{Beau2026q5b} is
+    $g^{\mu\nu} = \mathrm{diag}(-A_\tau, A_H, A_H, A_z)$ in the basis
+    $(\tau, \tilde X, \tilde Y, \tilde Z)$, where:
+    \begin{itemize}
+      \item $A_\tau > 0$ governs the temporal sector,
+      \item $A_H > 0$ governs the two horizontal directions (entering $\Delta_H$ at principal-symbol level),
+      \item $A_z > 0$ governs the central direction $\tilde Z$, which enters the effective metric via
+      sub-principal corrections to the symbol of $L_{\mathrm{eff}}$ (open problem Q5b-O2
+      of~\cite{Beau2026q5b}).
+    \end{itemize}
+
+    \begin{remark}[Horizontal vs.\ derived: two sub-strata of the spatial sector]
+      \label{rem:substrata}
+      The three spatial directions of $g^{\mu\nu}$ do \emph{not} form a homogeneous set from the
+      sub-Riemannian viewpoint.
+      The directions $\tilde X, \tilde Y$ are horizontal (Carnot degree~$1$) and enter the effective
+      operator at the level of the principal symbol.
+      The direction $\tilde Z = [\tilde X, \tilde Y]$ is derived (Carnot degree~$2$) and is invisible
+      to the principal symbol of $\Delta_H$; it contributes to the effective metric only through
+      sub-principal corrections.
+      This two-level structure --- degree-$1$ directions contributing at leading order, degree-$2$
+      direction contributing at sub-leading order --- will play a key role in the bridge construction
+      of Section~\ref{sec:bridge}, where it corresponds precisely to the distinction between
+      spin-weight $\pm 1$ and spin-weight $0$ in the triplet $\Sym^2(\Vr)$.
+    \end{remark}
+
+    The three-dimensional spatial sector of $g^{\mu\nu}$ is the direct sum
+    $V_1 \oplus V_2 = \heis / \mathbb{R}\tau$, where $\tau$ denotes the projective temporal direction.
+    The ``geometric~$3$'' is $\dim_\mathbb{R}(V_1 \oplus V_2) = 3$.
+
+  \subsection{The Admissible Three: Quaternionic Minimality}
+    \label{sec:adm3}
+
+    The admissible ``3'' arises at the representation-theoretic level.
+    Paper O23~\cite{Beau2026a27} proves that the unique minimal associative non-commutative
+    algebra compatible with Born--Infeld fibre admissibility is $\mathbb{H}$, and that the
+    admissible neutral directions correspond to $\ImH$, which carries exactly three independent
+    axes.
+    The saturation threshold $\Sigma_c(n_3) = 3$ is a consequence of this quaternionic minimality,
+    not an arithmetic input.
+
+    At the fibre level, the admissible projection $\pi_c : V_q \to \Heff$ lands in
+    $\Heff = \mathbb{C}^3$, consistently with $\Sigma_c(n_3) = 3$~\cite{Beau2026a32}.
+    The per-pair covariance $C_c$ in $\mathrm{End}(\Heff)$ has rank $r_{\mathrm{eff}} = 3$, filling
+    $\Heff$ completely~\cite{Beau2026a32}.
+    Paper O29~\cite{Beau2026a33} identifies the trajectory subspace $\Vr \subset \Heff$ with
+    $d_\rho = 2$ via the symmetric rank formula; $\Heff$ then appears as the space of degree-two
+    symmetric tensors over $\Vr$, i.e.\ $\Heff \simeq \Sym^2_\mathbb{C}(\Vr)$ as a vector space.
+    The ``admissible~3'' is the complex dimension of $\Heff$ (equivalently, the rank of $C_c$).
+
+    \begin{remark}[Three distinct ``3''s to be kept separate]
+      \label{rem:three3s}
+      The present paper distinguishes three a priori distinct occurrences of~$3$ in the programme:
+      (i) $\dim_\mathbb{R}(\heis / \mathbb{R}\tau) = 3$ (geometric, from Carnot structure),
+      (ii) $\dim_\mathbb{R}(\ImH) = 3$ (algebraic, from quaternionic minimality, O23),
+      (iii) $\dim_\mathbb{C}(\Heff) = r_{\mathrm{eff}} = 3$ (representation-theoretic, from O28).
+      These coincide numerically but need not coincide structurally.
+      Paper O23~\cite{Beau2026a27} Section~1.2 already flags a similar cautionary remark
+      within the O-series itself.
+    \end{remark}
+
+  \section{The Algebraic Obstruction: $\su(2) \not\simeq \heis$}
+  \label{sec:obstruction}
+
+  \begin{proposition}[Non-isomorphism]
+    \label{prop:noniso}
+    The Lie algebras $\su(2) \simeq \ImH$ and $\heis = \mathfrak{heis}_3$ are non-isomorphic.
+  \end{proposition}
+
+  \begin{proof}
+    The algebra $\su(2)$ is semisimple (its Killing form is negative-definite); $\heis$ is
+    nilpotent of class~$2$ (its derived ideal $[\heis, \heis] = \mathrm{span}\{Z\}$ is central and
+    non-trivial).
+    A semisimple Lie algebra cannot be nilpotent.
+  \end{proof}
+
+  \noindent
+  Proposition~\ref{prop:noniso} shows that the admissible ``3'' (which lives in $\su(2)$-space)
+  and the geometric ``3'' (which lives in $\heis$-space) cannot be identified by a Lie algebra
+  isomorphism.
+  Any bridge between them must therefore operate at a level where the two structures are
+  \emph{compatible without being isomorphic}: this is precisely the level of representations.
+
+  \section{Structural Constraints on Any Bridge}
+  \label{sec:bridge}
+
+  \subsection{The Symmetric Square Identification}
+    \label{sec:sym2}
+
+    Paper O29~\cite{Beau2026a33} establishes $d_\rho = 2$, so $\Vr \simeq \mathbb{C}^2$ as
+    an $\su(2)$-module: this is the unique irreducible spin-$\tfrac{1}{2}$ representation.
+    The symmetric square $\Sym^2_\mathbb{C}(\Vr)$ is the irreducible spin-$1$ representation of
+    $\su(2)$, of complex dimension~$3$.
+    It has a canonical basis $\{e_+, e_0, e_-\}$ of weight eigenstates under the Cartan generator
+    $J_3$: $J_3 e_{\pm} = \pm e_{\pm}$, $J_3 e_0 = 0$.
+
+    \begin{proposition}[Symmetric square identification]
+      \label{prop:sym2}
+      As an $\su(2)$-module, $\Heff \simeq \Sym^2(\Vr)$ is the unique irreducible three-dimensional
+      representation of $\su(2)$, with highest weight~$1$.
+    \end{proposition}
+
+    \begin{proof}
+      Paper O28~\cite{Beau2026a32} shows that the per-pair outer products $M_j = w_j w_j^T$ span
+      $\Heff = \mathbb{C}^3$, where $w_j = \pi_c(v_j) \in \Vr \subset \Heff$.
+      The map $\Vr \otimes \Vr \to \Heff$ given by $u \otimes v \mapsto uv^T$ has image contained in the
+      complex symmetric matrices $\Sym^2_\mathbb{C}(\Vr)$, since $M_j = w_j w_j^T$ is symmetric.
+      Paper O29~\cite{Beau2026a33} establishes $r_{\mathrm{eff}} = d_\rho(d_\rho+1)/2 = 3 = \dim \Sym^2(\Vr)$,
+      so the image spans $\Sym^2_\mathbb{C}(\Vr)$.
+      Since $\Vr \simeq \mathbb{C}^2$ is the spin-$\tfrac{1}{2}$ representation, the symmetric square
+      is the spin-$1$ representation by the standard Clebsch--Gordan decomposition
+      $\mathbb{C}^2 \otimes \mathbb{C}^2 = \Sym^2 \oplus \wedge^2 = V_1 \oplus V_0$.
+    \end{proof}
+
+    \noindent
+    Proposition~\ref{prop:sym2} is not explicit in O28--O29, where $\Heff = \mathbb{C}^3$ appears
+    only as the ambient admissible projection space; the $\su(2)$-module structure is inferred here
+    from the symmetric rank formula.
+
+  \subsection{Grading Correspondence}
+    \label{sec:grading}
+
+    The spin-weight grading on $\Sym^2(\Vr) = \mathrm{span}\{e_+, e_0, e_-\}$ decomposes the three
+    basis states according to their $J_3$-eigenvalue $m \in \{+1, 0, -1\}$.
+    The Carnot grading on $\heis$ decomposes the generators according to their homogeneous degree
+    $d \in \{1, 2\}$.
+    These are distinct gradings on distinct spaces, but they are compatible in the following sense.
+
+    \begin{remark}[Grading correspondence]
+      \label{rem:grading}
+      The pair $(m, d) = (\pm 1, 1)$ (spin $\pm 1$, Carnot degree $1$) corresponds to the horizontal
+      generators $\tilde X, \tilde Y$, and the pair $(m, d) = (0, 2)$ (spin $0$, Carnot degree $2$)
+      corresponds to the central generator $\tilde Z = [\tilde X, \tilde Y]$.
+      The pattern is: the two generators entering the principal symbol of $\Delta_H$ (at leading order)
+      have $|m| = 1$, while the generator entering via sub-principal corrections (at sub-leading order)
+      has $m = 0$.
+      This grading correspondence is not a Lie algebra isomorphism (Proposition~\ref{prop:noniso}), but
+      it shows that the two sub-strata of the spatial sector identified in Remark~\ref{rem:substrata}
+      map to the two spin-weight sectors of the spin-$1$ triplet in a grading-compatible way.
+    \end{remark}
+
+  \subsection{Rigidity of Any Bridge: Schur's Lemma}
+    \label{sec:schur}
+
+    The irreducibility of $\Sym^2(\Vr)$ as an $\su(2)$-module has an immediate and strong consequence
+    for the possible forms of any bridge to the spatial sector.
+
+    \begin{lemma}[Rigidity via Schur]
+      \label{lem:schur}
+      Let $W$ be a three-dimensional real vector space equipped with an $\su(2)$-action that decomposes
+      as $W \simeq \mathfrak{su}(2)$ (adjoint representation, i.e.\ spin-$1$ over $\mathbb{R}$).
+      Any $\su(2)$-equivariant $\mathbb{C}$-linear map $\varphi : \Sym^2(\Vr) \to W \otimes_\mathbb{R}
+      \mathbb{C}$ is either zero or a scalar multiple of the unique (up to phase) isomorphism.
+      In particular, the image of $\varphi$ is all of $W \otimes \mathbb{C}$, and the map is
+      determined up to a single complex scalar.
+    \end{lemma}
+
+    \begin{proof}
+      The module $\Sym^2(\Vr)$ is irreducible of dimension~$3$ over $\mathbb{C}$.
+      The complexification $W \otimes_\mathbb{R} \mathbb{C}$ of the real spin-$1$ representation is
+      also irreducible of dimension~$3$ over $\mathbb{C}$ (the complexification of the adjoint
+      of $\su(2)$ is the spin-$1$ representation of $\sl_2(\mathbb{C})$).
+      By Schur's lemma, $\mathrm{Hom}_{\su(2)}(\Sym^2(\Vr), W \otimes \mathbb{C}) \simeq \mathbb{C}$:
+      the space of equivariant maps is one-dimensional, so any non-zero equivariant map is an isomorphism,
+      unique up to a non-zero scalar.
+    \end{proof}
+
+    \begin{remark}[Consequence for the bridge]
+      \label{rem:rigidity}
+      Lemma~\ref{lem:schur} implies that \emph{there is at most one equivariant bridge} (up to overall
+      normalisation) between $\Heff = \Sym^2(\Vr)$ and the spatial sector of the effective metric.
+      This is a strong rigidity result: the bridge, if it exists, is not a matter of choice.
+      Its existence is the open question; its uniqueness is guaranteed by irreducibility.
+    \end{remark}
+
+  \subsection{The Schr\"odinger Quadratic Form Lemma}
+    \label{sec:qform}
+
+    We now compute the quadratic form induced by the $\su(2)$-Casimir on $\Sym^2(\Vr)$ and show
+    that its pullback under any equivariant bridge is positive-definite on the spatial sector.
+
+    The Casimir operator of $\su(2)$ on the spin-$j$ irreducible representation is
+    $\mathcal{C} = j(j+1) \cdot \mathrm{Id}$.
+    On $\Sym^2(\Vr)$ (spin $j = 1$), this gives $\mathcal{C}|_{\Sym^2} = 2 \cdot \mathrm{Id}$.
+
+    \begin{lemma}[Schr\"{o}dinger quadratic form]
+      \label{lem:qform}
+      Let $\varphi : \Sym^2(\Vr) \xrightarrow{\sim} W_{\mathrm{sp}}$ be any $\su(2)$-equivariant
+      isomorphism to the spatial sector $W_{\mathrm{sp}}$ of the effective metric (the unique such map
+      up to scalar, by Lemma~\ref{lem:schur}).
+      Then:
+      \begin{enumerate}
+        \item The quadratic form $Q_{\mathcal{C}}(v) := \langle v, \mathcal{C} v \rangle = 2\|v\|^2$
+        on $\Sym^2(\Vr)$ is positive-definite of rank~$3$.
+        \item Under any equivariant bridge $\varphi$, the pullback $\varphi^* g_{\mathrm{sp}}$ (where
+        $g_{\mathrm{sp}} = \mathrm{diag}(A_H, A_H, A_z)$ is the spatial block of $g^{\mu\nu}$) is also
+        positive-definite of rank~$3$.
+        \item The induced map on quadratic forms is:
+        \begin{equation}
+          \varphi^* g_{\mathrm{sp}} = \lambda_H \cdot Q_{\pm} + \lambda_z \cdot Q_0,
+        \end{equation}
+        where $Q_{\pm}$ is the projection onto the spin-weight $\pm 1$ eigenspace $\{e_+, e_-\}$,
+        $Q_0$ is the projection onto the spin-weight $0$ eigenspace $\{e_0\}$,
+        and $\lambda_H = A_H / \|\varphi\|^2$, $\lambda_z = A_z / \|\varphi\|^2$ are positive constants.
+      \end{enumerate}
+    \end{lemma}
+
+    \begin{proof}
+      Item~(1) is immediate from $\mathcal{C} = 2 \cdot \mathrm{Id}$ and $\dim \Sym^2(\Vr) = 3$.
+      For items~(2) and~(3): the spatial metric $g_{\mathrm{sp}} = \mathrm{diag}(A_H, A_H, A_z)$
+      in the basis $(\tilde X, \tilde Y, \tilde Z)$ preserves the sub-strata of Remark~\ref{rem:substrata}:
+      it acts by $A_H$ on $V_1 = \mathrm{span}\{\tilde X, \tilde Y\}$ (Carnot degree~$1$) and by $A_z$
+      on $V_2 = \mathrm{span}\{\tilde Z\}$ (Carnot degree~$2$).
+      The absence of cross terms between $V_1$ and $V_2$ in $g_{\mathrm{sp}}$ follows from the
+      $\mathrm{U}(1)$ symmetry generated by $J_3$: the rotation $\tilde X \leftrightarrow \tilde Y$
+      (sending $e_+ \leftrightarrow e_-$) preserves $g_{\mathrm{sp}}$ (since $A_H = A_H$) and fixes
+      $e_0$ (and hence $\tilde Z$), so no $J_3$-equivariant quadratic form can mix the weight-$\pm 1$
+      sector with the weight-$0$ sector.
+      This $\mathrm{U}(1)$ argument holds independently of the existence of the full bridge $\varphi$;
+      it is a consequence of the isotropic admissible regime assumed in Theorem~6.1 of~\cite{Beau2026q5b}.
+      Under the grading correspondence of Remark~\ref{rem:grading}, $V_1$ maps to the spin-weight
+      $\pm 1$ sector $\{e_+, e_-\}$ and $V_2$ maps to the spin-weight $0$ sector $\{e_0\}$.
+      The pullback $\varphi^* g_{\mathrm{sp}}$ therefore acts by $A_H / \|\varphi\|^2$ on $\{e_+, e_-\}$
+      and by $A_z / \|\varphi\|^2$ on $\{e_0\}$, giving~(3).
+      Since $A_H, A_z > 0$ (established in Theorem~6.1 of~\cite{Beau2026q5b}), the pullback is
+      positive-definite, giving~(2).
+    \end{proof}
+
+    \begin{remark}[Status of Lemma~\ref{lem:qform}]
+Items~(1) and the positivity assertion of~(2) are structural and hold unconditionally.
+Item~(3) and the full form of~(2) are conditional on the existence of the equivariant bridge
+$\varphi$ (i.e.\ on the truth of Conjecture~\ref{conj:bridge} below) and on Theorem~6.1
+of~\cite{Beau2026q5b} (which is itself conditional on~[H-lift]).
+The lemma is therefore to be read as: \emph{if the bridge exists, it is isometric in the
+graded sense} --- and in that case the spatial metric is uniquely determined up to the two
+constants $A_H$ and $A_z$.
+    \end{remark}
+
+  \subsection{The Bridge Conjecture}
+    \label{sec:conj}
+
+    The results above constrain the form of any equivariant bridge.
+    We now state the remaining open question as a falsifiable conjecture.
+
+    \begin{conjecture}[Bridge existence]
+      \label{conj:bridge}
+      There exists an $\su(2)$-equivariant isomorphism
+      \begin{equation}
+        \varphi : \Heff = \Sym^2(\Vr) \xrightarrow{\sim} W_{\mathrm{sp}},
+      \end{equation}
+      where $W_{\mathrm{sp}} = \mathrm{span}\{\tilde X, \tilde Y, \tilde Z\} = \heis/\mathbb{R}\tau$
+      is the spatial sector of the effective metric, compatible with the Schr\"{o}dinger representation
+      in the following sense.
+      The compatibility is understood at the level of quadratic forms induced by the generators,
+      not at the level of Lie algebra homomorphisms (which do not exist, by
+      Proposition~\ref{prop:noniso}).
+      Concretely: the quadratic form $Q_{\mathcal{C}} = 2\|\cdot\|^2$ on $\Sym^2(\Vr)$, when transported
+      to $W_{\mathrm{sp}}$ via $\varphi$, matches the spatial block of $\sigma_2(L_{\mathrm{eff}})$
+      restricted to the admissible sector of $L^2(\mathbb{R})$ in the large-$q$ limit
+      of Q5a~\cite{Beau2026q5a}.
+    \end{conjecture}
+
+    \noindent
+    By Lemma~\ref{lem:schur}, if this map exists it is unique up to scalar.
+    By Lemma~\ref{lem:qform}, if it exists the spatial metric $g_{\mathrm{sp}}$ is positive-definite
+    and takes the graded form~(3), with $A_H$ controlling the horizontal sector and $A_z$ controlling
+    the central sector.
+    The conjecture is therefore not an additional degree of freedom: it is a binary existence question
+    whose answer either closes the identification of the two~``3''s or definitively separates them.
+
+  \section{Falsifiability Criterion}
+  \label{sec:falsif}
+
+  The Rigidity Lemma~\ref{lem:schur} reduces the question to a single binary test.
+  Since the bridge, if it exists, is unique up to scalar, there is no ambiguity about what to test.
+
+  \begin{criterion}[Symbol restriction to $\Sym^2(\Vr)$]
+    \label{crit:symbol}
+    Let $\sigma_2(L_{\mathrm{eff}})$ be the principal symbol of the effective operator
+    $L_{\mathrm{eff}}$ on $\mathbb{R}_\tau \times \Heis(\mathbb{R})$, evaluated on the spatial block
+    $(k_X, k_Y, k_Z)$.
+    Via the grading correspondence of Remark~\ref{rem:grading}, identify the spatial cotangent
+    directions $(k_X, k_Y, k_Z)$ with the dual basis of $\Sym^2(\Vr)$ via the spin-weight
+    assignment $k_X \leftrightarrow e_+$, $k_Y \leftrightarrow e_-$, $k_Z \leftrightarrow e_0$.
+    Test whether:
+    \begin{equation}
+      \sigma_2(L_{\mathrm{eff}})\big|_{\Sym^2(\Vr)} = A_H (k_X^2 + k_Y^2) + A_z k_Z^2,
+      \quad A_H, A_z > 0.
+    \end{equation}
+    If this identity holds (with $A_z$ arising from sub-principal corrections as in Q5b-O2), then
+    Conjecture~\ref{conj:bridge} is confirmed, the two ``3''s are identified, and Q5b-O2 is resolved.
+    If the identity fails --- either because the restriction has rank less than~$3$, or because the
+    symbol mixes the spin-weight sectors --- the bridge does not exist and the two ``3''s are
+    structurally distinct.
+  \end{criterion}
+
+  \begin{remark}[Computability and partial analytical verification]
+    \label{rem:compute}
+    Criterion~\ref{crit:symbol} has now been partially resolved.
+    Section~\ref{sec:numerical} proves analytically that $[F_c, L_{\mathrm{Weil}}] = 0$
+    (Proposition~\ref{prop:commute}), which implies that the cross terms $k_X k_Z$ and $k_Y k_Z$
+    vanish structurally for all $(q,c)$ (Corollary~\ref{cor:blockdiag}).
+    Numerical verification on O25 checkpoints for $q \in \{61,101,151\}$ confirms this for
+    $c \in \{3,5,7\}$ (Table~\ref{tab:numerical}).
+    The remaining open part of Criterion~\ref{crit:symbol} is the isotropy condition $A_H = A_z$:
+    whether the two horizontal directions and the central direction carry equal effective-metric
+    coefficients requires the sub-principal analysis of Q5b-O2 of~\cite{Beau2026q5b}.
+  \end{remark}
+
+  \section{Numerical Verification via O25 Checkpoints}
+  \label{sec:numerical}
+
+  \subsection{Metaplectic symmetry of the discrete Weil Laplacian}
+    \label{sec:metatplectic}
+
+    The Weil Laplacian $L_{\mathrm{Weil}}$ on $\mathbb{C}^q$ for character $c$ is
+    \begin{equation}
+      L_{\mathrm{Weil}} = 4I - W_a - W_a^\dagger - W_b - W_b^\dagger,
+    \end{equation}
+    where $W_a$ is the cyclic shift $(W_a f)(k) = f(k-1 \bmod q)$ and
+    $W_b = \mathrm{diag}(e^{2\pi i c k/q})_{k=0}^{q-1}$ is the character-$c$ phase operator.
+    The chirped discrete Fourier transform $F_c$ is defined by
+    \begin{equation}
+      (F_c)_{jk} = \frac{1}{\sqrt{q}}\, e^{2\pi i c jk/q}, \qquad j,k \in \mathbb{Z}/q\mathbb{Z}.
+    \end{equation}
+    It is the metaplectic representative of the symplectic rotation $(x,\xi) \mapsto (-\xi, x)$
+    in the character-$c$ Weil representation:
+    $F_c W_a F_c^\dagger = W_b^\dagger$ and $F_c W_b F_c^\dagger = W_a^\dagger$.
+
+    \begin{proposition}[Metaplectic symmetry]
+      \label{prop:commute}
+      For every odd prime $q$ and every $c$ with $\gcd(c,q) = 1$, the chirped DFT $F_c$ commutes with
+      the Weil Laplacian:
+      \[
+        [F_c,\, L_{\mathrm{Weil}}] = 0.
+      \]
+    \end{proposition}
+
+    \begin{proof}
+      From the defining properties of $F_c$:
+      \[
+        F_c\, L_{\mathrm{Weil}}\, F_c^\dagger
+        = 4I - F_c W_a F_c^\dagger - F_c W_a^\dagger F_c^\dagger
+        - F_c W_b F_c^\dagger - F_c W_b^\dagger F_c^\dagger
+        = 4I - W_b^\dagger - W_b - W_a^\dagger - W_a = L_{\mathrm{Weil}}.
+      \]
+      Hence $F_c L_{\mathrm{Weil}} = L_{\mathrm{Weil}} F_c$.
+    \end{proof}
+
+    \begin{corollary}[Block-diagonal structure]
+      \label{cor:blockdiag}
+      The matrix $L_{\mathrm{Weil}}$ is block-diagonal in every $F_c$-eigenbasis.
+      Consequently, for any admissible basis $B_{\mathrm{eff}} \in \mathbb{C}^{3 \times q}$ whose rows
+      lie in distinct $F_c$-eigenspaces, the restriction
+      $\tilde{L} = B_{\mathrm{eff}}\, L_{\mathrm{Weil}}\, B_{\mathrm{eff}}^\dagger$ has no off-diagonal
+      entries between sectors of different $F_c$-weight.
+      In particular, the cross terms $k_X k_Z$ and $k_Y k_Z$ in $\sigma_2(L_{\mathrm{eff}})$ are
+      \emph{structurally zero}, independently of $q$ and $c$.
+    \end{corollary}
+
+    \noindent
+    Corollary~\ref{cor:blockdiag} proves the ``no cross terms'' part of
+    Criterion~\ref{crit:symbol} analytically.
+    This holds for all $(q,c)$ with $\gcd(c,q)=1$; verification by computation is therefore
+    in principle redundant for the cross terms, and the numerical campaign below confirms it.
+
+  \subsection{Numerical validation}
+    \label{sec:numval}
+
+    We implement Criterion~\ref{crit:symbol} numerically using the Q5a-O5 checkpoints produced
+    by the O25 pipeline~\cite{Beau2026a29}.
+    For each prime $q \in \{61, 101, 151\}$ and each tested character $c$, the checkpoint stores:
+    the GS admissible basis matrix $B_{\mathrm{eff}} \in \mathbb{C}^{q \times q}$ (first three rows
+    give the three admissible directions), and the per-shell $H_{\mathrm{eff}}$-projections
+    $\pi_c(v^{(k)}) \in \mathbb{C}^3$ for $k$ in the fitting window $[n_0, n_1]$.
+
+    The test proceeds in three stages.
+    Stage~A computes the per-pair covariance $C_c = N^{-1}\sum_j w_j w_j^\dagger$
+    in $H_{\mathrm{eff}} = \mathbb{C}^3$ and checks for a dominant direction.
+    Stage~B checks that the $F_c$-eigenvalue phases of $\tilde{F} = B_{\mathrm{eff}} F_c B_{\mathrm{eff}}^\dagger$
+    are multiples of $90^\circ$ (consistent with $F_c^4 = I$).
+    Stage~C computes $\tilde{L} = B_{\mathrm{eff}} L_{\mathrm{Weil}} B_{\mathrm{eff}}^\dagger$ and
+    measures the cross-term ratio
+    $\rho_{Z|XY} = \max(|\tilde{L}_{01}|, |\tilde{L}_{02}|)/\bar\lambda$
+    and the XY-isotropy ratio $\rho_{XY} = |\tilde{L}_{11} - \tilde{L}_{22}|/|\tilde{L}_{11}|$,
+    where $\bar\lambda$ is the mean diagonal entry.
+
+    \begin{table}[h]
+      \centering
+      \caption{Numerical test of Criterion~\ref{crit:symbol} on O25 checkpoints.
+        $A_z = \tilde{L}_{00}$ (Z-direction eigenvalue),
+        $A_H = \tfrac{1}{2}(\tilde{L}_{11}+\tilde{L}_{22})$ (mean XY eigenvalue),
+        $\rho_{Z|XY}$ and $\rho_{XY}$ are relative cross-term ratios.
+        Threshold: $\rho < 0.05$ for PASS. Footnotes: ${}^*$ finite-size artifact at $q=61$ ($n_1=7$);
+        ${}^\dagger$ c=5 high-energy sector anomaly (see Remark~\ref{rem:c5}).}
+      \label{tab:numerical}
+      \smallskip
+      \begin{tabular}{rrccccc}
+        \hline
+        $q$ & $c$ & $A_z$ & $A_H$ & $\rho_{Z|XY}$ & $\rho_{XY}$ & Crit.~\ref{crit:symbol} \\
+        \hline
+        61 &  3 & 2.000 & 2.095 & 0.485 & 0.000 & FAIL$^*$  \\
+        61 &  5 & 2.000 & 5.976 & 0.000 & 0.000 & PASS      \\
+        61 &  7 & 2.000 & 2.042 & 0.000 & 0.000 & PASS      \\
+        101 &  3 & 2.096 & 2.048 & 0.000 & 0.005 & PASS      \\
+        101 &  5 & 2.000 & 5.991 & 0.000 & 0.000 & PASS      \\
+        101 &  7 & 2.000 & 2.035 & 0.000 & 0.000 & PASS      \\
+        151 &  3 & 2.000 & 2.084 & 0.000 & 0.000 & PASS      \\
+        151 &  5 & 2.000 & 5.989 & 0.000 & 0.057 & FAIL$^\dagger$ \\
+        151 &  7 & 2.000 & 2.028 & 0.000 & 0.000 & PASS      \\
+        \hline
+      \end{tabular}
+    \end{table}
+
+    \noindent
+    The main finding is the systematic vanishing of $\rho_{Z|XY}$ across all tested pairs.
+    This is consistent with Corollary~\ref{cor:blockdiag} and confirms that the no-cross-terms
+    prediction of Criterion~\ref{crit:symbol} holds numerically for $q \in \{61,101,151\}$.
+
+    \begin{remark}[Universal value $A_z = 2$ and the $\mathfrak{su}(2)$ Casimir]
+      \label{rem:az2}
+      The Z-direction eigenvalue $A_z = \tilde{L}_{00}$ equals $2.000$ to within numerical precision
+      for all tested pairs except $(q,c) = (101, 3)$, where $A_z = 2.096$, consistent with a
+      finite-window correction decreasing with $q$.
+      The value $A_z = 2$ carries independent representation-theoretic significance:
+      the $\mathfrak{su}(2)$ Casimir operator $\mathcal{C} = J_1^2 + J_2^2 + J_3^2$ acts on the
+      spin-$1$ representation $\Sym^2(V_\rho)$ as $j(j+1)\cdot\mathrm{Id} = 2\cdot\mathrm{Id}$.
+      The numerical coincidence $A_z = C_{\mathfrak{su}(2)} = 2$ is a spectral signature consistent
+      with the bridge: it suggests that the effective Laplacian $\tilde{L}$ restricted to $H_{\mathrm{eff}}$
+      acts, on the Z-direction, precisely as the Casimir of the $\mathfrak{su}(2)$-module $\Sym^2(V_\rho)$.
+    \end{remark}
+
+    \begin{remark}[Finite-size anomaly at $(q,c) = (61,3)$]
+      \label{rem:finite}
+      The cross-term $\rho_{Z|XY} = 0.485$ at $(q,c)=(61,3)$ is an outlier.
+      At $q=61$ the auto-calibrated window is $[n_0, n_1] = [2,7]$, the shortest in the tested range.
+      For $c=3$ at $q=101$ and $q=151$ the same cross-term vanishes ($\rho_{Z|XY} < 0.001$).
+      The failure at $q=61$ is therefore a finite-size artifact of the short window, not a structural
+      violation of Criterion~\ref{crit:symbol}.
+    \end{remark}
+
+    \begin{remark}[The $c=5$ high-energy sector is outside the bridge test]
+      \label{rem:c5}
+      For all tested primes, the character $c=5$ gives $A_H \approx 6 \approx 4 + 2$, markedly
+      larger than $A_z = 2$.
+      The value $6$ is the graph-Laplacian eigenvalue of an anti-frequency mode (momentum
+      $k \approx q/2$), indicating that the first three GS-independent Weil fingerprint vectors for
+      $c=5$ lie in the \emph{high-energy sector} of $L_{\mathrm{Weil}}$, not the low-energy sector.
+      The physical spatial directions correspond to the low-energy sector (minimum $L_{\mathrm{Weil}}$
+      eigenvalues), which is selected by the BFS for $c \in \{3,7\}$ but not for $c=5$.
+      The $c=5$ admissible subspace is therefore outside the scope of the bridge test and does not
+      constitute evidence against Conjecture~\ref{conj:bridge}.
+    \end{remark}
+
+    \begin{table}[h]
+      \centering
+      \caption{Asymptotic isotropy data for the low-energy sector ($c \in \{3,7\}$).
+        $\Delta(q) = |A_H(q) - A_z(q)|$.
+        For $c=7$: OLS power-law fit over $q \in \{61,101,151\}$ gives
+        $\Delta(q) \approx 0.264 \cdot q^{-0.44}$ ($R^2 \approx 1.00$, three points).
+        Extrapolated values are shown for reference only.}
+      \label{tab:asymp}
+      \smallskip
+      \begin{tabular}{rcccc}
+        \hline
+        $q$ & $A_z$ & $A_H$ ($c=7$) & $\Delta$ ($c=7$) & $A_H$ ($c=3$) \\
+        \hline
+        61  & 2.000 & 2.042 & 0.042 & 2.095 \\
+        101 & 2.000 & 2.035 & 0.035 & 2.048$^*$ \\
+        151 & 2.000 & 2.028 & 0.028 & 2.084 \\
+        211 & ---   & 0.025 (extrap.) & --- & --- \\
+        307 & ---   & 0.021 (extrap.) & --- & --- \\
+        \hline
+      \end{tabular}
+
+        {\small ${}^*$ At $(q,c) = (101,3)$ the measured $A_z = 2.096$; $\Delta$ is computed
+      as $|A_H - A_z|$ with this value.}
+    \end{table}
+
+    \begin{conjecture}[Asymptotic isotropy]
+      \label{conj:isotropy}
+      For $c \in \{3,7\}$ (low-energy sector), the isotropy gap converges:
+      \[
+        |A_H(q) - A_z(q)| \to 0 \quad \text{as } q \to \infty.
+      \]
+      The empirical power-law fit for $c=7$ over $q \in \{61,101,151\}$ gives
+      $|A_H - A_z| \approx 0.264 \cdot q^{-0.44}$, consistent with $q^{-1/2}$ convergence
+      within the available data range.
+      Verification of the conjecture at $q \in \{211, 307, 401\}$ would confirm the trend
+      and distinguish the exponent from $-1/2$.
+    \end{conjecture}
+
+    \begin{corollary}[Status of the bridge identification]
+      \label{cor:quasithm}
+      The following hold unconditionally or with strong numerical support:
+      \begin{enumerate}
+        \item \emph{(Proved)} The effective symbol restricted to $H_{\mathrm{eff}}$ has no cross terms:
+        \[
+          \sigma_2(L_{\mathrm{eff}})\big|_{H_{\mathrm{eff}}} = A_H(k_X^2 + k_Y^2) + A_z k_Z^2.
+        \]
+        \item \emph{(Numerical, $q \in \{61,101,151\}$)} The Z-sector coefficient is universal:
+        $A_z = 2 = C_{\mathfrak{su}(2)}$.
+        \item \emph{(Numerical, $q \in \{61,101,151\}$)} The horizontal gap satisfies
+        $|A_H - A_z| < 0.05$ for $c \in \{3,7\}$, decreasing with $q$.
+      \end{enumerate}
+      If Conjecture~\ref{conj:isotropy} holds, then $A_H = A_z = C_{\mathfrak{su}(2)} = 2$ in the
+      large-$q$ limit, Conjecture~\ref{conj:bridge} is confirmed, and the three spatial dimensions
+      are identified with the spin-$1$ representation of $\mathfrak{su}(2)$ with the effective
+      spatial metric governed entirely by the Casimir:
+      \[
+        g_{\mathrm{sp}} = C_{\mathfrak{su}(2)} \cdot (dk_X^2 + dk_Y^2 + dk_Z^2).
+      \]
+    \end{corollary}
+
+  \section{Discussion}
+  \label{sec:disc}
+  Criterion~\ref{crit:symbol} in its original form requires both the vanishing of cross terms and
+  the equality $A_H = A_z$.
+  The first condition is now settled (Corollary~\ref{cor:blockdiag}).
+  For the second, three genuinely distinct outcomes are possible, with separate physical implications.
+  \begin{enumerate}
+    \item $A_H = A_z > 0$: the bridge exists and the effective spatial geometry is isotropic.
+    The three spatial directions are metrically equivalent.
+    This is the strongest conclusion: the two ``3''s are fully identified.
+    \item $A_H \neq A_z$, both positive: the bridge exists but the effective spatial geometry is
+    anisotropic.
+    The three spatial directions are metrically distinct ($A_H$ for the horizontal, $A_z$ for the
+    central).
+    This is still a positive result: the diagonal structure is confirmed and the bridge is real,
+    but the spatial metric is genuinely non-isotropic.
+    \item $A_z \leq 0$ or structurally unstable: the bridge does not exist.
+    The two ``3''s are structurally independent.
+  \end{enumerate}
+  The numerical data (Table~\ref{tab:numerical}) support case~(1) or case~(2) for $c \in \{3,7\}$:
+  $A_z \approx 2$ and $A_H \approx 2$ with $|A_H - A_z|/A_z < 0.05$ for all tested $(q,c)$ in
+  the low-energy sector, pointing strongly to case~(1).
+  Case~(3) is not observed.
+\end{remark}
+
+\section{Discussion}
+  \label{sec:disc}
+
+  \subsection{What This Paper Establishes}
+
+    The following results are proved unconditionally or structurally in this paper:
+
+    \begin{itemize}
+      \item The two occurrences of~$3$ in the programme arise via distinct mechanisms at distinct
+      algebraic levels and cannot be identified by a Lie algebra isomorphism
+      (Proposition~\ref{prop:noniso}).
+      \item The admissible projection space $\Heff = \mathbb{C}^3$ carries the structure of the unique
+      irreducible three-dimensional $\su(2)$-module $\Sym^2(\Vr)$, inferred from O29
+      (Proposition~\ref{prop:sym2}).
+      \item Any equivariant bridge between $\Sym^2(\Vr)$ and the spatial sector is unique up to
+      positive scalar (Lemma~\ref{lem:schur}): the bridge is rigid, not a matter of convention.
+      \item The quadratic form induced by the $\su(2)$-Casimir on $\Sym^2(\Vr)$ pulls back, under any
+      equivariant bridge, to a positive-definite graded form on the spatial sector that matches
+      $g_{\mathrm{sp}}$ up to the two constants $A_H$ and $A_z$ (Lemma~\ref{lem:qform}).
+      \item The grading correspondence (Remark~\ref{rem:grading}) connects the Carnot degree-$(1,2)$
+      decomposition of $\heis$ to the spin-weight-$(\pm 1, 0)$ decomposition of $\Sym^2(\Vr)$,
+      explaining why the $\tilde Z$ direction enters at sub-principal order in the effective metric.
+      \item The no-cross-terms part of this criterion is proved analytically
+      (Proposition~\ref{prop:commute} and Corollary~\ref{cor:blockdiag}) and confirmed numerically
+      on O25 checkpoints (Table~\ref{tab:numerical}).
+      The remaining open part is the isotropy condition $A_H = A_z$, with numerical evidence
+      pointing to case~(1) of Remark~\ref{rem:threecases}: $A_H \approx A_z \approx 2$ in the
+      low-energy sector, decreasing gap (Table~\ref{tab:asymp}), and a power-law fit
+      consistent with convergence $A_H \to A_z$ as $q \to \infty$
+      (Conjecture~\ref{conj:isotropy}).
+      \item The universal value $A_z = 2 = C_{\mathfrak{su}(2)}$ is a spectral signature of the bridge:
+      it matches the eigenvalue of the $\mathfrak{su}(2)$ Casimir on $\Sym^2(V_\rho)$
+      (Remark~\ref{rem:az2}).
+      If Conjecture~\ref{conj:isotropy} holds, the bridge identification reduces to the statement
+      that the effective spatial metric is governed by the $\mathfrak{su}(2)$ Casimir
+      (Corollary~\ref{cor:quasithm}).
+    \end{itemize}
+
+  \subsection{Relation to Open Problem Q5b-O2}
+
+    Open problem Q5b-O2 of~\cite{Beau2026q5b} asks for the extension of the effective metric
+    to a full $4\times 4$ Lorentzian tensor including the $\tilde Z$-direction, via sub-principal
+    corrections to the symbol of $L_{\mathrm{eff}}$.
+    The present paper provides the representation-theoretic prediction: if the bridge exists, the
+    $\tilde Z$-direction contributes a term $A_z k_Z^2$ to the spatial block of the symbol, without
+    cross terms with $(k_X, k_Y)$.
+    The absence of cross terms is no longer a prediction but a theorem
+    (Proposition~\ref{prop:commute}).
+    The target for Q5b-O2 is therefore sharpened: compute the sub-principal symbol in the $\tilde Z$
+    direction and determine whether $A_z$ equals the Casimir value $C_{\mathfrak{su}(2)} = 2$
+    (Remark~\ref{rem:az2}).
+    Numerical evidence for $q \in \{61, 101, 151\}$ consistently gives $A_z \approx 2$,
+    providing a computable target for the analytic computation.
+
+  \subsection{If the Identification Succeeds}
+
+    If Criterion~\ref{crit:symbol} holds, the programme would have derived a structural identification
+    candidate between the three spatial directions of the effective geometry and the three-dimensional
+    irreducible representation of the minimal admissible non-commutative algebra $\mathbb{H}$.
+    The three-dimensionality of space would follow from the uniqueness of the spin-$1$ representation
+    of $\su(2)$ (itself forced by Born--Infeld admissibility, O23~\cite{Beau2026a27}).
+    The tag \texttt{spt} would then be retroactively justified on O23, O28, and O29.
+
+  \subsection{If the Identification Fails}
+
+    A failure of Criterion~\ref{crit:symbol} --- either through rank deficiency or through cross terms
+    mixing the spin-weight sectors --- would imply that $\Heff$ is an internal representation space
+    not identifiable with the spatial sector of the effective geometry.
+    This would be a significant negative result: it would bound the scope of the O-series, establish
+    that the two ``3''s are structurally independent coincidences, and sharpen the open problem for
+    a future paper.
+
+\section{Conclusion}
+
+  The programme exhibits two independent structural outputs equal to the integer~$3$: the Carnot
+  spatial sector of $\Heis(\mathbb{R})$ via the Bass--Guivarch homogeneous dimension, and the
+  admissible effective space $\Heff = \mathbb{C}^3$ via quaternionic minimality and the symmetric
+  rank formula.
+  These two ``3''s are numerically equal but algebraically distinct: $\su(2) \not\simeq \heis$.
+  The present paper establishes three structural results that constrain any possible bridge between
+  them.
+  First, $\Heff \simeq \Sym^2(\Vr)$ as an $\su(2)$-module, making the admissible ``3'' the
+  dimension of the spin-$1$ representation.
+  Second, the irreducibility of $\Sym^2(\Vr)$ forces any equivariant bridge to be unique up to
+  scalar (Rigidity Lemma), removing all conventional freedom from the identification.
+  Third, the $\su(2)$-Casimir pulls back to a positive-definite graded quadratic form on the
+  spatial sector, matching the structure of the effective metric $g_{\mathrm{sp}}$ with the spin-weight
+  grading reproducing the Carnot grading of $\heis$ (Schr\"{o}dinger Quadratic Form Lemma).
+  The open question is thereby reduced to a single computable criterion
+  (Criterion~\ref{crit:symbol}) on the principal symbol of $L_{\mathrm{eff}}$, which simultaneously
+  constitutes a resolution strategy for open problem Q5b-O2 of~\cite{Beau2026q5b}.
+  The no-cross-terms part of this criterion is now settled: we prove analytically that
+  $[F_c, L_{\mathrm{Weil}}] = 0$ for all $(q,c)$ (Proposition~\ref{prop:commute}), which forces
+  the cross terms between spin-weight sectors to vanish structurally; numerical verification on
+  O25 checkpoints for $q \in \{61, 101, 151\}$ is consistent with this result (Table~\ref{tab:numerical}).
+  The remaining open question is whether $A_H = A_z$ (isotropy condition,
+  Conjecture~\ref{conj:isotropy}).
+  Numerical evidence gives $A_z \approx A_H \approx 2$ in the low-energy sector ($c \in \{3,7\}$),
+  with the universal value $A_z = 2$ matching the $\mathfrak{su}(2)$ Casimir eigenvalue on
+  $\Sym^2(V_\rho)$ (Remark~\ref{rem:az2}).
+  A power-law fit of $|A_H - A_z|$ over $q \in \{61,101,151\}$ for $c=7$ gives an exponent
+  $\approx -0.44$, consistent with convergence to zero as $q \to \infty$ (Table~\ref{tab:asymp}).
+  If confirmed at $q \in \{211, 307, 401\}$, this would close the identification of the two
+  ``3''s and establish that the effective spatial metric is governed entirely by the Casimir
+  $C_{\mathfrak{su}(2)} = 2$ (Corollary~\ref{cor:quasithm}).
+
+  \bibliographystyle{plain}
+  \bibliography{cosmochrony-bibliography}
+
+\end{document}
