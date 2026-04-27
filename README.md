@@ -39,7 +39,7 @@ The paper proceeds in four logical steps:
 
 4. **Reduction to a spectral symbol criterion**  
    The identification is equivalent to testing:
-   $\sigma_2(L_{\mathrm{eff}})\big|_{\mathrm{Sym}^2(V_\rho)} = A_H(k_X^2 + k_Y^2) + A_z k_Z^2.$
+   $\sigma_2(L_{\mathrm{eff}})\big|_{\mathrm{Sym}^2(V_\rho)} = A_H(k_X^2 + k_Y^2) + A_z k_Z^2$.
 
    This reduces the problem to:
     - absence of cross terms,
@@ -67,16 +67,12 @@ The paper establishes the following results:
 
 5. **Cross terms vanish structurally**  
    The metaplectic symmetry
-   \[
-   [F_c, L_{\mathrm{Weil}}] = 0
-   \]
+   $[F_c, L_{\mathrm{Weil}}] = 0$
    implies block-diagonalization and forbids mixing between sectors.
 
 6. **The problem reduces to a single scalar condition**  
    The identification holds if and only if:
-   \[
-   A_H = A_z.
-   \]
+   $A_H = A_z$.
 
 ## Numerical Evidence
 
@@ -84,13 +80,9 @@ Using O25 pipeline checkpoints for $q \in \{61, 101, 151\}$:
 
 - Cross terms are numerically zero (consistent with analytic result),
 - The central coefficient satisfies:
-  \[
-  A_z \approx 2 = C_{\mathfrak{su}(2)},
-  \]
+  $A_z \approx 2 = C_{\mathfrak{su}(2)}$,
 - The isotropy gap
-  \[
-  \Delta(q) = |A_H(q) - A_z(q)|
-  \]
+  $\Delta(q) = |A_H(q) - A_z(q)|$
   is:
     - small ($< 0.05$ in low-energy sector),
     - monotonically decreasing with $q$,
@@ -98,9 +90,7 @@ Using O25 pipeline checkpoints for $q \in \{61, 101, 151\}$:
 
 This supports the conjecture:
 
-\[
-|A_H(q) - A_z(q)| \to 0 \quad \text{as } q \to \infty.
-\]
+$|A_H(q) - A_z(q)| \to 0 \quad \text{as } q \to \infty.$
 
 ## Core Result
 
@@ -113,9 +103,7 @@ If confirmed, this implies:
 
 - the three spatial dimensions correspond to the spin-1 representation,
 - the spatial metric is governed by the $\mathfrak{su}(2)$ Casimir:
-  \[
-  g_{\mathrm{spatial}} \sim C_{\mathfrak{su}(2)}.
-  \]
+  $g_{\mathrm{spatial}} \sim C_{\mathfrak{su}(2)}$.
 
 ## What This Paper Does Not Assume
 
