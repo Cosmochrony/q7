@@ -30,9 +30,7 @@ The paper proceeds in four logical steps:
 
 3. **Rigidity via symmetric square structure**  
    The admissible space satisfies:
-   $
-   H_{\mathrm{eff}} \simeq \mathrm{Sym}^2(V_\rho),
-   $
+   $H_{\mathrm{eff}} \simeq \mathrm{Sym}^2(V_\rho),$
    the spin-1 irreducible representation of $\mathfrak{su}(2)$.
 
    By Schur’s lemma:
@@ -41,10 +39,7 @@ The paper proceeds in four logical steps:
 
 4. **Reduction to a spectral symbol criterion**  
    The identification is equivalent to testing:
-   $
-   \sigma_2(L_{\mathrm{eff}})\big|_{\mathrm{Sym}^2(V_\rho)}
-   = A_H(k_X^2 + k_Y^2) + A_z k_Z^2.
-   $
+   $\sigma_2(L_{\mathrm{eff}})\big|_{\mathrm{Sym}^2(V_\rho)} = A_H(k_X^2 + k_Y^2) + A_z k_Z^2.$
 
    This reduces the problem to:
     - absence of cross terms,
