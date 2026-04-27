@@ -30,9 +30,9 @@ The paper proceeds in four logical steps:
 
 3. **Rigidity via symmetric square structure**  
    The admissible space satisfies:
-   \[
+   \(
    H_{\mathrm{eff}} \simeq \mathrm{Sym}^2(V_\rho),
-   \]
+   \)
    the spin-1 irreducible representation of $\mathfrak{su}(2)$.
 
    By Schur’s lemma:
