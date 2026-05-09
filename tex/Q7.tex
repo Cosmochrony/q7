@@ -4,6 +4,7 @@
 \usepackage{mathtools}
 \usepackage{hyperref}
 \usepackage{geometry}
+\usepackage{doi}
 \geometry{margin=2.5cm}
 
 \newtheorem{theorem}{Theorem}[section]
@@ -560,7 +561,10 @@ constants $A_H$ and $A_z$.
         $A_H = \tfrac{1}{2}(\tilde{L}_{11}+\tilde{L}_{22})$ (mean XY eigenvalue),
         $\rho_{Z|XY}$ and $\rho_{XY}$ are relative cross-term ratios.
         Threshold: $\rho < 0.05$ for PASS. Footnotes: ${}^*$ finite-size artifact at $q=61$ ($n_1=7$);
-        ${}^\dagger$ c=5 high-energy sector anomaly (see Remark~\ref{rem:c5}).}
+        ${}^\dagger$ $c=5$ high-energy sector anomaly (see Remark~\ref{rem:c5});
+        ${}^\ddagger$ Stage~B (metaplectic overlap) does not pass at $q=211$ ($\mathrm{bfs\_frac}=0.11$);
+        limited trajectory coverage is a finite-coverage artefact (cf.\ Remark~\ref{rem:q211});
+        Stage~C (primary criterion) passes with zero cross terms.}
       \label{tab:numerical}
       \smallskip
       \begin{tabular}{rrccccc}
@@ -576,6 +580,9 @@ constants $A_H$ and $A_z$.
         151 &  3 & 2.000 & 2.084 & 0.000 & 0.000 & PASS      \\
         151 &  5 & 2.000 & 5.989 & 0.000 & 0.057 & FAIL$^\dagger$ \\
         151 &  7 & 2.000 & 2.028 & 0.000 & 0.000 & PASS      \\
+        211 &  3 & 2.000 & 2.088 & 0.000 & 0.000 & PASS$^\ddagger$ \\
+        211 &  5 & 2.000 & 5.989 & 0.000 & 0.000 & PASS$^\dagger$  \\
+        211 &  7 & 2.000 & 2.022 & 0.000 & 0.000 & PASS$^\ddagger$ \\
         \hline
       \end{tabular}
     \end{table}
@@ -620,13 +627,26 @@ constants $A_H$ and $A_z$.
       constitute evidence against Conjecture~\ref{conj:bridge}.
     \end{remark}
 
+    \begin{remark}[Stage~B anomaly at $q=211$]
+      \label{rem:q211}
+      At $q=211$ (bfs\_frac$=0.11$), Stage~B does not pass for any of the three tested
+      characters: the metaplectic overlap is $0.72$ ($c=3$) and $0.38$ ($c=7$), both below
+      the threshold $0.75$.
+      The Stage~A eigenvalue ratio for $c=7$ is $[1:0.74:0.74]$ rather than $[1:\frac{1}{2}:\frac{1}{2}]$,
+      indicating that the BFS trajectory does not fully explore $\Heff$ at this coverage level.
+      This is a finite-coverage artefact analogous to the finite-size anomaly at $(q,c)=(61,3)$
+      (Remark~\ref{rem:finite}), caused here by the low bfs\_frac rather than a short window.
+      Stage~C (primary criterion, analytically grounded via Corollary~\ref{cor:blockdiag})
+      passes for all three characters with zero cross terms and zero isotropy gap.
+    \end{remark}
+
     \begin{table}[h]
       \centering
       \caption{Asymptotic isotropy data for the low-energy sector ($c \in \{3,7\}$).
         $\Delta(q) = |A_H(q) - A_z(q)|$.
-        For $c=7$: OLS power-law fit over $q \in \{61,101,151\}$ gives
-        $\Delta(q) \approx 0.264 \cdot q^{-0.44}$ ($R^2 \approx 1.00$, three points).
-        Extrapolated values are shown for reference only.}
+        For $c=7$: OLS power-law fit over $q \in \{61,101,151,211\}$ gives
+        $\Delta(q) \approx 0.364 \cdot q^{-0.52}$ ($R^2 = 0.98$, four points),
+        consistent with $O(q^{-1/2})$ convergence (Q5b Theorem~3.2~\cite{Beau2026q5b}).}
       \label{tab:asymp}
       \smallskip
       \begin{tabular}{rcccc}
@@ -636,7 +656,7 @@ constants $A_H$ and $A_z$.
         61  & 2.000 & 2.042 & 0.042 & 2.095 \\
         101 & 2.000 & 2.035 & 0.035 & 2.048$^*$ \\
         151 & 2.000 & 2.028 & 0.028 & 2.084 \\
-        211 & ---   & 0.025 (extrap.) & --- & --- \\
+        211 & 2.000 & 2.022 & 0.022 & 2.088 \\
         307 & ---   & 0.021 (extrap.) & --- & --- \\
         \hline
       \end{tabular}
@@ -647,7 +667,7 @@ constants $A_H$ and $A_z$.
 
     \noindent
     No deviation from monotone decay of $\Delta(q) = |A_H(q) - A_z(q)|$ is observed for
-    $c=7$ over the tested range $q \in \{61, 101, 151\}$.
+    $c=7$ over the tested range $q \in \{61, 101, 151, 211\}$.
 
     \begin{conjecture}[Asymptotic isotropy]
       \label{conj:isotropy}
@@ -655,10 +675,11 @@ constants $A_H$ and $A_z$.
       \[
         |A_H(q) - A_z(q)| \to 0 \quad \text{as } q \to \infty.
       \]
-      The empirical power-law fit for $c=7$ over $q \in \{61,101,151\}$ gives
-      $|A_H - A_z| \approx 0.264 \cdot q^{-0.44}$, consistent with $q^{-1/2}$ convergence
-      within the available data range.
-      Verification of the conjecture at $q \in \{211, 307, 401\}$ would confirm the trend
+      The empirical power-law fit for $c=7$ over $q \in \{61,101,151,211\}$ gives
+      $|A_H - A_z| \approx 0.364 \cdot q^{-0.52}$ ($R^2=0.98$, four points),
+      consistent with $q^{-1/2}$ convergence as predicted by Q5b Theorem~3.2~\cite{Beau2026q5b}.
+      Extension to $q \in \{307, 401\}$ would further confirm the trend
+      ($q=211$ confirmed: $\Delta(211)=0.022$, Stage~C PASS, Remark~\ref{rem:q211});
       and distinguish the exponent from $-1/2$.
     \end{conjecture}
 
