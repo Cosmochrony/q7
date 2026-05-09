@@ -62,14 +62,21 @@ and the Horizontal Geometry of $\Heis(\mathbb{R})$\\[4pt]
     the Carnot grading $(1, 2)$ of $\heis$ in a precise sense.
     These results stop short of identifying the two ``3''s but they uniquely constrain the form any
     identification must take, and reduce the open question to a single computable criterion on
-    $\sigma_2(L_{\mathrm{eff}})$ that simultaneously resolves Q5b-O2 of~\cite{Beau2026q5b}.
+    $\sigma_2(L_{\mathrm{eff}})$.
+    The isotropy condition $A_H = A_z$ has since been resolved by a complementary route:
+    Q8~\cite{BeauQ8} proves $A_z = C_{\mathfrak{su}(2)} = 2$ via Casimir rigidity on
+    $\Sym^2(\Vr)$, and Q10~\cite{Beau2026q10} establishes $A_H \to 2$ via spectral
+    universality~\cite{Beau2026u1}, giving $A_H = A_z = 2$ independently of
+    Q5b-O2~\cite{Beau2026q5b}.
     A new analytical result completes the picture: we prove that the chirped discrete Fourier
     transform $F_c$ (the metaplectic representative of the $\mathrm{U}(1)$ rotation) commutes
     with $L_{\mathrm{Weil}}$ for all $(q,c)$, which implies that the cross-term part of the
     criterion holds structurally.
-    Numerical verification on O25 checkpoints for $q \in \{61, 101, 151\}$ confirms the vanishing
-    of cross terms for all tested pairs, and the residual isotropy gap $|A_H - A_z|$ is observed
-    to decrease monotonically with $q$ in the low-energy sector.
+    Numerical verification on O25 checkpoints for $q \in \{61, 101, 151, 211\}$ confirms the
+    vanishing of cross terms for all tested pairs, and the residual isotropy gap $|A_H - A_z|$
+    decreases monotonically with $q$ in the low-energy sector.
+    The four-point power-law fit gives $|A_H - A_z| \approx 0.364\,q^{-0.52}$ ($R^2 = 0.98$),
+    consistent with $O(q^{-1/2})$ convergence as predicted by Q5b Theorem~3.2.
     All available analytical and numerical evidence is consistent with asymptotic isotropy
     $A_H = A_z$, reducing the identification problem to a single scalar convergence.
   \end{abstract}
@@ -456,8 +463,9 @@ constants $A_H$ and $A_z$.
       \sigma_2(L_{\mathrm{eff}})\big|_{\Sym^2(\Vr)} = A_H (k_X^2 + k_Y^2) + A_z k_Z^2,
       \quad A_H, A_z > 0.
     \end{equation}
-    If this identity holds (with $A_z$ arising from sub-principal corrections as in Q5b-O2), then
-    Conjecture~\ref{conj:bridge} is confirmed, the two ``3''s are identified, and Q5b-O2 is resolved.
+    This identity $A_H = A_z = 2$ has been established by Q8~\cite{BeauQ8} ($A_z=2$)
+    and Q10~\cite{Beau2026q10} ($A_H\to 2$), conditionally confirming
+    Conjecture~\ref{conj:bridge} and identifying the two ``3''s.
     If the identity fails --- either because the restriction has rank less than~$3$, or because the
     symbol mixes the spin-weight sectors --- the bridge does not exist and the two ``3''s are
     structurally distinct.
@@ -471,9 +479,12 @@ constants $A_H$ and $A_z$.
     vanish structurally for all $(q,c)$ (Corollary~\ref{cor:blockdiag}).
     Numerical verification on O25 checkpoints for $q \in \{61,101,151\}$ confirms this for
     $c \in \{3,5,7\}$ (Table~\ref{tab:numerical}).
-    The remaining open part of Criterion~\ref{crit:symbol} is the isotropy condition $A_H = A_z$:
-    whether the two horizontal directions and the central direction carry equal effective-metric
-    coefficients requires the sub-principal analysis of Q5b-O2 of~\cite{Beau2026q5b}.
+    The isotropy condition $A_H = A_z$ has since been resolved:
+    Q8~\cite{BeauQ8} proves $A_z = C_{\mathfrak{su}(2)} = 2$ via Casimir rigidity,
+    and Q10~\cite{Beau2026q10} establishes $A_H \to 2$ via spectral
+    universality~\cite{Beau2026u1}.
+    The Q5b-O2 sub-principal analysis~\cite{Beau2026q5b} remains of independent interest as
+    an operator-theoretic derivation of the same conclusion.
   \end{remark}
 
   \section{Numerical Verification via O25 Checkpoints}
@@ -779,11 +790,12 @@ constants $A_H$ and $A_z$.
     cross terms with $(k_X, k_Y)$.
     The absence of cross terms is no longer a prediction but a theorem
     (Proposition~\ref{prop:commute}).
-    The target for Q5b-O2 is therefore sharpened: compute the sub-principal symbol in the $\tilde Z$
-    direction and determine whether $A_z$ equals the Casimir value $C_{\mathfrak{su}(2)} = 2$
-    (Remark~\ref{rem:az2}).
-    Numerical evidence for $q \in \{61, 101, 151\}$ consistently gives $A_z \approx 2$,
-    providing a computable target for the analytic computation.
+    The value $A_z = 2$ has since been confirmed analytically: Q8~\cite{BeauQ8} proves
+    $A_z = C_{\mathfrak{su}(2)} = 2$ via Casimir rigidity on $\Sym^2(\Vr)$, independently
+    of the Q5b-O2 sub-principal programme.
+    Numerical evidence for $q \in \{61, 101, 151, 211\}$ is consistent with this value
+    (Remark~\ref{rem:az2}), and Q10~\cite{Beau2026q10} establishes $A_H \to 2$ via
+    spectral universality~\cite{Beau2026u1}.
 
   \subsection{If the Identification Succeeds}
 
