@@ -1,7 +1,7 @@
 This repository contains the source of the **Q7 Cosmochrony paper**  
-[*Three Admissible Directions and Three Spatial Dimensions:
+*Three Admissible Directions and Three Spatial Dimensions:
 A Structural Bridge Candidate between $H_{\mathrm{eff}} \simeq \mathbb{C}^3$
-and the Horizontal Geometry of $\mathrm{Heis}_3(\mathbb{R})$*](out/Q7.pdf).
+and the Horizontal Geometry of $\mathrm{Heis}_3(\mathbb{R})$*.
 
 This work addresses a central structural question of the Cosmochrony
 spectral admissibility programme:
