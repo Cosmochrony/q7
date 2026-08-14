@@ -6,8 +6,9 @@ and the Horizontal Geometry of $\mathrm{Heis}_3(\mathbb{R})$*.
 This work addresses a central structural question of the Cosmochrony
 spectral admissibility programme:
 
-> Are the three admissible directions arising from quaternionic minimality
-> identical to the three spatial directions of the emergent Lorentzian geometry?
+> Are the three admissible directions arising from the neutral sector of the supplied
+> spinor carrier (O23, conditional) identical to the three spatial directions of the
+> emergent Lorentzian geometry?
 
 The paper shows that this question can be formulated precisely, and that
 its resolution reduces to a **single computable spectral criterion**.
@@ -19,7 +20,8 @@ The paper proceeds in four logical steps:
 1. **Separation of the two “3”s**  
    Two independent mechanisms produce the integer 3:
     - the geometric 3 from the Carnot structure of $\mathrm{Heis}_3$ (Q5b),
-    - the admissible 3 from quaternionic minimality and projection (O23–O29).
+    - the admissible 3 from the neutral sector of a supplied spinor carrier and
+      projection (O23 Theorem 3.1, conditional on that carrier; O28–O29).
 
    These structures are *a priori distinct* and cannot be identified directly.
 
