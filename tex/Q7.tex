@@ -4,7 +4,7 @@
 \usepackage{mathtools}
 \usepackage{hyperref}
 \hypersetup{
-  pdftitle={Toward Three Spatial Directions from a Supplied Spin-One Carrier: Requirements for an
+  pdftitle={Toward Three Spatial Directions from a Supplied Spinor Carrier: Requirements for an
     Equivariant Bridge},
   pdfauthor={Jerome Beau},
   pdfsubject={Cosmochrony spectral geometry programme, paper Q7, version 2.0},
@@ -31,7 +31,7 @@
 \newcommand{\Dhom}{D_{\mathrm{hom}}}
 \newcommand{\Sym}{\mathrm{Sym}}
 
-\title{Toward Three Spatial Directions from a Supplied Spin-One Carrier:\\
+\title{Toward Three Spatial Directions from a Supplied Spinor Carrier:\\
 Requirements for an Equivariant Bridge\\[4pt]
 \large Q7 of the Cosmochrony Spectral Geometry Programme}
 \author{J\'er\^ome Beau\\[4pt]
@@ -68,7 +68,8 @@ Requirements for an Equivariant Bridge\\[4pt]
     compared.
     Third, the $\su(2)$ Casimir acts on $\Sym^2(\Vr)$ as $2 \cdot \mathrm{Id}$, and a \emph{non-zero}
     equivariant bridge pulls the Hermitian spatial form back to a positive-definite form of rank
-    three whenever the two coefficients are positive; invariance under the Cartan generator $J_3$ separates the spin-weight $\pm 1$
+    three whenever the two coefficients are positive; invariance under the Cartan generator $J_3$ separates the
+    spin-weight $\pm 1$
     sector from the spin-weight $0$ sector and
     forces isotropy \emph{within the horizontal plane}, but it does not by itself force
     $A_H = A_z$.
@@ -280,7 +281,8 @@ Requirements for an Equivariant Bridge\\[4pt]
     $\Heff = \mathbb{C}^3$, consistently with $\Sigma_c(n_3) = 3$~\cite{Beau2026a32}.
     The per-pair covariance of O28, a $9 \times 9$ operator on $\mathrm{End}(\Heff)$ which that
     paper writes $\mathcal{C}_c$, has threshold rank $r_{\mathrm{eff}}^{1\%} = 3$, its three
-    resolved modes filling $\Heff$ at that numerical threshold~\cite{Beau2026a32}; O29~\cite{Beau2026a33} reports that this rank is modal rather
+    resolved modes filling $\Heff$ at that numerical threshold~\cite{Beau2026a32}; O29~\cite{Beau2026a33} reports that
+    this rank is modal rather
     than invariant across pairs and primes, and that it is a rank in $\mathrm{End}(\Heff)$, not in
     $\mathrm{End}(\Vr)$.
     No source identifies $\Heff$ with $\Sym^2_\mathbb{C}(\Vr)$: O29 states that no calculation
@@ -822,7 +824,7 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
         The three stored rows are the Fourier modes of indices $\{0, -k, +k\}$ (purity $1.000000$
         throughout). ``Flat'' is the entry at index $0$, ``mode $k$'' the common entry at indices
         $\pm k$, and ``closed form'' its value $4 - 2\cos(2\pi k/q)$ from~\eqref{eq:rayleigh};
-        the largest discrepancy over all rows and pairs is $3.6 \times 10^{-15}$.
+        the largest discrepancy over all rows and pairs is below $10^{-14}$.
         The last column reports whether two stored indices differ by $\pm c \bmod q$, which is
         exactly when an off-diagonal entry of modulus $1$ appears; at $(61,3)$ this happens for two
         pairs of indices, at $(151,5)$ for one.
@@ -948,8 +950,7 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
       vector supported at a single position, every entry of $\tilde F$ has modulus exactly
       $q^{-1/2}$, so $\tilde F$ is $q^{-1/2}$ times a unimodular matrix.
       The second is measured rather than derived here: its eigenvalue phases agree with multiples of
-      $90^\circ$ to within $4 \times 10^{-10}$ degrees at all twelve pairs, consistent with
-      $F_c^4 = I$.
+      $90^\circ$ to within $10^{-8}$ degrees at all twelve pairs, consistent with $F_c^4 = I$.
       The overlap itself, however, depends on the covariance direction and therefore on the
       trajectory: measured over the twelve pairs it ranges from $0.0000$ to $0.8610$, with no
       trend in $q$, and it does exceed the threshold at $(61,7)$ ($0.8610$) and $(151,3)$
@@ -1090,8 +1091,8 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     \paragraph{The ordering.}
       The covariance eigenbasis $U$ is block-diagonal with respect to
       $\{\text{flat}\} \oplus \{e_{\pm k}\}$ at all twelve pairs, to numerical precision: the
-      off-block entries of $C_c$ itself, relative to its largest eigenvalue, are at most
-      $1.4 \times 10^{-15}$, a figure the diagnostic prints per pair.
+      off-block entries of $C_c$ itself, relative to its largest eigenvalue, are below $10^{-14}$,
+      and the diagnostic prints the figure it computes per pair.
       So the flat mode is not mixed into the others; what can change is the slot it occupies.
       At eleven pairs the flat mode carries the largest covariance eigenvalue and is ordered first.
       At $(q,c) = (101,3)$ it carries the \emph{smallest} (normalised eigenvalues
@@ -1108,10 +1109,13 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
       The quantity to measure is the gap \emph{inside that plane}, not the gap between the second
       and third eigenvalues of the whole matrix: at $(101,3)$ the latter is the flat mode's
       separation and would mislead.
-      Measured in the plane, with eigenvalues normalised by the largest of $C_c$, the gap is at
-      most $2.1 \times 10^{-15}$ at ten pairs, $(101,3)$ included, one of them returning exactly
-      zero, and it is resolved at two: $6.2 \times 10^{-3}$ at $(61,3)$ and
-      $1.6 \times 10^{-2}$ at $(101,7)$.
+      Measured in the plane, with eigenvalues normalised by the largest of $C_c$, the gap is
+      \emph{below $10^{-14}$} at ten pairs, $(101,3)$ included, one of them returning exactly zero,
+      and it is resolved at two: $6.2 \times 10^{-3}$ at $(61,3)$ and $1.6 \times 10^{-2}$ at
+      $(101,7)$.
+      We quote a bound rather than the individual values, which sit at the level where the order of
+      operations decides the last digits; the diagnostic of Section~\ref{ssec:diagnostic} prints
+      them per pair, as it computes them.
       A gap of that size is a degeneracy \emph{to numerical precision}, which is all a computation
       on floating-point data can establish; we do not call it exact, no algebraic argument for it
       being offered here, and whether the coincidence is structural is a question about the
@@ -1134,8 +1138,8 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
       There the two stored indices $\pm 73$ differ by $146 \equiv -5 \equiv -c$, so the restriction
       of $\tilde L$ to their plane is
       $\begin{pmatrix} 5.989188 & -1 \\ -1 & 5.989188 \end{pmatrix}$, which is not scalar, while
-      the covariance plane is degenerate to within $5.6 \times 10^{-16}$, the figure the diagnostic
-      prints for the gap inside the plane at that pair.
+      the covariance plane is degenerate to well below $10^{-14}$, the diagnostic printing the
+      figure it computes for the gap inside the plane at that pair.
       The rotation returned by the solver is not aligned with the stored modes, and it gives
       $L_{\mathrm{sw}} = \mathrm{diag}(2,\, 6.9527,\, 5.0257)$ with an off-diagonal entry of
       modulus $0.2677$ between the two non-flat slots.
@@ -1211,7 +1215,7 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     degenerate and the block is not scalar, so that the individual entries are solver-dependent,
     from those where the block is scalar and they are not (Section~\ref{ssec:rotation}).
     On the four primes and three characters reported here the lowest purity is $1.000000$ and the
-    largest discrepancy between measurement and closed form is $3.6 \times 10^{-15}$; every
+    largest discrepancy between measurement and closed form is below $10^{-14}$; every
     off-diagonal modulus of the compression in the stored basis matches the index-difference rule,
     being $1$ at $(61,3)$ (twice) and $(151,5)$ and $0$ elsewhere.
     The numerical agreement is reported here together with the derivation

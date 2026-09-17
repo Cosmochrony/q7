@@ -1,5 +1,5 @@
 This repository contains the source of the **Q7 Cosmochrony paper**  
-*Toward Three Spatial Directions from a Supplied Spin-One Carrier:
+*Toward Three Spatial Directions from a Supplied Spinor Carrier:
 Requirements for an Equivariant Bridge*.
 
 This work addresses a central structural question of the Cosmochrony
@@ -79,8 +79,8 @@ $\langle e_m, L_{\mathrm{Weil}} e_m \rangle = 4 - 2\cos(2\pi m/q).$
 The pipeline conjugates that compression by the covariance eigenbasis, and that basis is fixed by
 the data only where the covariance spectrum is non-degenerate. Measured: the gap between the second
 the two eigenvalues *inside the horizontal plane* — not the gap between the second and third eigenvalues
-of the whole matrix, which at $(101,3)$ is the flat mode's — is at most $2.1\times10^{-15}$ at ten
-of the twelve pairs, one of them exactly zero: a degeneracy *to numerical precision*, which is all
+of the whole matrix, which at $(101,3)$ is the flat mode's — is below $10^{-14}$ at ten of the
+twelve pairs, one of them exactly zero: a degeneracy *to numerical precision*, which is all
 floating-point data can establish and which we do not call exact. It is resolved at two
 ($6.2\times10^{-3}$ at $(61,3)$, $1.6\times10^{-2}$ at $(101,7)$). At those ten
 pairs the rotation of the plane is not determined by the data at that precision, but it has
@@ -98,12 +98,12 @@ is shifted at the two that have one. §6.3 of the paper works this out, and reco
 $\rho_{XY} = 0.005$ at $(101,3)$, that no versioned quantity reproduces.
 
 Reproducible diagnostic: `code/q7_mode_diagnostic.py` prints Fourier indices, purities, measured
-and analytic values, residuals, the cross-term check, the covariance spectrum with two gaps (between its second and third
+and analytic values, residuals, the cross-term check, the covariance spectrum with two gaps (between its second and
+third
 eigenvalues, and inside the horizontal plane), the relative size of its off-block entries, the
 diagonal of the rotated matrix with the largest modulus of its off-diagonal entries, the spectrum of
 the compression, and a warning distinguishing the pairs where the entries are solver-dependent from
-those where they are not. Largest
-residual: $3.6 \times 10^{-15}$.
+those where they are not. Largest residual: below $10^{-14}$.
 
 It runs from the repository alone: `code/data/q7_stage_inputs.npz` (37 kB) ships the inputs it
 needs — per pair, the three stored basis rows, the $3\times3$ covariance, and the character pair —
@@ -172,7 +172,7 @@ q7/
 
 If you reference this work, please cite:
 
-> J. Beau, *Toward Three Spatial Directions from a Supplied Spin-One Carrier:
+> J. Beau, *Toward Three Spatial Directions from a Supplied Spinor Carrier:
 > Requirements for an Equivariant Bridge*, 2026.
 
 ## Acknowledgements
