@@ -61,8 +61,8 @@ Requirements for an Equivariant Bridge\\[4pt]
     scalar; reality and positivity of that scalar require separate hypotheses on the forms
     compared.
     Third, the $\su(2)$ Casimir acts on $\Sym^2(\Vr)$ as $2 \cdot \mathrm{Id}$, and its pullback
-    under an equivariant bridge is positive definite of rank three whenever the two coefficients
-    are positive; invariance under the Cartan generator $J_3$ separates the spin-weight $\pm 1$
+    under an equivariant bridge is positive definite of rank three, as a Hermitian form, whenever
+    the two coefficients are positive; invariance under the Cartan generator $J_3$ separates the spin-weight $\pm 1$
     sector from the spin-weight $0$ sector and
     forces isotropy \emph{within the horizontal plane}, but it does not by itself force
     $A_H = A_z$.
@@ -118,14 +118,15 @@ Requirements for an Equivariant Bridge\\[4pt]
       \paragraph{The admissible ``3'' (O-series).}
         Paper O23~\cite{Beau2026a27} proves that if the admissible neutral sector is carried by an
         irreducible two-dimensional unitary representation $V_\rho \cong \mathbb{C}^2$ (a supplied
-        input), then its traceless sector is $\su(2) \simeq \ImH \simeq \mathbb{R}^3$ (Theorem~3.1).
+        input), then its traceless anti-Hermitian sector is
+        $\su(2) \simeq \ImH \simeq \mathbb{R}^3$ (Theorem~3.1).
         The carrier selection and the identification of $\Sigma_c$ with that dimension are open
         bridges; $\Sigma_c(n_3) = 3$ enters as a supplied selection rule.
         Paper O28~\cite{Beau2026a32} sets $\Heff = \mathbb{C}^3$ as a supplied parameter,
-        consistent with the selection rule $\Sigma_c(n_3) = 3$, and reports rank
-        $r_{\mathrm{eff}} = 3$ for the per-pair covariance, stating that this is a finite-data
-        value of its protocol and not an invariant; alongside it O28 reports a participation-ratio
-        value $r_{\mathrm{eff}}^{\mathrm{PR}} = 8/3$.
+        consistent with the selection rule $\Sigma_c(n_3) = 3$, and reports a threshold rank
+        $r_{\mathrm{eff}}^{1\%} = 3$ for every pair tested at $q \in \{61, 101, 151\}$, stating
+        that this is a finite-data value of its protocol and not an invariant; alongside it O28
+        reports a participation-ratio value $r_{\mathrm{eff}}^{\mathrm{PR}} = 8/3$.
         Paper O29~\cite{Beau2026a33} supplies finite-precision diagnostics compatible with an
         adjoint carrier but identifies no object: it states that no calculation there identifies
         these objects, no subspace of $\Heff$ is identified with $\Vr$, and the measured ranks are
@@ -262,7 +263,8 @@ Requirements for an Equivariant Bridge\\[4pt]
     The admissible ``3'' arises at the representation-theoretic level.
     Paper O23~\cite{Beau2026a27} proves that if the admissible neutral sector is carried by an
     irreducible two-dimensional unitary representation $V_\rho \cong \mathbb{C}^2$ (a supplied
-    input), then its traceless sector is $\su(2) \simeq \ImH$, carrying exactly three independent
+    input), then its traceless anti-Hermitian sector is $\su(2) \simeq \ImH$, carrying exactly
+    three independent
     directions (Theorem~3.1); O23's Proposition~3.4 notes that a count of generator axes can stop
     at two, so ``directions'' is the correct reading.
     The carrier selection and the identification of $\Sigma_c$ with $\dim \su(V_\rho)$ are open
@@ -279,8 +281,9 @@ Requirements for an Equivariant Bridge\\[4pt]
     the value $d_\rho = 2$ is O26's minimality selection~\cite{Beau2026a30}.
     Accordingly, that identification enters this paper as a hypothesis
     (Hypothesis~[ID] of Section~\ref{sec:sym2}), on the data supplied by O23, O26 and O27.
-    The ``admissible~3'' is the complex dimension of $\Heff$ (equivalently, the modal rank
-    of $C_c$).
+    The ``admissible~3'' is the complex dimension of $\Heff$, a parameter of the pipeline, with
+    which the modal rank of the measured covariance numerically coincides; the two are distinct
+    quantities.
 
     \begin{remark}[Three distinct ``3''s to be kept separate]
       \label{rem:three3s}
@@ -325,10 +328,12 @@ Requirements for an Equivariant Bridge\\[4pt]
   \subsection{The Symmetric Square Identification}
     \label{sec:sym2}
 
-    On the carrier data supplied by O23~\cite{Beau2026a27} together with O27's saturation
-    hypothesis~\cite{Beau2026a31}, and with the minimality selection $d_\rho = 2$ of
-    O26~\cite{Beau2026a30}, we have $\Vr \simeq \mathbb{C}^2$ as an $\su(2)$-module: the unique
-    irreducible spin-$\tfrac{1}{2}$ representation.
+    On the carrier supplied by O23~\cite{Beau2026a27}, with the minimality selection
+    $d_\rho = 2$ of O26~\cite{Beau2026a30}, we have $\Vr \simeq \mathbb{C}^2$ as an
+    $\su(2)$-module: the unique irreducible spin-$\tfrac{1}{2}$ representation.
+    O27's saturation hypothesis is not needed for this step: it concerns
+    $H_{\mathrm{eff}}^{\text{O27}}$, the space from which, by O27's own statement, no dimension
+    count transfers here (Section~\ref{sec:conv}).
     Its symmetric square $\Sym^2_\mathbb{C}(\Vr)$ then carries a canonical basis
     $\{e_+, e_0, e_-\}$ of weight eigenstates under the Cartan generator $J_3$:
     $J_3 e_{\pm} = \pm e_{\pm}$, $J_3 e_0 = 0$.
@@ -473,23 +478,30 @@ Requirements for an Equivariant Bridge\\[4pt]
         \item The quadratic form $Q_{\mathcal{C}}(v) := \langle v, \mathcal{C} v \rangle = 2\|v\|^2$
         on $\Sym^2(\Vr)$ is positive-definite of rank~$3$.
         \item If $A_H > 0$ and $A_z > 0$, then under any equivariant bridge $\varphi$ the pullback
-        $\varphi^* g_{\mathrm{sp}}$ (where $g_{\mathrm{sp}} = \mathrm{diag}(A_H, A_H, A_z)$ is the
-        spatial block of $g^{\mu\nu}$, extended $\mathbb{C}$-bilinearly) is positive-definite of
-        rank~$3$.
-        \item The induced map on quadratic forms is:
+        $\varphi^* h_{\mathrm{sp}}$ is positive-definite of rank~$3$, where $h_{\mathrm{sp}}$ is the
+        \emph{Hermitian} (sesquilinear) extension to $W_\mathbb{C}$ of the real spatial block
+        $g_{\mathrm{sp}} = \mathrm{diag}(A_H, A_H, A_z)$ of $g^{\mu\nu}$.
+        The Hermitian extension is the one to use here: the $\mathbb{C}$-bilinear extension of a
+        real form is never positive definite on a complex space, since it sends $iv$ to
+        $-g(v,v)$.
+        \item The induced form is:
         \begin{equation}
-          \varphi^* g_{\mathrm{sp}} = \lambda_H \cdot Q_{\pm} + \lambda_z \cdot Q_0,
+          \varphi^* h_{\mathrm{sp}} = \lambda_H \cdot Q_{\pm} + \lambda_z \cdot Q_0,
         \end{equation}
         where $Q_{\pm}$ is the projection onto the spin-weight $\pm 1$ eigenspace $\{e_+, e_-\}$,
         $Q_0$ is the projection onto the spin-weight $0$ eigenspace $\{e_0\}$,
-        and $\lambda_H = A_H / \|\varphi\|^2$, $\lambda_z = A_z / \|\varphi\|^2$, positive under the
-        same proviso.
+        and $\lambda_H = A_H / |\lambda|^2$, $\lambda_z = A_z / |\lambda|^2$ with $\lambda$ the
+        scalar of Lemma~\ref{lem:schur}, positive under the same proviso.
+        In particular the pullback depends on $\varphi$ only through $|\lambda|$, the phase acting
+        trivially, which is why the normalisation discussion of Remark~\ref{rem:rigidity} concerns
+        a modulus.
       \end{enumerate}
     \end{lemma}
 
     \begin{proof}
       Item~(1) is immediate from $\mathcal{C} = 2 \cdot \mathrm{Id}$ and $\dim \Sym^2(\Vr) = 3$.
-      For items~(2) and~(3): the spatial metric $g_{\mathrm{sp}} = \mathrm{diag}(A_H, A_H, A_z)$
+      For items~(2) and~(3): the spatial form $h_{\mathrm{sp}}$, Hermitian on $W_\mathbb{C}$ and
+      equal to $\mathrm{diag}(A_H, A_H, A_z)$
       in the basis $(\tilde X, \tilde Y, \tilde Z)$ preserves the sub-strata of Remark~\ref{rem:substrata}:
       it acts by $A_H$ on $V_1 = \mathrm{span}\{\tilde X, \tilde Y\}$ (Carnot degree~$1$) and by $A_z$
       on $V_2 = \mathrm{span}\{\tilde Z\}$ (Carnot degree~$2$).
@@ -506,8 +518,8 @@ Requirements for an Equivariant Bridge\\[4pt]
       of~\cite{Beau2026q5b} and not established here.
       Under the grading correspondence of Remark~\ref{rem:grading}, $V_1$ maps to the spin-weight
       $\pm 1$ sector $\{e_+, e_-\}$ and $V_2$ maps to the spin-weight $0$ sector $\{e_0\}$.
-      The pullback $\varphi^* g_{\mathrm{sp}}$ therefore acts by $A_H / \|\varphi\|^2$ on $\{e_+, e_-\}$
-      and by $A_z / \|\varphi\|^2$ on $\{e_0\}$, giving~(3).
+      The pullback $\varphi^* h_{\mathrm{sp}}$ therefore acts by $A_H/|\lambda|^2$ on
+      $\{e_+, e_-\}$ and by $A_z/|\lambda|^2$ on $\{e_0\}$, giving~(3).
       If $A_H, A_z > 0$, the pullback is positive-definite, giving~(2).
       Positivity is a hypothesis here, not an import: $A_H > 0$ is stipulated inside [H-L]
       of~\cite{Beau2026q5b}, and no positivity statement for $A_z$ is available from its
@@ -720,6 +732,9 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     The computation proceeds in three stages.
     Stage~A computes the per-pair covariance $C_c = N^{-1}\sum_j w_j w_j^\dagger$
     in $H_{\mathrm{eff}} = \mathbb{C}^3$ and orders its eigenvectors.
+    This $3 \times 3$ matrix is not the object O28 calls $C_c$, which is a $9 \times 9$ covariance
+    of vectorised outer products in $\mathrm{End}(\Heff)$; the two carry the same name in the
+    corpus and are kept apart here.
     Stage~B checks that the $F_c$-eigenvalue phases of $\tilde{F} = B_{\mathrm{eff}} F_c B_{\mathrm{eff}}^\dagger$
     are multiples of $90^\circ$ (consistent with $F_c^4 = I$).
     Stage~C computes $\tilde{L} = B_{\mathrm{eff}} L_{\mathrm{Weil}} B_{\mathrm{eff}}^\dagger$,
@@ -821,7 +836,7 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     \end{equation}
     an identity, not a measurement of a metric anisotropy.
 
-    \begin{remark}[Universal value $A_z = 2$ and the $\mathfrak{su}(2)$ Casimir]
+    \begin{remark}[The flat-mode entry, and its coincidence with the $\mathfrak{su}(2)$ Casimir]
       \label{rem:az2}
       The flat-mode entry of the compression in the stored basis, $\tilde L_{00}$, equals $2$
       exactly, not approximately, at all twelve pairs.
@@ -1020,7 +1035,8 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
       (Papers Q8~\cite{BeauQ8}, Q9~\cite{Beau2026q9} and Q10~\cite{Beau2026q10} cite this
       structure as ``Q7 Remark~6.8'': Q9 restates all three cases, Q8 and Q10 name Case~3 and
       Case~1 respectively. In the deposited version~1.3 and here
-      it is Remark~\ref{rem:threecases}, Corollary~\ref{cor:quasithm} being 6.8. The numbering of
+      it is Remark~\ref{rem:threecases}, the number 6.8 belonging to
+      Corollary~\ref{cor:quasithm}. The numbering of
       this paper is unchanged in version~2.0.)
     \end{remark}
 
@@ -1038,23 +1054,27 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
       At $(q,c) = (101,3)$ it carries the \emph{smallest} (normalised eigenvalues
       $1$, $1$, $0.98758$) and is ordered last, which is the whole origin of the published row
       $A_z = 2.096$, $A_H = \tfrac12(2.096 + 2.000) = 2.048$.
-      That is a resolved gap of about one per cent, not a degeneracy.
+      What is resolved there, by about one per cent, is the flat mode's separation from the plane;
+      the plane itself is degenerate at $(101,3)$, as the next paragraph records.
+      The two questions are distinct: this one is about the slot the flat mode occupies.
 
     \paragraph{The rotation inside the horizontal plane, and when it is harmless.}
       Whether $U$ is determined inside the plane of $e_{\pm k}$ is a property of the covariance
       spectrum, not of the Rayleigh quotients: equality of the two non-flat entries of $\tilde L$
       says nothing about $C_c$.
-      Measured, with eigenvalues normalised by the largest, the gap between the second and third
-      lies between $10^{-16}$ and $2 \times 10^{-15}$ at nine pairs, and is resolved at two:
-      $6.2 \times 10^{-3}$ at $(61,3)$ and $1.6 \times 10^{-2}$ at $(101,7)$ (at $(101,3)$ the
-      near-degenerate plane is the same one, the resolved gap being the flat mode's).
+      The quantity to measure is the gap \emph{inside that plane}, not the gap between the second
+      and third eigenvalues of the whole matrix: at $(101,3)$ the latter is the flat mode's
+      separation and would mislead.
+      Measured in the plane, with eigenvalues normalised by the largest of $C_c$, the gap lies
+      between $10^{-16}$ and $6 \times 10^{-16}$ at ten pairs, $(101,3)$ included, and is resolved
+      at two: $6.2 \times 10^{-3}$ at $(61,3)$ and $1.6 \times 10^{-2}$ at $(101,7)$.
       A gap of that size is a degeneracy \emph{to numerical precision}, which is all a computation
       on floating-point data can establish; we do not call it exact, no algebraic argument for it
       being offered here, and whether the coincidence is structural is a question about the
       pipeline that this paper does not settle.
-      At those nine pairs the rotation of the plane is accordingly not determined by the data at
+      At those ten pairs the rotation of the plane is accordingly not determined by the data at
       the precision available: a different eigensolver may return a different basis of it.
-      It is nevertheless without effect at eight of them, for a reason worth stating: there the
+      It is nevertheless without effect at nine of them, for a reason worth stating: there the
       restriction of $\tilde L$ to the plane is the \emph{scalar} operator
       $\bigl(4 - 2\cos(2\pi k/q)\bigr) I$, because no difference of the two indices equals
       $\pm c \bmod q$, and a unitary rotation of a plane on which an operator acts as a scalar
@@ -1062,7 +1082,7 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
       No solver, ordering or seed can split those entries or create an off-diagonal term there.
       Exactly one pair has both an undetermined rotation and a non-scalar block, and it is
       $(q,c) = (151,5)$.
-      Note that at the eight scalar-block pairs the conclusion does not depend on how the
+      Note that at the nine scalar-block pairs the conclusion does not depend on how the
       degeneracy is classified: scalar is scalar, so those entries are invariant whether the gap is
       exactly zero or merely below the noise floor.
 
@@ -1082,8 +1102,10 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
 
     \paragraph{The column label.}
       Version~1.3 captioned that column as the XY isotropy ratio
-      $|\tilde L_{11} - \tilde L_{22}|/|\tilde L_{11}|$, which at $(151,5)$ evaluates to
-      $0.2772$, whereas the quantity actually printed is the cross-term ratio
+      $|L_{11} - L_{22}|/|L_{11}|$, an expression it did not say which matrix to evaluate on.
+      On the stored-basis compression $\tilde L$ it is $0$, both entries being equal; on the
+      reported $L_{\mathrm{sw}}$ at $(151,5)$ it is $0.2772$, whereas the quantity actually
+      printed is the cross-term ratio
       $|(L_{\mathrm{sw}})_{12}|/\bar\lambda = 0.0574$, and the isotropy ratio as the script
       computes it, with $A_H$ in the denominator, is $0.3218$.
       Three different numbers; the caption named neither of the two the script produces.
@@ -1168,8 +1190,8 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
       non-zero complex scalar (Lemma~\ref{lem:schur}); reality and positivity of the scalar require
       the further requirement of Remark~\ref{rem:rigidity}.
       \item The $\su(2)$ Casimir acts on $\Sym^2(\Vr)$ as $2\cdot\mathrm{Id}$, and under an
-      equivariant bridge its pullback is graded as in Lemma~\ref{lem:qform}, with the premises
-      listed in Remark~\ref{rem:status}. Invariance under the Cartan generator forces isotropy
+      equivariant bridge the pullback of the Hermitian spatial form is graded as in
+      Lemma~\ref{lem:qform}, with the premises listed in Remark~\ref{rem:status}. Invariance under the Cartan generator forces isotropy
       within the horizontal plane; it does not force $A_H = A_z$.
       \item The grading correspondence (Remark~\ref{rem:grading}) connects the Carnot degree-$(1,2)$
       decomposition of $\heis$ to the spin-weight-$(\pm 1, 0)$ decomposition of $\Sym^2(\Vr)$,

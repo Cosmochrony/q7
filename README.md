@@ -77,13 +77,14 @@ $\langle e_m, L_{\mathrm{Weil}} e_m \rangle = 4 - 2\cos(2\pi m/q).$
 **The closed form describes the stored-basis compression, not directly the published entries.**
 The pipeline conjugates that compression by the covariance eigenbasis, and that basis is fixed by
 the data only where the covariance spectrum is non-degenerate. Measured: the gap between the second
-and third normalised eigenvalues of $C_c$ lies between $10^{-16}$ and $2\times10^{-15}$ at nine of
-the twelve pairs — a degeneracy *to numerical precision*, which is all floating-point data can
-establish, and which we do not call exact — and is resolved at two ($6.2\times10^{-3}$ at $(61,3)$,
-$1.6\times10^{-2}$ at $(101,7)$; at $(101,3)$ the resolved gap is the flat mode's). At those nine
+eigenvalues *inside the horizontal plane* — not the gap between the second and third eigenvalues of
+the whole matrix, which at $(101,3)$ is the flat mode's — lies between $10^{-16}$ and
+$6\times10^{-16}$ at ten of the twelve pairs, a degeneracy *to numerical precision*, which is all
+floating-point data can establish and which we do not call exact; it is resolved at two
+($6.2\times10^{-3}$ at $(61,3)$, $1.6\times10^{-2}$ at $(101,7)$). At those ten
 pairs the rotation of the plane is not determined by the data at that precision, but it has
 no effect wherever the compression restricted to the plane is **scalar**, which holds at eleven of
-the twelve pairs: a rotation of a plane on which an operator acts as a scalar returns the same
+the twelve pairs, so nine of the ten undetermined rotations are harmless: a rotation of a plane on which an operator acts as a scalar returns the same
 scalar, so no solver can split those entries. Exactly one pair has both an arbitrary rotation and a
 non-scalar block — $(151,5)$, where the indices $\pm 73$ differ by $-c$ — and there the split
 $6.9527 / 5.0257$ and the off-diagonal $0.2677$ are solver-dependent; the ratio of that
@@ -148,8 +149,12 @@ emergent spacetime, isotropy, non-injectivity
 ## Repository Contents
 ```
 q7/
-├── code/    # Reproducible diagnostic (q7_mode_diagnostic.py, q7_symbol_test.py)
-├── tex/     # LaTeX sources
+├── code/         # Diagnostic and stage scripts
+│   └── data/     # Compact inputs + SHA256SUMS
+├── tex/          # LaTeX sources and bibliography
+├── CITATION.cff
+├── compile.sh
+├── zenodo.json
 └── README.md
 ```
 

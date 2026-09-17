@@ -65,8 +65,16 @@ Off-diagonal entries: <e_m, L_Weil e_n> = -<e_m, W_b e_n> - <e_m, W_b^dag e_n>
 is non-zero exactly when m - n = +/- c mod q, in which case its modulus is 1.
 This is the cross-term rule checked below.
 
-Checkpoints
------------
+Inputs
+------
+By default the script reads the compact bundle shipped with this repository,
+`code/data/q7_stage_inputs.npz`, after verifying its SHA-256 digest against
+`code/data/SHA256SUMS`.  The bundle holds, per (q, c): the three stored basis
+rows, the 3x3 covariance C_c of the per-shell projections, and the conjugate
+character pair.  It is a DERIVED extract: reproducing the extraction itself
+needs the full O25 checkpoints, which are not redistributed here.
+
+With --from-checkpoints the script recomputes everything from those checkpoints.
 Default directory: the O25 outputs of the Q5a-O5 campaign,
 `simulation/gravity/q5a-o5/o25_outputs/q{q}_o25.npz`, relative to the workspace
 root.  Each file stores `pairs` (conjugate character pairs), `basis_c` (the
@@ -76,7 +84,8 @@ H_eff-projections).  Pass --checkpoint-dir to point elsewhere.
 
 Usage
 -----
-    python3 q7_mode_diagnostic.py --checkpoint-dir <dir> [--primes 61 101 151 211]
+    python3 q7_mode_diagnostic.py [--primes 61 101 151 211] [--chars 3 5 7]
+    python3 q7_mode_diagnostic.py --from-checkpoints --checkpoint-dir <dir>
 """
 
 from __future__ import annotations
@@ -107,6 +116,7 @@ DEFAULT_DIR = os.path.normpath(
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from q7_symbol_test import (  # noqa: E402
     extract_Beff_from_checkpoint,
+    extract_pi_c_from_checkpoint,
     load_checkpoint,
     weil_laplacian,
     weil_phase,
@@ -166,7 +176,10 @@ def load_bundle(path: str = BUNDLE):
             raise SystemExit(
                 f"bundle checksum mismatch\n  expected {expected}\n  got      {digest}"
             )
-    print(f"Bundle: {path}\n  sha256 {digest} (verified against SHA256SUMS)")
+        print(f"Bundle: {path}\n  sha256 {digest} (verified against SHA256SUMS)")
+    else:
+        print(f"Bundle: {path}\n  sha256 {digest}\n"
+              f"  WARNING: {os.path.basename(sums)} absent, digest NOT verified")
     return np.load(path)
 
 
@@ -234,14 +247,21 @@ def report_pair(q: int, c: int, data, bundle=None) -> dict | None:
     # is what decides whether the Stage-A eigenbasis is free to rotate.
     ev = np.linalg.eigvalsh(cov)[::-1]
     ev_n = ev / ev[0]
-    gap = float(abs(ev_n[1] - ev_n[2]))
+    # The covariance is block-diagonal with respect to {flat} + {e_{-k}, e_{+k}}.
+    # What decides whether the eigenbasis of the horizontal plane is determined is
+    # the gap INSIDE that plane, not the gap between the second and third
+    # eigenvalues of the whole matrix: at (101,3) the latter is the flat mode's.
+    plane = np.linalg.eigvalsh(cov[1:, 1:])[::-1] / ev[0]
+    gap = float(abs(plane[0] - plane[1]))
+    gap23 = float(abs(ev_n[1] - ev_n[2]))
     U = np.linalg.eigh(cov)[1][:, ::-1]
     L_sw = U.conj().T @ L_tilde @ U
     off_sw = float(
         np.abs(L_sw - np.diag(np.diag(L_sw))).max()
     )
     print("    covariance spectrum (normalised): "
-          f"{np.round(ev_n, 6)}   gap(2,3) = {gap:.2e}   "
+          f"{np.round(ev_n, 6)}   gap(2,3) = {gap23:.2e}")
+    print(f"    gap inside the horizontal plane: {gap:.2e}   "
           f"{'degenerate to numerical precision' if gap < 1e-12 else 'resolved'}")
     print("    rotated by the covariance eigenbasis: diag "
           f"{np.round(np.diag(L_sw).real, 6)}   max |off-diagonal| = {off_sw:.6f}")

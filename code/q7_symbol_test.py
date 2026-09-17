@@ -51,7 +51,8 @@ so f_k is NOT an eigenfunction of L_G.  For k_Z != 0, the Y-contribution
 to <f_k, L_G f_k> vanishes.  The correct approach is Stage C: restrict the
 Weil-block Laplacian to H_eff via B_eff.
 
-Expected output (if bridge exists)
+Expected output in version 1.3 (if the bridge exists, and under Hypothesis [ID];
+both are open, see the header)
 ------------------------------------
 Stage A : eigenvalues of C_c ~ [1.0 : 0.5 : 0.5]
 Stage B : dominant eigenvec of C_c  <-->  F_tilde-eigenvec with eigenvalue ~1
