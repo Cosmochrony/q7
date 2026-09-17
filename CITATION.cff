@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you cite this work, please use the metadata from this file."
-title: "Three Admissible Directions and Three Spatial Dimensions: A Structural Bridge Candidate between C^3 and the Horizontal Geometry of (R) Q7 of the Cosmochrony Spectral Geometry Programme"
+title: "Toward Three Spatial Directions from a Supplied Spin-One Carrier: Requirements for an Equivariant Bridge"
 type: software
 authors:
   - family-names: "Beau"
@@ -11,7 +11,7 @@ doi: "10.5281/zenodo.19802123"
 license: "CC-BY-4.0"
 preferred-citation:
   type: article
-  title: "Three Admissible Directions and Three Spatial Dimensions: A Structural Bridge Candidate between C^3 and the Horizontal Geometry of (R) Q7 of the Cosmochrony Spectral Geometry Programme"
+  title: "Toward Three Spatial Directions from a Supplied Spin-One Carrier: Requirements for an Equivariant Bridge"
   authors:
     - family-names: "Beau"
       given-names: "Jérôme"

@@ -17,7 +17,9 @@ Metaplectic symmetry (Stage B)
 The U(1) rotation in the XY-plane of Heis_3 (which acts as J_3 on the spin-1 triplet)
 is represented in the character-c Weil block by the chirped DFT:
     (F_c)_{jk} = (1/sqrt(q)) omega^{c*j*k},  omega = exp(2pi i / q)
-It satisfies:  F_c W_a F_c^dag = W_b^dag,  F_c W_b F_c^dag = W_a^dag.
+It satisfies:  F_c W_a F_c^dag = W_b,  F_c W_b F_c^dag = W_a^dag.
+(The first relation was printed with a spurious dagger in version 1.3; see
+q7_mode_diagnostic.py, which verifies both numerically.)
 In the spin-1 representation, F_c acts with eigenvalues:
     e_0  (J_3 = 0)  -->  eigenvalue  1      (Z-type, fixed)
     e_+  (J_3 = +1) -->  eigenvalue  i
@@ -37,7 +39,10 @@ Expected output (if bridge exists)
 ------------------------------------
 Stage A : eigenvalues of C_c ~ [1.0 : 0.5 : 0.5]
 Stage B : dominant eigenvec of C_c  <-->  F_tilde-eigenvec with eigenvalue ~1
-Stage C : L_tilde diagonal in spin-weight basis, eigenvalues [A_z, A_H, A_H]
+Stage C : diagonal entries of the compression L_tilde, historically read as
+          [A_z, A_H, A_H].  On the stored checkpoints these are Rayleigh
+          quotients 4 - 2 cos(2 pi m / q) of single Fourier modes; see
+          q7_mode_diagnostic.py for the derivation and the per-pair check.
           cross terms |L_sw[0,1]|, |L_sw[0,2]| / diagonal < threshold
 """
 
@@ -85,7 +90,7 @@ def chirped_fourier(q, c):
         (F_c)_{jk} = (1/sqrt(q)) omega^{c*j*k},  omega = exp(2pi i / q)
     This is the correct metaplectic element implementing the 90-degree XY-rotation
     in the character-c Weil representation.
-    Satisfies: F_c W_a F_c^dag = W_b^dag  and  F_c W_b F_c^dag = W_a^dag.
+    Satisfies: F_c W_a F_c^dag = W_b  and  F_c W_b F_c^dag = W_a^dag.
     """
     j = np.arange(q)
     return np.exp(2j * np.pi * c * np.outer(j, j) / q) / np.sqrt(q)
@@ -374,7 +379,9 @@ def stage_C(q, c, B_eff, eigvecs_C, verbose=True):
     L_tilde = B_eff L_Weil B_eff^dag restricted to H_eff, expressed in the
     spin-weight basis (eigenbasis of C_c).
 
-    Prediction: L_sw = diag(A_z, A_H, A_H) -- no cross terms.
+    On the stored checkpoints L_sw is diagonal with entries given in closed form by
+    4 - 2 cos(2 pi m / q) on the three stored Fourier indices {0, -k, +k}, with an
+    off-diagonal entry of modulus 1 exactly when two indices differ by +/- c mod q.
     KEY TEST: rel_cross_0 = max(|L_sw[0,1]|, |L_sw[0,2]|) / diag_ref < CROSS_THRESH.
     """
     L_Weil  = weil_laplacian(q, c)
