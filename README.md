@@ -44,9 +44,12 @@ structures: the required bridge is a **missing identification**, not a proved ob
    Up to isomorphism, $\mathrm{Sym}^2(V_\rho)$ is the unique irreducible three-dimensional
    complex module of $\mathfrak{su}(2)$, isomorphic to the complexified adjoint. Hence any
    equivariant bridge is **either zero or an isomorphism, unique up to one non-zero complex
-   scalar**; reality and positivity of that scalar are a further requirement. The Casimir
+   scalar**; reality and positivity of that scalar are a further requirement. The rigidity also
+   requires the target to carry the $\mathfrak{su}(2)$-action that makes it the adjoint module,
+   isolated in the paper as **[ACT]** and supplied by no source. The Casimir
    acts as $2 \cdot \mathrm{Id}$, and invariance under the Cartan generator forces isotropy
-   *within the horizontal plane* only: it does not force $A_H = A_z$.
+   *within the horizontal plane* only: it does not force $A_H = A_z$. That invariance is itself a
+   hypothesis on the admissible regime, isolated as **[INV]** and likewise supplied by no source.
 
 5. **Reduction to a symbol criterion**  
    An identification would have to satisfy
@@ -88,12 +91,18 @@ no effect wherever the compression restricted to the plane is **scalar**, which 
 the twelve pairs, so nine of the ten undetermined rotations are harmless: a rotation of a plane on which an operator
 acts as a scalar returns the same
 scalar, so no solver can split those entries. Exactly one pair has both an arbitrary rotation and a
-a block that is not scalar — $(151,5)$, where the indices $\pm 73$ differ by $-c$ — and there the
+non-scalar block — $(151,5)$, where the indices $\pm 73$ differ by $-c$ — and there the
 split
 $6.9527 / 5.0257$ and the off-diagonal $0.2677$ are solver-dependent; the ratio of that
-off-diagonal to the mean diagonal is the published $\rho_{XY} = 0.057$, in a column captioned as
-the isotropy ratio, which evaluates to $0.2772$ under the caption's own formula and to $0.3218$ as
-the script computes it. The invariant content is the spectrum of the compression, which the closed
+off-diagonal to the mean diagonal is the published $\rho_{XY} = 0.057$, in a column that version 1.3's
+running text called the isotropy ratio and its caption called a cross-term ratio. The running
+text's formula, on the stored-basis compression it names, gives $0$; read on the rotated matrix it
+gives $0.2772$; and the script's own isotropy variable gives $0.3218$. The per-pair covariance is the same Hermitian object O29 reports pooled over all conjugate pairs
+at a prime; `--pooled` reproduces O29's two published spectra exactly ([1, 0.5584, 0.5584] at
+$q=29$, [1, 0.7527, 0.7513] at $q=61$) from the checkpoints, so the per-pair and published figures
+are two aggregations of one measurement rather than a disagreement.
+
+The invariant content is the spectrum of the compression, which the closed
 form gives outright at the ten pairs with no index difference equal to $\pm c \bmod q$ and which
 is shifted at the two that have one. §6.3 of the paper works this out, and records one published number,
 $\rho_{XY} = 0.005$ at $(101,3)$, that no versioned quantity reproduces.
@@ -193,6 +202,6 @@ Critical feedback, independent analyses, and formal scrutiny are welcome.
 Please open an issue to discuss:
 
 - the mode-selection rule $q \mapsto k(q,c)$, on which the isotropy conjecture now depends,
-- Hypothesis [ID] and any route that would supply it,
+- Hypotheses [ID], [ACT] and [INV], and any route that would supply them,
 - potential counterexamples,
 - extensions to larger primes or alternative admissible sectors.

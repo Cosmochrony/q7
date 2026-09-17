@@ -170,6 +170,12 @@ def load_bundle(path: str = BUNDLE):
     redistributed here.  SHA256SUMS sits next to it.
     """
     sums = os.path.join(os.path.dirname(path), "SHA256SUMS")
+    if not os.path.exists(path):
+        raise SystemExit(
+            f"input bundle not found: {path}\n"
+            "  Either restore code/data/q7_stage_inputs.npz from the repository, or pass\n"
+            "  --from-checkpoints --checkpoint-dir <dir> to recompute from the O25 checkpoints."
+        )
     digest = hashlib.sha256(open(path, "rb").read()).hexdigest()
     if os.path.exists(sums):
         expected = open(sums).read().split()[0]
@@ -329,6 +335,41 @@ def report_pair(q: int, c: int, data, bundle=None) -> dict | None:
     return {"q": q, "c": c, "rows": rows, "L_tilde": L_tilde, "cov_gap": gap}
 
 
+def pooled_spectrum(q: int, checkpoint_dir: str) -> dict | None:
+    """Pool the H_eff projections over every conjugate pair stored at q.
+
+    Section 6 keeps one covariance per conjugate pair; O29 reports the same
+    Hermitian covariance <w w^dag> pooled over all pairs at a prime.  This
+    reproduces the pooled figure, so the two aggregations can be compared.
+    Needs the O25 checkpoints: the shipped bundle holds per-pair covariances
+    only, and the pooling cannot be recovered from them.
+    """
+    try:
+        data, path = load_checkpoint(q, checkpoint_dir)
+    except FileNotFoundError as exc:
+        print(f"  q={q}: {exc}")
+        return None
+    vectors, pairs_used = [], 0
+    for c in np.asarray(data["pairs"])[:, 0]:
+        try:
+            w = extract_pi_c_from_checkpoint(data, int(c))
+        except Exception:
+            continue
+        vectors.extend(w)
+        pairs_used += 1
+    if not vectors:
+        print(f"  q={q}: no projections found in {os.path.basename(path)}")
+        return None
+    W = np.asarray(vectors, dtype=complex)
+    cov = W.conj().T @ W / len(W)
+    ev = np.linalg.eigvalsh(cov)[::-1]
+    ev = ev / ev[0]
+    print(f"  q={q:>4}  {pairs_used} pairs, {len(W)} projections pooled"
+          f"  ->  normalised spectrum "
+          f"[{ev[0]:.4f}, {ev[1]:.4f}, {ev[2]:.4f}]")
+    return {"q": q, "pairs": pairs_used, "n": len(W), "spectrum": ev}
+
+
 def _pair_row(data, c: int) -> int:
     pairs = data["pairs"]
     idx = np.where(pairs[:, 0] == c)[0]
@@ -342,15 +383,34 @@ def main() -> int:
     ap.add_argument("--primes", nargs="+", type=int, default=DEFAULT_PRIMES)
     ap.add_argument("--chars", nargs="+", type=int, default=DEFAULT_CHARS)
     ap.add_argument("--checkpoint-dir", type=str, default=DEFAULT_DIR)
+    ap.add_argument("--pooled", action="store_true",
+                    help="report the covariance pooled over all conjugate pairs at each prime, "
+                         "the aggregation O29 uses (requires the checkpoints)")
     ap.add_argument("--from-checkpoints", action="store_true",
                     help="use the full O25 checkpoints instead of the bundled inputs")
     args = ap.parse_args()
 
     print(__doc__)
+    if args.pooled:
+        print(f"Checkpoint directory: {os.path.abspath(args.checkpoint_dir)}")
+        print("\nCovariance pooled over all conjugate pairs at each prime "
+              "(the O29 aggregation):")
+        got = [pooled_spectrum(q, args.checkpoint_dir) for q in args.primes]
+        if not any(got):
+            print("\n  NOTHING WAS PROCESSED: no checkpoint was found. "
+                  "Pass --checkpoint-dir <dir>.")
+            return 2
+        return 0
     bundle = None
+    bundle_absent = False
     if not args.from_checkpoints and os.path.exists(BUNDLE):
         bundle = load_bundle()
     else:
+        if not args.from_checkpoints:
+            bundle_absent = True
+            print(f"Bundle: {BUNDLE}\n"
+                  "  ABSENT: falling back to the O25 checkpoints, which are not part of this\n"
+                  "  repository. Restore code/data/q7_stage_inputs.npz to run from the repo alone.")
         print(f"Checkpoint directory: {os.path.abspath(args.checkpoint_dir)}")
 
     worst_purity = 1.0
@@ -380,8 +440,20 @@ def main() -> int:
     print(f"  pairs processed                              : {pairs_done}")
     if pairs_done == 0:
         print("  NOTHING WAS PROCESSED: no (q, c) pair matched the inputs available.")
-        print("  No verification was performed. Check --primes and --chars against "
-              "what the bundle or the checkpoints contain.")
+        print("  No verification was performed.")
+        if bundle_absent:
+            print("  Cause: the input bundle is absent and no checkpoint was found in "
+                  f"{os.path.abspath(args.checkpoint_dir)}.")
+            print("  Remedy: restore code/data/q7_stage_inputs.npz from this repository, or pass "
+                  "--checkpoint-dir <dir> pointing at the O25 checkpoints.")
+        elif bundle is None:
+            print("  Cause: --from-checkpoints was requested and no checkpoint was found in "
+                  f"{os.path.abspath(args.checkpoint_dir)}.")
+            print("  Remedy: pass --checkpoint-dir <dir>, or drop --from-checkpoints to use the "
+                  "bundled inputs.")
+        else:
+            print("  Cause: the bundle was read but holds none of the requested pairs.")
+            print("  Remedy: check --primes and --chars against what the bundle contains.")
         return 2
     print(f"  lowest Fourier purity over all reported rows : {worst_purity:.6f}")
     print(f"  largest |measured - analytic| residual       : {worst_residual:.2e}")

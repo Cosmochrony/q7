@@ -6,7 +6,7 @@
 \hypersetup{
   pdftitle={Toward Three Spatial Directions from a Supplied Spinor Carrier: Requirements for an
     Equivariant Bridge},
-  pdfauthor={Jerome Beau},
+  pdfauthor={Jérôme Beau},
   pdfsubject={Cosmochrony spectral geometry programme, paper Q7, version 2.0},
 }
 \usepackage{geometry}
@@ -269,8 +269,8 @@ Requirements for an Equivariant Bridge\\[4pt]
 
     The admissible ``3'' arises at the representation-theoretic level.
     Paper O23~\cite{Beau2026a27} proves that if the admissible neutral sector is carried by an
-    irreducible two-dimensional unitary representation $V_\rho \cong \mathbb{C}^2$ (a supplied
-    input), then its traceless anti-Hermitian sector is $\su(2) \simeq \ImH$, carrying exactly
+    irreducible $\mathrm{SU}(2)$-valued two-dimensional representation
+    $V_\rho \cong \mathbb{C}^2$ (a supplied input), then its traceless anti-Hermitian sector is $\su(2) \simeq \ImH$, carrying exactly
     three independent
     directions (Theorem~3.1); O23's Proposition~3.4, with its Remark~3.5, notes that a count of
     generator axes can stop
@@ -429,6 +429,8 @@ Requirements for an Equivariant Bridge\\[4pt]
       \label{lem:schur}
       Let $W$ be a three-dimensional real vector space equipped with an $\su(2)$-action that decomposes
       as $W \simeq \mathfrak{su}(2)$ (adjoint representation, i.e.\ spin-$1$ over $\mathbb{R}$).
+      When $W$ is taken to be the real spatial sector, that assumption on the target is the
+      hypothesis isolated as [ACT] in Remark~\ref{rem:status}, which no source supplies.
       Then $\mathrm{Hom}_{\su(2)}(\Sym^2(\Vr), W \otimes_\mathbb{R} \mathbb{C}) \simeq \mathbb{C}$.
       Consequently an $\su(2)$-equivariant $\mathbb{C}$-linear map
       $\varphi : \Sym^2(\Vr) \to W \otimes_\mathbb{R} \mathbb{C}$ is either the zero map or an
@@ -448,8 +450,9 @@ Requirements for an Equivariant Bridge\\[4pt]
 
     \begin{remark}[Consequence for the bridge]
       \label{rem:rigidity}
-      Lemma~\ref{lem:schur} implies that, under Hypothesis~[ID], \emph{there is at most one
-      equivariant bridge up to one scalar} between $\Heff$ and a three-dimensional adjoint module.
+      Lemma~\ref{lem:schur} implies that, under Hypothesis~[ID] and [ACT], \emph{there is at most
+      one equivariant bridge up to one scalar} between $\Heff$ and a three-dimensional adjoint
+      module.
       Uniqueness is guaranteed by irreducibility; existence, that is non-vanishing of $\varphi$, is
       not, and is the open question.
       A \emph{positive real} normalisation is not a consequence of any of this, and comparing forms
@@ -572,7 +575,7 @@ Requirements for an Equivariant Bridge\\[4pt]
       \label{rem:status}
 Item~(1) is structural: it is the statement that the Casimir acts on the spin-$1$ module as
 $2 \cdot \mathrm{Id}$, and it holds under Hypothesis~[ID] alone.
-Item~(3) and the full form of~(2) are conditional on four further premises: the existence of the
+Item~(3) and the full form of~(2) are conditional on five further premises: the existence of the
 equivariant bridge $\varphi$ (Conjecture~\ref{conj:bridge} below); the existence of the effective
 co-metric, which in~\cite{Beau2026q5b} is Theorem~5.2 under its hypotheses [H-L] and [H-lift],
 with [H-L] not established there; the $\su(2)$-action on the real spatial sector that makes it the
@@ -599,8 +602,9 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
         \varphi : \Sym^2(\Vr) \xrightarrow{\sim} W_{\mathrm{sp}} \otimes_\mathbb{R} \mathbb{C},
       \end{equation}
       where $W_{\mathrm{sp}} = \mathrm{span}_\mathbb{R}\{\tilde X, \tilde Y, \tilde Z\}$ is the
-      three-dimensional real spatial sector of the effective co-metric, compatible with the
-      Schr\"{o}dinger representation in the following sense.
+      three-dimensional real spatial sector of the effective co-metric, carrying the $\su(2)$-action
+      [ACT] that makes it an adjoint module, compatible with the Schr\"{o}dinger representation in
+      the following sense.
       The compatibility is understood at the level of quadratic forms induced by the generators,
       not at the level of Lie algebra homomorphisms (which do not exist, by
       Proposition~\ref{prop:noniso}).
@@ -781,11 +785,22 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     This $3 \times 3$ matrix is not the covariance O28 writes $\mathcal{C}_c$, which is a
     $9 \times 9$ operator on vectorised outer products in $\mathrm{End}(\Heff)$; the two carry the
     same letter in the corpus and are kept apart here.
-    Nor is it the linear Hermitian covariance whose spectrum O29 reports: on these checkpoints the
-    $3 \times 3$ matrix used here has normalised spectrum $[1, 0.672, 0.666]$ at $(61,3)$,
-    $[1, 0.920, 0.920]$ at $(61,5)$ and $[1, 0.500, 0.500]$ at $(61,7)$, which does not match the
-    values O29 publishes; whether the two protocols differ is a question for O29, and nothing here
-    depends on their agreeing.
+    It is, on the other hand, the same object as the linear Hermitian covariance
+    $\langle w w^\dagger \rangle$ whose spectrum O29~\cite{Beau2026a33} reports; the two differ only
+    in aggregation, and the difference is worth stating because the figures look unrelated.
+    O29 pools the projections over all conjugate pairs at a given prime, whereas the protocol here
+    keeps them separate, one covariance per pair.
+    Per pair the normalised spectrum is $[1, 0.672, 0.666]$ at $(61,3)$, $[1, 0.920, 0.920]$ at
+    $(61,5)$ and $[1, 0.500, 0.500]$ at $(61,7)$; pooled over all the conjugate pairs stored at that
+    prime it is $[1, 0.7527, 0.7513]$, which is O29's $[1:0.8:0.8]$, and the same pooling at $q = 29$
+    gives $[1, 0.5584, 0.5584]$, which is O29's $[1:0.6:0.6]$.
+    Both of O29's published spectra are therefore reproduced from the inputs used here, and the
+    per-pair figures are not in disagreement with them: they are a finer aggregation of the same
+    measurement. Nothing in this paper depends on either.
+    The pooled figures are the one numerical statement in this section that the shipped bundle
+    cannot reproduce, since it stores one covariance per pair and the pooling is not recoverable
+    from those; \texttt{--pooled} in the diagnostic of Section~\ref{ssec:diagnostic} computes them
+    from the checkpoints, and prints the pair and projection counts with each.
     Stage~B checks that the $F_c$-eigenvalue phases of $\tilde{F} = B_{\mathrm{eff}} F_c B_{\mathrm{eff}}^\dagger$
     are multiples of $90^\circ$ (consistent with $F_c^4 = I$).
     Stage~C computes $\tilde{L} = B_{\mathrm{eff}} L_{\mathrm{Weil}} B_{\mathrm{eff}}^\dagger$,
@@ -1164,16 +1179,20 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
       only pair of which that is true.
 
     \paragraph{The column label.}
-      Version~1.3 defined that column in its running text as the XY isotropy ratio
-      $|\tilde L_{11} - \tilde L_{22}|/|\tilde L_{11}|$ on the covariance-rotated matrix, while its
-      table caption called both printed columns ``relative cross-term ratios''.
-      Evaluated on the stored-basis compression the expression is $0$, both entries being equal; on
-      the reported matrix at $(151,5)$ it is $0.2772$, whereas the quantity actually printed is the
-      cross-term ratio
-      $|(L_{\mathrm{sw}})_{12}|/\bar\lambda = 0.0574$, and the isotropy ratio as the script
-      computes it, with $A_H$ in the denominator, is $0.3218$.
-      Three different numbers; the caption named neither of the two the script produces.
-      The caption is corrected here.
+      Version~1.3's running text defined that column as the XY isotropy ratio
+      $|\tilde L_{11} - \tilde L_{22}|/|\tilde L_{11}|$, on the matrix its own Stage~C had just
+      introduced, namely the stored-basis compression
+      $\tilde L = B_{\mathrm{eff}} L_{\mathrm{Weil}} B_{\mathrm{eff}}^\dagger$; its table caption
+      instead called that same column a relative cross-term ratio.
+      Neither description matches the number: on the stored-basis compression the formula gives $0$
+      at every pair, both entries being equal there, while the quantity the script prints is the
+      cross-term ratio $|(L_{\mathrm{sw}})_{12}|/\bar\lambda$ of the covariance-rotated matrix,
+      $0.0574$ at $(151,5)$.
+      Read as an isotropy ratio on that rotated matrix the formula would give $0.2772$, and the
+      script's own isotropy variable, which divides by $A_H$ rather than by
+      $|\tilde L_{11}|$, gives $0.3218$.
+      Four readings, three distinct values, and the published column is the one its running text
+      does not describe. The label is corrected here.
 
     \paragraph{The invariant content.}
       What does not depend on any of this is the spectrum of the compression on the
@@ -1227,9 +1246,16 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     third eigenvalues and the one inside the horizontal plane, keying its verdict to the second;
     the relative size of $C_c$'s off-block entries; the diagonal of the matrix after conjugation by
     the covariance eigenbasis together with the largest modulus of its off-diagonal entries; the
-    spectrum of the compression; and a warning distinguishing the pairs where the plane is
+    spectrum of the compression; the residuals of the three metaplectic identities of
+    Section~\ref{sec:metatplectic}, $F_c W_a F_c^\dagger = W_b$, $F_c W_b F_c^\dagger = W_a^\dagger$
+    and $[F_c, L_{\mathrm{Weil}}] = 0$, together with the largest deviation of the $\tilde F$
+    eigenvalue phases from a multiple of $90^\circ$; and a warning distinguishing the pairs where
+    the plane is
     degenerate and the block is not scalar, so that the individual entries are solver-dependent,
     from those where the block is scalar and they are not (Section~\ref{ssec:rotation}).
+    The \texttt{--pooled} flag instead reports the covariance pooled over all conjugate pairs at
+    each prime, the aggregation O29 uses; that path needs the checkpoints, for the reason given in
+    Section~\ref{ssec:rayleigh}.
     On the four primes and three characters reported here the lowest purity is $1.000000$ and the
     largest discrepancy between measurement and closed form is below $10^{-14}$; every
     off-diagonal modulus of the compression in the stored basis matches the index-difference rule,
