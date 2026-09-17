@@ -61,8 +61,9 @@ $\langle e_m, L_{\mathrm{Weil}} e_m \rangle = 4 - 2\cos(2\pi m/q).$
 
 - The central value is $4 - 2 - 0 = 2$ exactly, for every $q$ and $c$: the additive $4I$ term
   of $L_{\mathrm{Weil}} = 4I - W_a - W_a^\dagger - W_b - W_b^\dagger$ less the shift eigenvalue
-  at the flat mode. It is not the $\mathfrak{su}(2)$ Casimir eigenvalue, and it is not
-  normalisation-invariant: $L/2$ gives 1, $L - 2I$ gives 0.
+  at the flat mode. It does agree numerically with the $\mathfrak{su}(2)$ Casimir eigenvalue on a
+  spin-1 module, but the agreement is not normalisation-invariant — $L/2$ gives 1, $L - 2I$ gives
+  0 — and therefore carries no evidential weight.
 - The horizontal value is $4 - 2\cos(2\pi k/q)$ for the selected index $k$, so
   $A_H - 2 = 4\sin^2(\pi k/q)$ **identically**. Vanishing of that gap is equivalent to
   $\mathrm{dist}(k/q, \mathbb{Z}) \to 0$, a property of the pipeline's mode-selection rule,
@@ -71,9 +72,26 @@ $\langle e_m, L_{\mathrm{Weil}} e_m \rangle = 4 - 2\cos(2\pi m/q).$
   $\pm c \bmod q$: this accounts for the two pairs, $(61,3)$ and $(151,5)$, that version 1.3
   reported as finite-size and sector anomalies.
 
+The pipeline additionally conjugates this compression by the covariance eigenbasis. Where the
+two non-flat modes give equal entries that rotation is only fixed up to a unitary transformation
+inside their span, which is what produces the split entries and the off-diagonal term reported at
+$(151,5)$; §6.3 of the paper works this out, and notes one published number, $\rho_{XY} = 0.005$ at
+$(101,3)$, that no versioned quantity reproduces.
+
 Reproducible diagnostic: `code/q7_mode_diagnostic.py` prints Fourier indices, purities,
 measured and analytic values, residuals and the cross-term check, with the Fourier convention
-and the checkpoints documented. Largest residual: $3.6 \times 10^{-15}$.
+and the checkpoints documented. Largest residual: $3.6 \times 10^{-15}$. The O25 checkpoints are
+produced by the Q5a-O5 campaign and are not distributed with this repository; pass
+`--checkpoint-dir` to point at a copy.
+
+## The One Conditional Obstruction in the Corpus
+
+Under Q5a's depth and weight hypotheses, every subsequential limit of the rescaled admissibility
+forms on toric targets with finitely many Fourier modes is the zero form, a bounded multiplication
+form with no derivative term, or $+\infty$ (Q5a Theorem 6.1, Remark 6.2). That is a conditional
+obstruction to one route, for common scalar normalisations of the published form; it leaves open a
+bridge on a different filtration, under an anisotropic or non-scalar renormalisation, or on a
+non-toric target, and it proves nothing about the existence of the equivariant map.
 
 ## Claims No Longer Asserted in Version 2.0
 
@@ -109,15 +127,14 @@ emergent spacetime, isotropy, non-injectivity
 ```
 q7/
 ├── code/    # Reproducible diagnostic (q7_mode_diagnostic.py, q7_symbol_test.py)
-├── pdfs/    # Archived versioned PDFs
 ├── tex/     # LaTeX sources
 └── README.md
 ```
 
 ## Links
 
-- 📄 [Paper PDF](https://github.com/Cosmochrony/.../Q7.pdf)
 - 🌐 Website: https://cosmochrony.org
+- 🔗 Zenodo record: https://doi.org/10.5281/zenodo.19802123
 
 ## Citation
 

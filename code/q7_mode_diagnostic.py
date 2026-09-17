@@ -27,9 +27,9 @@ Fourier convention used throughout (and matching numpy.fft):
 
     e_m(k) = q^{-1/2} exp(2 pi i m k / q),   m, k in Z/qZ,
 
-so that (F v)_m = sum_k v(k) exp(-2 pi i m k / q) is numpy.fft.fft(v) up to the
-q^{-1/2} normalisation.  The purity of a unit vector v at index m is
-|(F v)_m|^2 / q, equal to 1 exactly when v is the mode e_m up to a phase.
+so that numpy.fft.fft(v)_m = sum_k v(k) exp(-2 pi i m k / q).  The purity of a
+unit vector v is max_m |fft(v)_m|^2 / q, equal to 1 exactly when v is a single
+mode up to a phase.
 
 The two generators act on modes as
 
@@ -90,8 +90,15 @@ import numpy as np
 HEFF_DIM = 3
 DEFAULT_PRIMES = [61, 101, 151, 211]
 DEFAULT_CHARS = [3, 5, 7]
-DEFAULT_DIR = os.path.join(
-    "..", "..", "..", "simulation", "gravity", "q5a-o5", "o25_outputs"
+# Resolved against this file, not the current working directory, so the script
+# runs from anywhere inside a full workspace checkout.  The checkpoints
+# themselves are produced by the O25 pipeline and are NOT distributed with this
+# repository: pass --checkpoint-dir to point at your own copy.
+DEFAULT_DIR = os.path.normpath(
+    os.path.join(
+        os.path.dirname(os.path.abspath(__file__)),
+        "..", "..", "..", "simulation", "gravity", "q5a-o5", "o25_outputs",
+    )
 )
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -107,9 +114,11 @@ from q7_symbol_test import (  # noqa: E402
 def fourier_index_and_purity(v: np.ndarray) -> tuple[int, float]:
     """Return (signed Fourier index, purity) of a unit vector v in C^q.
 
-    With e_m(k) = q^{-1/2} exp(2 pi i m k / q), the coefficient of v on e_m is
-    q^{-1/2} (numpy.fft.fft(v.conj()))_m up to a phase, so |fft(v)|^2 / q is the
-    modulus squared of the coefficient.  Purity 1 means v is a single mode.
+    With e_m(k) = q^{-1/2} exp(2 pi i m k / q), the coefficient of a unit vector v
+    on e_m has modulus q^{-1/2} |numpy.fft.fft(v)_{-m}|, so |fft(v)|^2 / q is the
+    modulus squared of a coefficient and its maximum over the index is the purity.
+    Purity 1 means v is a single mode up to a phase.  (The index printed below is
+    read off the same spectrum, so it is consistent with this convention.)
     """
     q = v.size
     spec = np.abs(np.fft.fft(v)) ** 2 / q

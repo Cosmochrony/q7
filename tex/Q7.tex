@@ -47,8 +47,9 @@ Requirements for an Equivariant Bridge\\[4pt]
     Lorentzian signature carries a further hypothesis.
     On the representation side, paper O23 proves that the neutral sector of a \emph{supplied}
     spinor carrier $V_\rho \cong \mathbb{C}^2$ is $\su(2) \simeq \ImH$, of real dimension three,
-    and paper O28 measures an admissible projection space $\Heff = \mathbb{C}^3$ whose per-pair
-    covariance has rank three.
+    and paper O28 works with an admissible projection space $\Heff = \mathbb{C}^3$, supplied as a
+    parameter consistent with that selection rule, whose per-pair covariance has rank three as a
+    finite-data value of its protocol and not as an invariant.
     The identification of that measured space with a spin-$1$ module of $\su(2)$ is supplied, not
     derived: O29 identifies no such structure, and $d_\rho = 2$ is O26's minimality selection.
     Three requirements are proved here.
@@ -60,8 +61,9 @@ Requirements for an Equivariant Bridge\\[4pt]
     scalar; reality and positivity of that scalar require separate hypotheses on the forms
     compared.
     Third, the $\su(2)$ Casimir acts on $\Sym^2(\Vr)$ as $2 \cdot \mathrm{Id}$, and its pullback
-    under an equivariant bridge is positive definite of rank three; invariance under the Cartan
-    generator $J_3$ separates the spin-weight $\pm 1$ sector from the spin-weight $0$ sector and
+    under an equivariant bridge is positive definite of rank three whenever the two coefficients
+    are positive; invariance under the Cartan generator $J_3$ separates the spin-weight $\pm 1$
+    sector from the spin-weight $0$ sector and
     forces isotropy \emph{within the horizontal plane}, but it does not by itself force
     $A_H = A_z$.
     Version~2.0 re-types the numerical section.
@@ -103,8 +105,10 @@ Requirements for an Equivariant Bridge\\[4pt]
         Carnot--Carath\'eodory foliation of $\Heis(\mathbb{R})$.
         The homogeneous dimension $\Dhom = 4$ (Bass--Guivarch) gives the limiting geometry the
         spectral dimension of a four-dimensional space.
-        The corresponding effective metric has Lorentzian signature $(-,+,+,+)$, with one temporal
-        direction~$\tau$ and three spatial directions.
+        Under the hypotheses of~\cite{Beau2026q5b}, including its unestablished [H-L] and, for the
+        signature, a further hyperbolicity hypothesis, the effective co-metric is read with
+        signature $(-,+,+,+)$: one temporal direction~$\tau$ and a three-dimensional spatial
+        sector.
         Within the sub-Riemannian structure of $\Heis(\mathbb{R})$, these three spatial directions
         arise as: the two horizontal generators $\tilde X, \tilde Y$ (entering the sub-Riemannian
         Laplacian $\Delta_H = \tilde X^2 + \tilde Y^2$) and the central element
@@ -117,8 +121,11 @@ Requirements for an Equivariant Bridge\\[4pt]
         input), then its traceless sector is $\su(2) \simeq \ImH \simeq \mathbb{R}^3$ (Theorem~3.1).
         The carrier selection and the identification of $\Sigma_c$ with that dimension are open
         bridges; $\Sigma_c(n_3) = 3$ enters as a supplied selection rule.
-        Paper O28~\cite{Beau2026a32} finds $\Heff = \mathbb{C}^3$ (consistent with $\Sigma_c(n_3) = 3$)
-        and rank $r_{\mathrm{eff}} = 3$ for the per-pair covariance.
+        Paper O28~\cite{Beau2026a32} sets $\Heff = \mathbb{C}^3$ as a supplied parameter,
+        consistent with the selection rule $\Sigma_c(n_3) = 3$, and reports rank
+        $r_{\mathrm{eff}} = 3$ for the per-pair covariance, stating that this is a finite-data
+        value of its protocol and not an invariant; alongside it O28 reports a participation-ratio
+        value $r_{\mathrm{eff}}^{\mathrm{PR}} = 8/3$.
         Paper O29~\cite{Beau2026a33} supplies finite-precision diagnostics compatible with an
         adjoint carrier but identifies no object: it states that no calculation there identifies
         these objects, no subspace of $\Heff$ is identified with $\Vr$, and the measured ranks are
@@ -172,6 +179,18 @@ Requirements for an Equivariant Bridge\\[4pt]
     $[e_i, e_j] = \varepsilon_{ijk} e_k$ and is identified with $\ImH$ via
     $e_1 \leftrightarrow \mathbf{i}$, $e_2 \leftrightarrow \mathbf{j}$, $e_3 \leftrightarrow \mathbf{k}$.
 
+    One notational warning, since the corpus uses one symbol for two objects.
+    In O27~\cite{Beau2026a31} the symbol $H_{\mathrm{eff}}$ denotes
+    $\mathrm{Im}\,\Pi_{\mathrm{adm}} \cap \mathrm{Ntrl}$, a \emph{real} three-dimensional space;
+    in O28--O29~\cite{Beau2026a32,Beau2026a33} and in the present paper $\Heff$ denotes the
+    \emph{complex} three-dimensional target $\mathbb{C}^3$ of the admissible projection $\pi_c$.
+    O27 states that no dimension count transfers between the two in either direction, and O23
+    warns against writing $\su(2) \cong \Sym^2(\Vr)$ without distinguishing a real from a complex
+    dimension.
+    We keep the complex reading throughout, write $W_{\mathrm{sp}}$ for the real spatial sector and
+    $W_{\mathrm{sp}} \otimes_\mathbb{R} \mathbb{C}$ for its complexification, and use
+    $H_{\mathrm{eff}}$ with a subscript spelled out whenever the O27 object is meant.
+
   \section{Two Independent Notions of Dimension Three}
 
   \subsection{The Geometric Three: Carnot Grading and Spatial Directions}
@@ -194,14 +213,17 @@ Requirements for an Equivariant Bridge\\[4pt]
       \item $A_\tau > 0$ governs the temporal sector,
       \item $A_H > 0$ governs the two horizontal directions (entering $\Delta_H$ at
       principal-symbol level); its positivity is stipulated inside [H-L], not derived,
-      \item the central slot is \emph{degenerate at this order}: no coefficient $A_z$ is supplied
-      by~\cite{Beau2026q5b}, whose Theorem~5.2 puts $0$ there and defers a full-rank spatial block
-      to sub-principal corrections (open problem Q5b-O2).
+      \item the central slot is \emph{degenerate at this order}: Theorem~5.2
+      of~\cite{Beau2026q5b} puts $0$ there and defers a full-rank spatial block to sub-principal
+      corrections (open problem Q5b-O2). A value $A_z = 2$ is asserted in Q8~\cite{BeauQ8} and
+      relayed by~\cite{Beau2026q5b} outside that theorem; this paper does not use it, for the
+      reasons given in Section~\ref{ssec:withdrawn}.
     \end{itemize}
     Theorem~6.1 of~\cite{Beau2026q5b} is a separate statement, on the Lorentzian signature, and is
     conditional on Theorem~5.2 together with a hyperbolicity hypothesis.
-    Throughout this paper, $A_z$ denotes the \emph{hypothetical} coefficient of $k_Z^2$ that a
-    full-rank spatial block would carry; no source supplies its value.
+    Throughout this paper, $A_z$ denotes the coefficient of $k_Z^2$ that a full-rank spatial block
+    would carry. It is treated here as an unevaluated parameter: no value for it is derived in this
+    paper, and the value asserted downstream is not used (Section~\ref{ssec:withdrawn}).
 
     \begin{remark}[Horizontal vs.\ derived: two sub-strata of the spatial sector]
       \label{rem:substrata}
@@ -229,7 +251,8 @@ Requirements for an Equivariant Bridge\\[4pt]
     Paper O23~\cite{Beau2026a27} proves that if the admissible neutral sector is carried by an
     irreducible two-dimensional unitary representation $V_\rho \cong \mathbb{C}^2$ (a supplied
     input), then its traceless sector is $\su(2) \simeq \ImH$, carrying exactly three independent
-    axes (Theorem~3.1).
+    directions (Theorem~3.1); O23's Proposition~3.2 notes that a count of generator axes can stop
+    at two, so ``directions'' is the correct reading.
     The carrier selection and the identification of $\Sigma_c$ with $\dim \su(V_\rho)$ are open
     bridges; the saturation threshold $\Sigma_c(n_3) = 3$ is a supplied selection rule.
 
@@ -261,7 +284,8 @@ Requirements for an Equivariant Bridge\\[4pt]
       observable identification) as open bridges within the O-series itself.
     \end{remark}
 
-  \section{The Algebraic Obstruction: $\su(2) \not\simeq \heis$}
+  \section{\texorpdfstring{The Algebraic Obstruction: $\su(2) \not\simeq \heis$}%
+    {The Algebraic Obstruction: su(2) is not isomorphic to heis(3)}}
   \label{sec:obstruction}
 
   \begin{proposition}[Non-isomorphism]
@@ -420,23 +444,27 @@ Requirements for an Equivariant Bridge\\[4pt]
 
     \begin{lemma}[Schr\"{o}dinger quadratic form]
       \label{lem:qform}
-      Let $\varphi : \Sym^2(\Vr) \xrightarrow{\sim} W_{\mathrm{sp}}$ be any $\su(2)$-equivariant
-      isomorphism to the spatial sector $W_{\mathrm{sp}}$ of the effective metric (the unique such map
-      up to scalar, by Lemma~\ref{lem:schur}).
+      Let $\varphi : \Sym^2(\Vr) \xrightarrow{\sim} W_{\mathrm{sp}} \otimes_\mathbb{R} \mathbb{C}$
+      be any $\su(2)$-equivariant isomorphism onto the complexified spatial sector (the unique such
+      map up to one scalar, by Lemma~\ref{lem:schur}; the complexification is required, the source
+      being a complex three-dimensional module and $W_{\mathrm{sp}}$ a real three-dimensional
+      space).
       Then:
       \begin{enumerate}
         \item The quadratic form $Q_{\mathcal{C}}(v) := \langle v, \mathcal{C} v \rangle = 2\|v\|^2$
         on $\Sym^2(\Vr)$ is positive-definite of rank~$3$.
-        \item Under any equivariant bridge $\varphi$, the pullback $\varphi^* g_{\mathrm{sp}}$ (where
-        $g_{\mathrm{sp}} = \mathrm{diag}(A_H, A_H, A_z)$ is the spatial block of $g^{\mu\nu}$) is also
-        positive-definite of rank~$3$.
+        \item If $A_H > 0$ and $A_z > 0$, then under any equivariant bridge $\varphi$ the pullback
+        $\varphi^* g_{\mathrm{sp}}$ (where $g_{\mathrm{sp}} = \mathrm{diag}(A_H, A_H, A_z)$ is the
+        spatial block of $g^{\mu\nu}$, extended $\mathbb{C}$-bilinearly) is positive-definite of
+        rank~$3$.
         \item The induced map on quadratic forms is:
         \begin{equation}
           \varphi^* g_{\mathrm{sp}} = \lambda_H \cdot Q_{\pm} + \lambda_z \cdot Q_0,
         \end{equation}
         where $Q_{\pm}$ is the projection onto the spin-weight $\pm 1$ eigenspace $\{e_+, e_-\}$,
         $Q_0$ is the projection onto the spin-weight $0$ eigenspace $\{e_0\}$,
-        and $\lambda_H = A_H / \|\varphi\|^2$, $\lambda_z = A_z / \|\varphi\|^2$ are positive constants.
+        and $\lambda_H = A_H / \|\varphi\|^2$, $\lambda_z = A_z / \|\varphi\|^2$, positive under the
+        same proviso.
       \end{enumerate}
     \end{lemma}
 
@@ -463,7 +491,8 @@ Requirements for an Equivariant Bridge\\[4pt]
       and by $A_z / \|\varphi\|^2$ on $\{e_0\}$, giving~(3).
       If $A_H, A_z > 0$, the pullback is positive-definite, giving~(2).
       Positivity is a hypothesis here, not an import: $A_H > 0$ is stipulated inside [H-L]
-      of~\cite{Beau2026q5b}, and no source supplies $A_z$ at all.
+      of~\cite{Beau2026q5b}, and no positivity statement for $A_z$ is available from its
+      Theorem~5.2, which puts $0$ in that slot.
     \end{proof}
 
     \begin{remark}[Status of Lemma~\ref{lem:qform}]
@@ -489,13 +518,13 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
 
     \begin{conjecture}[Bridge existence]
       \label{conj:bridge}
-      There exists an $\su(2)$-equivariant isomorphism
+      Under Hypothesis~[ID], there exists a non-zero $\su(2)$-equivariant map
       \begin{equation}
-        \varphi : \Heff = \Sym^2(\Vr) \xrightarrow{\sim} W_{\mathrm{sp}},
+        \varphi : \Sym^2(\Vr) \xrightarrow{\sim} W_{\mathrm{sp}} \otimes_\mathbb{R} \mathbb{C},
       \end{equation}
-      where $W_{\mathrm{sp}} = \mathrm{span}\{\tilde X, \tilde Y, \tilde Z\} = \heis/\mathbb{R}\tau$
-      is the spatial sector of the effective metric, compatible with the Schr\"{o}dinger representation
-      in the following sense.
+      where $W_{\mathrm{sp}} = \mathrm{span}_\mathbb{R}\{\tilde X, \tilde Y, \tilde Z\}$ is the
+      three-dimensional real spatial sector of the effective co-metric, compatible with the
+      Schr\"{o}dinger representation in the following sense.
       The compatibility is understood at the level of quadratic forms induced by the generators,
       not at the level of Lie algebra homomorphisms (which do not exist, by
       Proposition~\ref{prop:noniso}).
@@ -516,9 +545,10 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     That object is not supplied by Q5a and the formulation is withdrawn: in the published version
     of Q5a~\cite{Beau2026q5a}, under its depth hypothesis [H-depth] and its weight hypothesis
     [H-$w'$], every subsequential limit of the rescaled admissibility forms on toric targets with
-    finitely many Fourier modes is the zero form, a bounded multiplication form with no
-    differential symbol of positive order, or $+\infty$ (Q5a Theorem~6.1); in particular no such
-    limit supplies a spatial second-order operator.
+    finitely many Fourier modes is the zero form, a bounded multiplication form containing no
+    derivative term, or $+\infty$ (Q5a Theorem~6.1), the multiplication case having no
+    differential symbol of positive order, hence no co-metric (Q5a Remark~6.2); in particular no
+    such limit supplies a spatial second-order operator.
     That is a conditional obstruction to one route, under those two hypotheses and for common
     scalar normalisations of the published form on toric targets.
     It does not exclude a bridge obtained on a different filtration, with an anisotropic or
@@ -534,8 +564,10 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
   \section{Falsifiability Criterion}
   \label{sec:falsif}
 
-  The Rigidity Lemma~\ref{lem:schur} reduces the question to a single binary test.
-  Since the bridge, if it exists, is unique up to scalar, there is no ambiguity about what to test.
+  Lemma~\ref{lem:schur} removes the ambiguity about \emph{what} to test: under Hypothesis~[ID] a
+  non-zero equivariant bridge is unique up to one scalar, so a single criterion suffices.
+  It does not make the question binary in the sense of a no-go: a negative outcome bears on the
+  tested realisation, as stated after Conjecture~\ref{conj:bridge}.
 
   \begin{criterion}[Symbol restriction to $\Sym^2(\Vr)$]
     \label{crit:symbol}
@@ -543,9 +575,10 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     $L_{\mathrm{eff}}$ on $\mathbb{R}_\tau \times \Heis(\mathbb{R})$, evaluated on the spatial block
     $(k_X, k_Y, k_Z)$.
     Via the grading correspondence of Remark~\ref{rem:grading}, identify the real spatial cotangent
-    directions with the real weight vectors of $\Sym^2(\Vr)$: the horizontal pair
-    $(k_X, k_Y)$ with the real and imaginary parts of the weight-$\pm 1$ sector, that is with
-    $\tfrac{1}{\sqrt 2}(e_+ + e_-)$ and $\tfrac{i}{\sqrt 2}(e_+ - e_-)$, and the central direction
+    directions with a real basis of the image of $W_{\mathrm{sp}}$ inside
+    $W_{\mathrm{sp}} \otimes_\mathbb{R} \mathbb{C} \simeq \Sym^2(\Vr)$: the horizontal pair
+    $(k_X, k_Y)$ with $\tfrac{1}{\sqrt 2}(e_+ + e_-)$ and $\tfrac{i}{\sqrt 2}(e_+ - e_-)$, which
+    span a real two-dimensional subspace of the weight-$\pm 1$ sector, and the central direction
     $k_Z$ with $e_0$.
     (The pairing $k_X \leftrightarrow e_+$, $k_Y \leftrightarrow e_-$ used in version~1.3 matched
     real cotangent coordinates with complex weight vectors and is corrected here.)
@@ -578,7 +611,7 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     $A_z = C_{\mathfrak{su}(2)} = 2$ and Q10~\cite{Beau2026q10} with U1~\cite{Beau2026u1} for
     $A_H \to 2$.
     Those supports are no longer asserted here; see Section~\ref{ssec:withdrawn} for the reasons,
-    which concern the attributions this paper made, not the editorial status of those papers.
+    which concern what this paper may rely on, not the editorial status of those papers.
   \end{remark}
 
   \section{What the O25 Checkpoints Measure}
@@ -623,7 +656,7 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
         F_c\, L_{\mathrm{Weil}}\, F_c^\dagger
         = 4I - F_c W_a F_c^\dagger - F_c W_a^\dagger F_c^\dagger
         - F_c W_b F_c^\dagger - F_c W_b^\dagger F_c^\dagger
-        = 4I - W_b^\dagger - W_b - W_a^\dagger - W_a = L_{\mathrm{Weil}}.
+        = 4I - W_b - W_b^\dagger - W_a^\dagger - W_a = L_{\mathrm{Weil}}.
       \]
       Hence $F_c L_{\mathrm{Weil}} = L_{\mathrm{Weil}} F_c$.
     \end{proof}
@@ -659,7 +692,8 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
 
     We compute compressions of $L_{\mathrm{Weil}}$ using the Q5a-O5 checkpoints produced
     by the O25 pipeline~\cite{Beau2026a29}.
-    For each prime $q \in \{61, 101, 151\}$ and each tested character $c$, the checkpoint stores:
+    For each prime $q \in \{61, 101, 151, 211\}$ and each tested character $c$, the checkpoint
+    stores:
     the GS admissible basis matrix $B_{\mathrm{eff}} \in \mathbb{C}^{q \times q}$ (first three rows
     give the three admissible directions), and the per-shell $H_{\mathrm{eff}}$-projections
     $\pi_c(v^{(k)}) \in \mathbb{C}^3$ for $k$ in the fitting window $[n_0, n_1]$.
@@ -669,14 +703,17 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     in $H_{\mathrm{eff}} = \mathbb{C}^3$ and orders its eigenvectors.
     Stage~B checks that the $F_c$-eigenvalue phases of $\tilde{F} = B_{\mathrm{eff}} F_c B_{\mathrm{eff}}^\dagger$
     are multiples of $90^\circ$ (consistent with $F_c^4 = I$).
-    Stage~C computes $\tilde{L} = B_{\mathrm{eff}} L_{\mathrm{Weil}} B_{\mathrm{eff}}^\dagger$ and
-    measures the cross-term ratio
-    $\rho_{Z|XY} = \max(|\tilde{L}_{01}|, |\tilde{L}_{02}|)/\bar\lambda$
-    and the XY ratio $\rho_{XY} = |\tilde{L}_{11} - \tilde{L}_{22}|/|\tilde{L}_{11}|$,
-    where $\bar\lambda$ is the mean diagonal entry.
-    The quantities historically named $A_z := \tilde L_{00}$ and
-    $A_H := \tfrac12(\tilde L_{11} + \tilde L_{22})$ are therefore diagonal entries of a
-    compression, in the basis that Stage~A orders, of an operator on $\mathbb{C}^q$.
+    Stage~C computes $\tilde{L} = B_{\mathrm{eff}} L_{\mathrm{Weil}} B_{\mathrm{eff}}^\dagger$,
+    then conjugates it by the eigenbasis $U$ of the covariance $C_c$ of Stage~A, giving
+    $L_{\mathrm{sw}} = U^\dagger \tilde L\, U$, and measures on $L_{\mathrm{sw}}$ the ratios
+    $\rho_{Z|XY} = \max(|(L_{\mathrm{sw}})_{01}|, |(L_{\mathrm{sw}})_{02}|)/\bar\lambda$ and
+    $|(L_{\mathrm{sw}})_{12}|/\bar\lambda$, where $\bar\lambda$ is the mean diagonal entry.
+    The quantities historically named $A_z := (L_{\mathrm{sw}})_{00}$ and
+    $A_H := \tfrac12\bigl((L_{\mathrm{sw}})_{11} + (L_{\mathrm{sw}})_{22}\bigr)$ are therefore
+    diagonal entries of a compression of an operator on $\mathbb{C}^q$, read in the covariance
+    eigenbasis.
+    That second step matters: $U$ is not a permutation, and where the two non-flat modes give equal
+    entries it can rotate freely inside their eigenspace (Section~\ref{ssec:rotation}).
 
     \paragraph{The three stored rows are single Fourier modes.}
       Write $e_m(k) = q^{-1/2} e^{2\pi i m k/q}$ for the Fourier modes of $\mathbb{C}^q$.
@@ -716,7 +753,8 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
         $\pm k$, and ``closed form'' its value $4 - 2\cos(2\pi k/q)$ from~\eqref{eq:rayleigh};
         the largest discrepancy over all rows and pairs is $3.6 \times 10^{-15}$.
         The last column reports whether two stored indices differ by $\pm c \bmod q$, which is
-        exactly when an off-diagonal entry of modulus $1$ appears.
+        exactly when an off-diagonal entry of modulus $1$ appears; at $(61,3)$ this happens for two
+        pairs of indices, at $(151,5)$ for one.
         Historically, $A_z$ and $A_H$ were read off this table after the Stage~A ordering; that
         ordering puts the flat mode first in eleven of the twelve pairs, and at $(q,c) = (101,3)$
         puts the mode $k = 5$ first, which is the whole origin of the published row
@@ -727,7 +765,7 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
         \hline
         $q$ & $c$ & $k$ & flat & mode $k$ & closed form & $4\sin^2(\pi k/q)$ & cross term \\
         \hline
-        61 &  3 &   3 & 2.000000 & 2.094729 & 2.094729 & 0.094729 & yes ($0 - (-3) = c$) \\
+        61 &  3 &   3 & 2.000000 & 2.094729 & 2.094729 & 0.094729 & yes (two entries) \\
         61 &  5 &  29 & 2.000000 & 5.976176 & 5.976176 & 3.976176 & no  \\
         61 &  7 &   2 & 2.000000 & 2.042289 & 2.042289 & 0.042289 & no  \\
         101 &  3 &   5 & 2.000000 & 2.095974 & 2.095974 & 0.095974 & no  \\
@@ -744,8 +782,11 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     \end{table}
 
     \noindent
-    Every entry of Table~\ref{tab:numerical} is thus accounted for by~\eqref{eq:rayleigh} and by
-    the index-difference rule, with no free parameter and no appeal to the bridge.
+    Every entry of the compression $\tilde L$ \emph{in the stored basis} is thus accounted for
+    by~\eqref{eq:rayleigh} and by the index-difference rule, with no free parameter and no appeal
+    to the bridge. What the pipeline reports is $L_{\mathrm{sw}}$, which coincides with $\tilde L$
+    at ten of the twelve pairs and differs at the two discussed in
+    Section~\ref{ssec:rotation}.
     In particular the two pairs at which version~1.3 reported anomalies, $(61,3)$ and $(151,5)$,
     are exactly the two pairs whose stored indices differ by $\pm c$: at $(61,3)$ the flat mode and
     the mode $-3$ differ by $c = 3$, giving $|\tilde L_{01}| = 1$ and hence the reported
@@ -788,10 +829,11 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
       \label{rem:finite}
       The cross-term ratio $\rho_{Z|XY} = 0.485$ at $(q,c)=(61,3)$ is not an outlier and not a
       finite-size artefact of the short window, as version~1.3 stated.
-      The stored indices there are $\{0, -3, +3\}$ and the character is $c = 3$, so two of them
-      differ by exactly $c$; by the index-difference rule of Section~\ref{ssec:rayleigh} the
-      corresponding off-diagonal entry has modulus $1$, and dividing by the mean diagonal entry
-      $\bar\lambda \approx 2.06$ returns the reported value.
+      The stored indices there are $\{0, -3, +3\}$ and the character is $c = 3$, so the flat mode
+      differs from \emph{both} non-flat modes by $\pm c$ ($0 - (-3) = 3$ and $0 - 3 = -3$); by the
+      index-difference rule of Section~\ref{ssec:rayleigh} both corresponding off-diagonal entries
+      have modulus $1$, and dividing by the mean diagonal entry $\bar\lambda \approx 2.06$ returns
+      the reported value.
       The same configuration occurs at $(151,5)$, where $\pm 73$ differ by $146 \equiv -5$.
       At every other tested pair no index difference equals $\pm c$ and the off-diagonal entries
       vanish identically, not approximately.
@@ -818,21 +860,26 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     \begin{remark}[Stage~B anomaly at $q=211$]
       \label{rem:q211}
       At $q=211$ (bfs\_frac$=0.11$), Stage~B does not pass for any of the three tested
-      characters: the metaplectic overlap is $0.72$ ($c=3$) and $0.38$ ($c=7$), both below
-      the threshold $0.75$.
-      The Stage~A eigenvalue ratio for $c=7$ is $[1:0.74:0.74]$ rather than $[1:\frac{1}{2}:\frac{1}{2}]$,
-      indicating that the BFS trajectory does not fully explore $\Heff$ at this coverage level.
-      The Stage~B failure is expected rather than anomalous: the stored rows are Fourier modes, and
-      $F_c$ maps a Fourier mode to a vector concentrated at a single position, so the overlaps
-      measured by Stage~B are of order $q^{-1/2}$ for every $q$ and every $c$, whatever the
-      coverage.
-      In particular Stage~B does not test a property of the trajectory, and its threshold
-      $0.75$ cannot be met by a basis of this form.
-      Version~1.3 attributed the failure to low coverage, by analogy with the $(61,3)$ anomaly,
-      and described the Stage~C outcome as analytically grounded via
-      Corollary~\ref{cor:blockdiag}; both readings are withdrawn.
-      Stage~C returns, here as elsewhere, the closed-form entries of
-      Table~\ref{tab:numerical}.
+      characters: the metaplectic overlap is $0.72$ ($c=3$), $0.60$ ($c=5$) and $0.38$ ($c=7$),
+      all below the threshold $0.75$.
+      Version~1.3 attributed this to low trajectory coverage, by analogy with the $(61,3)$
+      anomaly. That attribution is not retained, and the following is what the quantity is.
+      Stage~B does not test an entry of $\tilde F = B_{\mathrm{eff}} F_c B_{\mathrm{eff}}^\dagger$;
+      it compares two unit vectors of $\mathbb{C}^3$, the dominant eigenvector of the covariance
+      $C_c$ and the eigenvector of $\tilde F$ whose eigenvalue phase is closest to zero.
+      Two features of $\tilde F$ are exact on these data and follow from
+      Section~\ref{ssec:rayleigh}: since $F_c$ maps a Fourier mode to a vector supported at a
+      single position, every entry of $\tilde F$ has modulus exactly $q^{-1/2}$, so $\tilde F$ is
+      $q^{-1/2}$ times a unimodular matrix; and its eigenvalue phases are exact multiples of
+      $90^\circ$, consistent with $F_c^4 = I$, at all twelve pairs.
+      The overlap itself, however, depends on the covariance direction and therefore on the
+      trajectory: measured over the twelve pairs it ranges from $0.0000$ to $0.8610$, with no
+      trend in $q$, and it does exceed the threshold at $(61,7)$ ($0.8610$) and $(151,3)$
+      ($0.7864$) for bases of exactly this form.
+      So the threshold is attainable, the failures are not explained by the basis structure, and
+      this paper offers no explanation of the variation: what we can state is that no claim made
+      here depends on Stage~B, whose outcome bears on the alignment of a measured covariance
+      direction, not on the entries of Table~\ref{tab:numerical}.
     \end{remark}
 
     \begin{table}[h]
@@ -947,10 +994,47 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
       two distinct entries differ by the identity~\eqref{eq:gap}, so it discriminates between the
       three cases only through an identification it does not supply.
       No case is currently excluded.
-      (Papers Q9 and Q10 cite this three-case structure as ``Q7 Remark~6.8''; in the deposited
-      version~1.3 and here it is Remark~\ref{rem:threecases}, Corollary~\ref{cor:quasithm} being
-      6.8. The numbering of this paper is unchanged in version~2.0.)
+      (Papers Q8, Q9 and Q10 cite this structure as ``Q7 Remark~6.8'': Q9 restates all three
+      cases, Q8 and Q10 name Case~3 and Case~1 respectively. In the deposited version~1.3 and here
+      it is Remark~\ref{rem:threecases}, Corollary~\ref{cor:quasithm} being 6.8. The numbering of
+      this paper is unchanged in version~2.0.)
     \end{remark}
+
+  \subsection{The covariance rotation, and the two pairs where it matters}
+    \label{ssec:rotation}
+
+    The two non-flat stored modes $e_{\pm k}$ give equal diagonal entries
+    by~\eqref{eq:rayleigh}, so the covariance eigenbasis $U$ of Stage~A is determined only up to a
+    unitary rotation inside their span, and the reported matrix $L_{\mathrm{sw}}$ depends on which
+    rotation the eigensolver returns.
+    At ten of the twelve pairs $U$ acts as a permutation and $L_{\mathrm{sw}} = \tilde L$ up to
+    reordering. Two pairs behave differently, and they are precisely the two pairs of
+    Table~\ref{tab:numerical} whose stored indices differ by $\pm c \bmod q$.
+
+    At $(q,c) = (101,3)$ the reordering puts the mode $k = 5$ first, which is the origin of the
+    published row $A_z = 2.096$, $A_H = \tfrac12(2.096 + 2.000) = 2.048$.
+
+    At $(q,c) = (151,5)$ the rotation is genuine. In the stored basis
+    $\tilde L = \mathrm{diag}(2,\, 5.989188,\, 5.989188)$ with one off-diagonal entry of modulus
+    $1$; after conjugation, $L_{\mathrm{sw}} = \mathrm{diag}(2,\, 6.9527,\, 5.0257)$ with an
+    off-diagonal entry of modulus $0.2677$ between the two non-flat slots.
+    The value $A_H = 5.989188$ survives only as the mean of the two split entries, by preservation
+    of the trace, and the ratio $0.2677/\bar\lambda = 0.0574$ with $\bar\lambda = 4.6595$ is the
+    number printed as $\rho_{XY} = 0.057$ in version~1.3.
+    That column was captioned as the XY \emph{isotropy} ratio
+    $|\tilde L_{11} - \tilde L_{22}|/|\tilde L_{11}|$, which is a different quantity: the isotropy
+    ratio at this pair is $0.3217$ and the cross-term ratio is the $0.0574$ reported.
+    The caption is corrected here.
+    So the split and the off-diagonal entry at $(151,5)$ are an artefact of an arbitrary rotation
+    inside a degenerate eigenspace, not a measured anisotropy; the invariant content is the pair of
+    eigenvalues, given by~\eqref{eq:rayleigh}.
+
+    One published number is not accounted for.
+    The value $\rho_{XY} = 0.005$ printed at $(101,3)$ in version~1.3 is reproduced by no quantity
+    the versioned script computes: at that pair the isotropy ratio is $0.0469$ and the cross-term
+    ratios vanish.
+    We record this rather than reconstruct it: the number's provenance is unknown, and no statement
+    of this paper depends on it.
 
   \subsection{Reproducible diagnostic}
     \label{ssec:diagnostic}
@@ -1081,8 +1165,10 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
       $\mathrm{diag}(-A_\tau, A_H, A_H, A_z)$ with $A_H, A_z > 0$ established there, and a
       convergence rate $O(q^{-1/2})$ to its Theorem~3.2.
       The co-metric is its Theorem~5.2 with $0$ in the central slot, $A_H > 0$ is stipulated inside
-      [H-L], no $A_z$ is supplied, and its Theorem~3.2 is a Gromov--Hausdorff statement carrying no
-      rate.
+      [H-L], that theorem supplies no $A_z$, and its Theorem~3.2 is a Gromov--Hausdorff statement
+      carrying no rate.
+      (Q5b does relay $A_z = 2$ from Q8 elsewhere, in its abstract and in its Remark~5.4; the point
+      here is only that Q7 attributed the value to the theorem it cited.)
       Version~1.3 located the target of Conjecture~\ref{conj:bridge} in a large-$q$ limit of
       Q5a~\cite{Beau2026q5a} that Q5a does not supply.
 
