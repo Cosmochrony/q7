@@ -77,8 +77,8 @@ $\langle e_m, L_{\mathrm{Weil}} e_m \rangle = 4 - 2\cos(2\pi m/q).$
 
 **The closed form describes the stored-basis compression, not directly the published entries.**
 The pipeline conjugates that compression by the covariance eigenbasis, and that basis is fixed by
-the data only where the covariance spectrum is non-degenerate. Measured: the gap between the second
-the two eigenvalues *inside the horizontal plane* — not the gap between the second and third eigenvalues
+the data only where the covariance spectrum is non-degenerate. Measured: the gap between the two eigenvalues *inside
+the horizontal plane* — not the gap between the second and third eigenvalues
 of the whole matrix, which at $(101,3)$ is the flat mode's — is below $10^{-14}$ at ten of the
 twelve pairs, one of them exactly zero: a degeneracy *to numerical precision*, which is all
 floating-point data can establish and which we do not call exact. It is resolved at two
@@ -88,7 +88,8 @@ no effect wherever the compression restricted to the plane is **scalar**, which 
 the twelve pairs, so nine of the ten undetermined rotations are harmless: a rotation of a plane on which an operator
 acts as a scalar returns the same
 scalar, so no solver can split those entries. Exactly one pair has both an arbitrary rotation and a
-non-scalar block — $(151,5)$, where the indices $\pm 73$ differ by $-c$ — and there the split
+a block that is not scalar — $(151,5)$, where the indices $\pm 73$ differ by $-c$ — and there the
+split
 $6.9527 / 5.0257$ and the off-diagonal $0.2677$ are solver-dependent; the ratio of that
 off-diagonal to the mean diagonal is the published $\rho_{XY} = 0.057$, in a column captioned as
 the isotropy ratio, which evaluates to $0.2772$ under the caption's own formula and to $0.3218$ as

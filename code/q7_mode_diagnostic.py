@@ -115,6 +115,7 @@ DEFAULT_DIR = os.path.normpath(
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from q7_symbol_test import (  # noqa: E402
+    chirped_fourier,
     extract_Beff_from_checkpoint,
     extract_pi_c_from_checkpoint,
     load_checkpoint,
@@ -181,6 +182,26 @@ def load_bundle(path: str = BUNDLE):
         print(f"Bundle: {path}\n  sha256 {digest}\n"
               f"  WARNING: {os.path.basename(sums)} absent, digest NOT verified")
     return np.load(path)
+
+
+def check_metaplectic(q: int, c: int, B: np.ndarray) -> tuple[float, float, float, float]:
+    """Return the residuals of the metaplectic facts the paper states.
+
+    (1) F_c W_a F_c^dag = W_b        (the version 1.3 text had a spurious dagger)
+    (2) F_c W_b F_c^dag = W_a^dag
+    (3) [F_c, L_Weil] = 0
+    (4) the eigenvalue phases of F_tilde = B F_c B^dag deviate from a multiple of
+        90 degrees by at most this many degrees, consistent with F_c^4 = I.
+    """
+    F, Wa, Wb = chirped_fourier(q, c), weil_shift(q), weil_phase(q, c)
+    L = weil_laplacian(q, c)
+    r1 = float(np.abs(F @ Wa @ F.conj().T - Wb).max())
+    r2 = float(np.abs(F @ Wb @ F.conj().T - Wa.conj().T).max())
+    r3 = float(np.abs(F @ L - L @ F).max())
+    phases = np.degrees(np.angle(np.linalg.eigvals(B @ F @ B.conj().T)))
+    dev = float(max(min(abs(p - m) for m in (-180.0, -90.0, 0.0, 90.0, 180.0))
+                    for p in phases))
+    return r1, r2, r3, dev
 
 
 def report_pair(q: int, c: int, data, bundle=None) -> dict | None:
@@ -297,6 +318,11 @@ def report_pair(q: int, c: int, data, bundle=None) -> dict | None:
     elif gap < 1e-12:
         print("      (block is scalar on that plane, so no rotation can split it,"
               " however the degeneracy is classified: these entries are invariant)")
+    r1, r2, r3, dev = check_metaplectic(q, c, B)
+    print(f"    metaplectic identities: |F W_a F* - W_b| = {r1:.1e}   "
+          f"|F W_b F* - W_a*| = {r2:.1e}   |[F, L]| = {r3:.1e}")
+    print("    F_tilde eigenvalue phases: max deviation from a multiple of "
+          f"90 deg = {dev:.2e} deg")
     print("    spectrum of the compression (invariant): "
           f"{np.round(np.linalg.eigvalsh(L_tilde).real, 6)}")
 
@@ -353,9 +379,9 @@ def main() -> int:
     print("\nSummary")
     print(f"  pairs processed                              : {pairs_done}")
     if pairs_done == 0:
-        print("  NOTHING WAS PROCESSED: no bundle and no readable checkpoint.")
-        print("  No verification was performed; re-run with --checkpoint-dir or "
-              "restore code/data/q7_stage_inputs.npz.")
+        print("  NOTHING WAS PROCESSED: no (q, c) pair matched the inputs available.")
+        print("  No verification was performed. Check --primes and --chars against "
+              "what the bundle or the checkpoints contain.")
         return 2
     print(f"  lowest Fourier purity over all reported rows : {worst_purity:.6f}")
     print(f"  largest |measured - analytic| residual       : {worst_residual:.2e}")

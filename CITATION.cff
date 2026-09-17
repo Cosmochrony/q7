@@ -2,6 +2,7 @@ cff-version: 1.2.0
 message: "If you cite this work, please use the metadata from this file."
 title: "Toward Three Spatial Directions from a Supplied Spinor Carrier: Requirements for an Equivariant Bridge"
 type: software
+version: "2.0"
 authors:
   - family-names: "Beau"
     given-names: "Jérôme"

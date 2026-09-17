@@ -36,8 +36,9 @@ The U(1) rotation in the XY-plane of Heis_3 (which acts as J_3 on the spin-1 tri
 is represented in the character-c Weil block by the chirped DFT:
     (F_c)_{jk} = (1/sqrt(q)) omega^{c*j*k},  omega = exp(2pi i / q)
 It satisfies:  F_c W_a F_c^dag = W_b,  F_c W_b F_c^dag = W_a^dag.
-(The first relation was printed with a spurious dagger in version 1.3; see
-q7_mode_diagnostic.py, which verifies both numerically.)
+(The first relation was printed with a spurious dagger in version 1.3;
+q7_mode_diagnostic.py checks both relations, the commutation and the phase
+deviation, and prints the residuals.)
 In the spin-1 representation, F_c acts with eigenvalues:
     e_0  (J_3 = 0)  -->  eigenvalue  1      (Z-type, fixed)
     e_+  (J_3 = +1) -->  eigenvalue  i
@@ -509,7 +510,10 @@ def print_summary(all_results):
 # ---------------------------------------------------------------------------
 
 def main():
-    parser = argparse.ArgumentParser(description="Stage A/B/C compression checks on the O25 checkpoints (not a test of Criterion 5.1)")
+    parser = argparse.ArgumentParser(
+        description="Stage A/B/C compression checks on the O25 checkpoints "
+                    "(not a test of Criterion 5.1)"
+    )
     parser.add_argument("--primes", nargs="+", type=int, default=PRIMES)
     parser.add_argument("--checkpoint-dir", type=str, default=CHECKPOINT_DIR)
     parser.add_argument("--pairs", nargs="+", type=int, default=None,
