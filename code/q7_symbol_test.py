@@ -22,7 +22,9 @@ Test whether sigma_2(L_eff) restricted to Sym^2(V_rho) has the predicted form
 Three-stage pipeline:
   Stage A  -- covariance block structure  (the O28 ratio [1:1/2:1/2] concerns a
               9x9 covariance in End(H_eff); C_c here is 3x3 in H_eff and meets
-              that ratio at 3 of 12 pairs.  What matters in Q7 2.0 is its
+              that ratio exactly at only three of the twelve stored pairs (1e-9
+              tolerance), the script's own +/-0.20 test passing more.  What
+              matters in Q7 2.0 is its
               degeneracy gap)
   Stage B  -- metaplectic U(1)/J_3 overlap  (auxiliary; Q7 2.0 Remark 6.6 states
               that no claim of the paper depends on it)

@@ -60,8 +60,8 @@ Requirements for an Equivariant Bridge\\[4pt]
     map to the complexified adjoint module is an isomorphism, unique up to one non-zero complex
     scalar; reality and positivity of that scalar require separate hypotheses on the forms
     compared.
-    Third, the $\su(2)$ Casimir acts on $\Sym^2(\Vr)$ as $2 \cdot \mathrm{Id}$, and its pullback
-    under an equivariant bridge is positive definite of rank three, as a Hermitian form, whenever
+    Third, the $\su(2)$ Casimir acts on $\Sym^2(\Vr)$ as $2 \cdot \mathrm{Id}$, and an equivariant
+    bridge pulls the Hermitian spatial form back to a positive-definite form of rank three whenever
     the two coefficients are positive; invariance under the Cartan generator $J_3$ separates the spin-weight $\pm 1$
     sector from the spin-weight $0$ sector and
     forces isotropy \emph{within the horizontal plane}, but it does not by itself force
@@ -272,10 +272,11 @@ Requirements for an Equivariant Bridge\\[4pt]
 
     At the fibre level, the admissible projection $\pi_c : V_q \to \Heff$ lands in
     $\Heff = \mathbb{C}^3$, consistently with $\Sigma_c(n_3) = 3$~\cite{Beau2026a32}.
-    The per-pair covariance $C_c$ in $\mathrm{End}(\Heff)$ has rank $r_{\mathrm{eff}} = 3$, filling
-    $\Heff$ completely~\cite{Beau2026a32}; O29~\cite{Beau2026a33} reports that this rank is modal
-    rather than invariant across pairs and primes, and that it is a rank in
-    $\mathrm{End}(\Heff)$, not in $\mathrm{End}(\Vr)$.
+    The per-pair covariance of O28, a $9 \times 9$ operator on $\mathrm{End}(\Heff)$ which that
+    paper also calls $C_c$, has threshold rank $r_{\mathrm{eff}}^{1\%} = 3$, filling $\Heff$
+    completely~\cite{Beau2026a32}; O29~\cite{Beau2026a33} reports that this rank is modal rather
+    than invariant across pairs and primes, and that it is a rank in $\mathrm{End}(\Heff)$, not in
+    $\mathrm{End}(\Vr)$.
     No source identifies $\Heff$ with $\Sym^2_\mathbb{C}(\Vr)$: O29 states that no calculation
     there identifies these objects and that no subspace of $\Heff$ is identified with $\Vr$, and
     the value $d_\rho = 2$ is O26's minimality selection~\cite{Beau2026a30}.
@@ -291,7 +292,7 @@ Requirements for an Equivariant Bridge\\[4pt]
       (i) $\dim_\mathbb{R}(\heis / \mathbb{R}\tau) = 3$ (geometric, from Carnot structure),
       (ii) $\dim_\mathbb{R}(\ImH) = 3$ (algebraic, from the neutral sector of the supplied
       spinor carrier, O23 Theorem~3.1, conditional on that carrier),
-      (iii) $\dim_\mathbb{C}(\Heff) = 3$ with modal covariance rank $r_{\mathrm{eff}} = 3$
+      (iii) $\dim_\mathbb{C}(\Heff) = 3$ with modal covariance rank $r_{\mathrm{eff}}^{1\%} = 3$
       (measured, from O28, audited in O29).
       These coincide numerically but need not coincide structurally, and (iii) is a measured
       dimension carrying no representation-theoretic content by itself.
@@ -458,8 +459,9 @@ Requirements for an Equivariant Bridge\\[4pt]
   \subsection{The Schr\"odinger Quadratic Form Lemma}
     \label{sec:qform}
 
-    We now compute the quadratic form induced by the $\su(2)$-Casimir on $\Sym^2(\Vr)$ and show
-    that its pullback under any equivariant bridge is positive-definite on the spatial sector.
+    We now record the value of the $\su(2)$-Casimir on $\Sym^2(\Vr)$ and show that the Hermitian
+    spatial form pulls back, under any equivariant bridge, to a positive-definite graded form on
+    $\Sym^2(\Vr)$.
 
     The Casimir operator of $\su(2)$ on the spin-$j$ irreducible representation is
     $\mathcal{C} = j(j+1) \cdot \mathrm{Id}$.
@@ -806,7 +808,7 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
       $= -\langle e_m, W_b e_n\rangle - \langle e_m, W_b^\dagger e_n\rangle$ is non-zero exactly
       when $m - n \equiv \pm c \pmod q$, in which case its modulus is $1$.
 
-    \begin{table}[h]
+    \begin{table}[ht]
       \centering
       \caption{What the compression $\tilde L = B_{\mathrm{eff}} L_{\mathrm{Weil}}
         B_{\mathrm{eff}}^\dagger$ contains on the O25 checkpoints.
@@ -846,9 +848,10 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     \noindent
     Every entry of the compression $\tilde L$ \emph{in the stored basis} is thus accounted for
     by~\eqref{eq:rayleigh} and by the index-difference rule, with no free parameter and no appeal
-    to the bridge. What the pipeline reports is $L_{\mathrm{sw}}$, which coincides with $\tilde L$
-    at ten of the twelve pairs and differs at the two discussed in
-    Section~\ref{ssec:rotation}.
+    to the bridge. What the pipeline reports is $L_{\mathrm{sw}}$, which as a matrix coincides with
+    $\tilde L$ at nine of the twelve pairs; at $(61,3)$ the two agree entry by entry in modulus but
+    not in phase, and at $(101,3)$ and $(151,5)$ they differ outright, as
+    Section~\ref{ssec:rotation} works out.
     In particular the two pairs at which version~1.3 reported anomalies, $(61,3)$ and $(151,5)$,
     are exactly the two pairs whose stored indices differ by $\pm c$: at $(61,3)$ the flat mode and
     the mode $-3$ differ by $c = 3$, giving $|\tilde L_{01}| = 1$ and hence the reported
@@ -948,7 +951,7 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
       direction, not on the entries of Table~\ref{tab:numerical}.
     \end{remark}
 
-    \begin{table}[h]
+    \begin{table}[ht]
       \centering
       \caption{The gap $\Delta(q) = 4\sin^2(\pi k(q)/q)$ between the mode entry and the flat-mode
         entry, for the stored indices $k(q)$ of the low-index characters.
@@ -976,7 +979,8 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
 
     \noindent
     For $c = 7$ the stored index grows more slowly than $q$, so $k/q$ decreases and $\Delta$
-    decreases with it; for $c = 3$ it does not, $k/q$ being essentially constant near $0.047$.
+    decreases with it; for $c = 3$ it does not, $k/q$ staying in $[0.046, 0.050]$ across the four
+    primes.
     The four-point fit $\Delta \approx 0.364\,q^{-0.52}$ reported in version~1.3 is a fit to the
     sequence $4\sin^2(\pi k(q)/q)$ for the four selected indices $k = 2,3,4,5$: recomputing it from
     those indices alone returns the same exponent to two decimals.
@@ -1076,8 +1080,9 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
 
     \paragraph{The ordering.}
       The covariance eigenbasis $U$ is block-diagonal with respect to
-      $\{\text{flat}\} \oplus \{e_{\pm k}\}$ at all twelve pairs, so the flat mode is never mixed
-      into the others; what can change is the slot it occupies.
+      $\{\text{flat}\} \oplus \{e_{\pm k}\}$ at all twelve pairs, to numerical precision (relative
+      off-block entries at most $1.4 \times 10^{-15}$), so the flat mode is not mixed into the
+      others; what can change is the slot it occupies.
       At eleven pairs the flat mode carries the largest covariance eigenvalue and is ordered first.
       At $(q,c) = (101,3)$ it carries the \emph{smallest} (normalised eigenvalues
       $1$, $1$, $0.98758$) and is ordered last, which is the whole origin of the published row
@@ -1093,9 +1098,10 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
       The quantity to measure is the gap \emph{inside that plane}, not the gap between the second
       and third eigenvalues of the whole matrix: at $(101,3)$ the latter is the flat mode's
       separation and would mislead.
-      Measured in the plane, with eigenvalues normalised by the largest of $C_c$, the gap lies
-      between $10^{-16}$ and $6 \times 10^{-16}$ at ten pairs, $(101,3)$ included, and is resolved
-      at two: $6.2 \times 10^{-3}$ at $(61,3)$ and $1.6 \times 10^{-2}$ at $(101,7)$.
+      Measured in the plane, with eigenvalues normalised by the largest of $C_c$, the gap is at
+      most $2.1 \times 10^{-15}$ at ten pairs, $(101,3)$ included, one of them returning exactly
+      zero, and it is resolved at two: $6.2 \times 10^{-3}$ at $(61,3)$ and
+      $1.6 \times 10^{-2}$ at $(101,7)$.
       A gap of that size is a degeneracy \emph{to numerical precision}, which is all a computation
       on floating-point data can establish; we do not call it exact, no algebraic argument for it
       being offered here, and whether the coincidence is structural is a question about the
@@ -1118,7 +1124,8 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
       There the two stored indices $\pm 73$ differ by $146 \equiv -5 \equiv -c$, so the restriction
       of $\tilde L$ to their plane is
       $\begin{pmatrix} 5.989188 & -1 \\ -1 & 5.989188 \end{pmatrix}$, which is not scalar, while
-      the covariance plane is degenerate to within $1.5 \times 10^{-16}$.
+      the covariance plane is degenerate to within $6.1 \times 10^{-16}$, measured inside the plane
+      as the previous paragraph requires.
       The rotation returned by the solver is not aligned with the stored modes, and it gives
       $L_{\mathrm{sw}} = \mathrm{diag}(2,\, 6.9527,\, 5.0257)$ with an off-diagonal entry of
       modulus $0.2677$ between the two non-flat slots.
@@ -1186,11 +1193,12 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     The Fourier convention is the one fixed in Section~\ref{ssec:rayleigh},
     $e_m(k) = q^{-1/2}e^{2\pi i m k/q}$, and the purity of a unit vector at index $m$ is
     $|(Fv)_m|^2/q$, equal to $1$ exactly when the vector is that single mode up to a phase.
-    It also prints the normalised spectrum of $C_c$, the gap inside the horizontal plane, the matrix
-    after conjugation by the covariance eigenbasis, the spectrum of the compression, and a warning
-    distinguishing the pairs where that plane is degenerate and the block non-scalar, so that the
-    individual entries are solver-dependent, from those where the block is scalar and they are not
-    (Section~\ref{ssec:rotation}).
+    It also prints the normalised spectrum of $C_c$ with two gaps, the one between its second and
+    third eigenvalues and the one inside the horizontal plane, and keys its verdict to the second;
+    then the matrix after conjugation by the covariance eigenbasis, the spectrum of the
+    compression, and a warning distinguishing the pairs where the plane is degenerate and the block
+    non-scalar, so that the individual entries are solver-dependent, from those where the block is
+    scalar and they are not (Section~\ref{ssec:rotation}).
     On the four primes and three characters reported here the lowest purity is $1.000000$ and the
     largest discrepancy between measurement and closed form is $3.6 \times 10^{-15}$; every
     off-diagonal modulus of the compression in the stored basis matches the index-difference rule,
@@ -1220,7 +1228,8 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
       the further requirement of Remark~\ref{rem:rigidity}.
       \item The $\su(2)$ Casimir acts on $\Sym^2(\Vr)$ as $2\cdot\mathrm{Id}$, and under an
       equivariant bridge the pullback of the Hermitian spatial form is graded as in
-      Lemma~\ref{lem:qform}, with the premises listed in Remark~\ref{rem:status}. Invariance under the Cartan generator forces isotropy
+      Lemma~\ref{lem:qform}, with the premises listed in Remark~\ref{rem:status}. Invariance under the Cartan
+      generator forces isotropy
       within the horizontal plane; it does not force $A_H = A_z$.
       \item The grading correspondence (Remark~\ref{rem:grading}) connects the Carnot degree-$(1,2)$
       decomposition of $\heis$ to the spin-weight-$(\pm 1, 0)$ decomposition of $\Sym^2(\Vr)$,
@@ -1241,9 +1250,10 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
       horizontal plane at all twelve pairs. Two effects separate them from the stored-basis
       entries, and they are independent (Section~\ref{ssec:rotation}): the ordering of the flat
       mode, which differs only at $(101,3)$, and the rotation inside the horizontal plane, which is
-      arbitrary at the nine pairs where the covariance is degenerate but has no effect wherever the
-      restriction of the compression to that plane is scalar, that is at eleven of the twelve
-      pairs. One pair, $(151,5)$, has both an arbitrary rotation and a non-scalar block, and it is
+      undetermined at the ten pairs whose covariance is degenerate to numerical precision inside
+      that plane, but without effect wherever the restriction of the compression to the plane is
+      scalar, that is at eleven of the twelve pairs. One pair, $(151,5)$, has both an arbitrary rotation and a non-
+      scalar block, and it is
       the only pair whose reported entries are solver-dependent.
       \item The invariant content is the spectrum of the compression, which the closed
       form~\eqref{eq:rayleigh} gives outright at the ten pairs with no index difference equal to
@@ -1282,10 +1292,9 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     module of $\su(2)$.
     The three-dimensionality of space would then follow from the uniqueness of that module,
     conditionally on the supplied spinor carrier of O23~\cite{Beau2026a27} (Theorem~3.1, whose
-    carrier selection is an open bridge), on O27's saturation hypothesis~\cite{Beau2026a31}, on
-    O26's minimality selection~\cite{Beau2026a30}, and on the existence of the effective operator,
-    which requires [H-L] of~\cite{Beau2026q5b}.
-    That is a chain of four supplied premises, and it should be presented as such wherever the
+    carrier selection is an open bridge), on O26's minimality selection~\cite{Beau2026a30}, and on
+    the existence of the effective operator, which requires [H-L] of~\cite{Beau2026q5b}.
+    That is a chain of three supplied premises, and it should be presented as such wherever the
     result is used.
 
   \subsection{If the Identification Fails}
@@ -1376,8 +1385,9 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
   that follow from representation theory on the supplied carrier.
   Under Hypothesis~[ID], which identifies the measured space with the spin-$1$ module and which no
   source supplies, any equivariant bridge is either zero or an isomorphism unique up to one scalar,
-  and its pullback of the Casimir form is graded, isotropic within the horizontal plane, and equal
-  to the spatial block up to the two constants $A_H$ and $A_z$, neither of which is evaluated here.
+  and the Hermitian spatial form pulls back to a graded form on the module, isotropic within the
+  horizontal plane and determined by the two constants $A_H$ and $A_z$, neither of which is
+  evaluated here.
   The open question is thereby given a precise contract rather than a resolution.
 
   The numerical section has been re-typed in version~2.0.

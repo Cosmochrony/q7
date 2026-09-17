@@ -243,6 +243,13 @@ def report_pair(q: int, c: int, data, bundle=None) -> dict | None:
             print(f"      ({i},{j}):      {meas:.6f}    {predicted:.1f}      "
                   f"{diff:4d}   {flag}")
 
+    # The two block decompositions below assume row 0 is the flat mode, which is
+    # how the pipeline stores them; assert it rather than trust it silently.
+    assert rows[0]["index"] == 0, (
+        f"q={q} c={c}: row 0 has Fourier index {rows[0]['index']}, not 0; "
+        "the in-plane and scalar-block verdicts below assume the flat mode first"
+    )
+
     # Covariance spectrum: this, and not the equality of the Rayleigh quotients,
     # is what decides whether the Stage-A eigenbasis is free to rotate.
     ev = np.linalg.eigvalsh(cov)[::-1]
@@ -333,16 +340,19 @@ def main() -> int:
     print(f"  pairs processed                              : {pairs_done}")
     if pairs_done == 0:
         print("  NOTHING WAS PROCESSED: no bundle and no readable checkpoint.")
-        print("  The statements below are vacuous; re-run with --checkpoint-dir "
-              "or restore code/data/q7_stage_inputs.npz.")
+        print("  No verification was performed; re-run with --checkpoint-dir or "
+              "restore code/data/q7_stage_inputs.npz.")
         return 2
     print(f"  lowest Fourier purity over all reported rows : {worst_purity:.6f}")
     print(f"  largest |measured - analytic| residual       : {worst_residual:.2e}")
-    print("  Every reported diagonal entry is the Rayleigh quotient "
-          "4 - 2 cos(2 pi m / q)")
-    print("  of L_Weil on a single Fourier mode: 2 exactly at m = 0, and "
-          "2 + 4 sin^2(pi k / q) at m = k.")
-    return 0
+    if worst_purity > 1 - 1e-9 and worst_residual < 1e-12:
+        print("  VERIFIED: every reported diagonal entry is the Rayleigh quotient")
+        print("  4 - 2 cos(2 pi m / q) of L_Weil on a single Fourier mode: 2 exactly")
+        print("  at m = 0, and 2 + 4 sin^2(pi k / q) at m = k.")
+        return 0
+    print("  NOT VERIFIED: purity or residual outside tolerance; the closed form")
+    print("  does not describe these rows. Inspect the per-pair output above.")
+    return 1
 
 
 if __name__ == "__main__":

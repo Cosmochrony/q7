@@ -23,8 +23,9 @@ structures: the required bridge is a **missing identification**, not a proved ob
     - the admissible 3 from the neutral sector of a supplied spinor carrier
       (O23 Theorem 3.1, conditional on that carrier) and from the projection space
       $H_{\mathrm{eff}} = \mathbb{C}^3$, which O28 supplies as a parameter consistent with that
-      selection rule, and whose covariance rank three O28 itself calls a finite-data value of its
-      protocol and not an invariant (it also reports a participation-ratio value $8/3$).
+      selection rule, and whose threshold covariance rank $r_{\mathrm{eff}}^{1\%} = 3$ O28 itself
+      calls a finite-data value of its protocol and not an invariant (it also reports a
+      participation-ratio value $8/3$).
 
    These structures are *a priori distinct* and cannot be identified directly.
 
@@ -77,14 +78,15 @@ $\langle e_m, L_{\mathrm{Weil}} e_m \rangle = 4 - 2\cos(2\pi m/q).$
 **The closed form describes the stored-basis compression, not directly the published entries.**
 The pipeline conjugates that compression by the covariance eigenbasis, and that basis is fixed by
 the data only where the covariance spectrum is non-degenerate. Measured: the gap between the second
-eigenvalues *inside the horizontal plane* — not the gap between the second and third eigenvalues of
-the whole matrix, which at $(101,3)$ is the flat mode's — lies between $10^{-16}$ and
-$6\times10^{-16}$ at ten of the twelve pairs, a degeneracy *to numerical precision*, which is all
-floating-point data can establish and which we do not call exact; it is resolved at two
+eigenvalues *inside the horizontal plane* — not the gap between the second and third eigenvalues
+of the whole matrix, which at $(101,3)$ is the flat mode's — is at most $2.1\times10^{-15}$ at ten
+of the twelve pairs, one of them exactly zero: a degeneracy *to numerical precision*, which is all
+floating-point data can establish and which we do not call exact. It is resolved at two
 ($6.2\times10^{-3}$ at $(61,3)$, $1.6\times10^{-2}$ at $(101,7)$). At those ten
 pairs the rotation of the plane is not determined by the data at that precision, but it has
 no effect wherever the compression restricted to the plane is **scalar**, which holds at eleven of
-the twelve pairs, so nine of the ten undetermined rotations are harmless: a rotation of a plane on which an operator acts as a scalar returns the same
+the twelve pairs, so nine of the ten undetermined rotations are harmless: a rotation of a plane on which an operator
+acts as a scalar returns the same
 scalar, so no solver can split those entries. Exactly one pair has both an arbitrary rotation and a
 non-scalar block — $(151,5)$, where the indices $\pm 73$ differ by $-c$ — and there the split
 $6.9527 / 5.0257$ and the off-diagonal $0.2677$ are solver-dependent; the ratio of that
