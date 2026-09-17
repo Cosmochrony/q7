@@ -1186,9 +1186,10 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     The Fourier convention is the one fixed in Section~\ref{ssec:rayleigh},
     $e_m(k) = q^{-1/2}e^{2\pi i m k/q}$, and the purity of a unit vector at index $m$ is
     $|(Fv)_m|^2/q$, equal to $1$ exactly when the vector is that single mode up to a phase.
-    It also prints the normalised spectrum of $C_c$ with the gap between its second and third
-    eigenvalues, the matrix after conjugation by the covariance eigenbasis, and a warning at the
-    pairs where that plane is degenerate and the individual entries are therefore solver-dependent
+    It also prints the normalised spectrum of $C_c$, the gap inside the horizontal plane, the matrix
+    after conjugation by the covariance eigenbasis, the spectrum of the compression, and a warning
+    distinguishing the pairs where that plane is degenerate and the block non-scalar, so that the
+    individual entries are solver-dependent, from those where the block is scalar and they are not
     (Section~\ref{ssec:rotation}).
     On the four primes and three characters reported here the lowest purity is $1.000000$ and the
     largest discrepancy between measurement and closed form is $3.6 \times 10^{-15}$; every
