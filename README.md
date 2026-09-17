@@ -77,9 +77,11 @@ $\langle e_m, L_{\mathrm{Weil}} e_m \rangle = 4 - 2\cos(2\pi m/q).$
 **The closed form describes the stored-basis compression, not directly the published entries.**
 The pipeline conjugates that compression by the covariance eigenbasis, and that basis is fixed by
 the data only where the covariance spectrum is non-degenerate. Measured: the gap between the second
-and third normalised eigenvalues of $C_c$ is at machine precision ($10^{-16}$ to
-$2\times10^{-15}$) at nine of the twelve pairs, and resolved at three ($6.2\times10^{-3}$,
-$1.2\times10^{-2}$, $1.6\times10^{-2}$). At the nine degenerate pairs the rotation of that plane is arbitrary, but it has
+and third normalised eigenvalues of $C_c$ lies between $10^{-16}$ and $2\times10^{-15}$ at nine of
+the twelve pairs — a degeneracy *to numerical precision*, which is all floating-point data can
+establish, and which we do not call exact — and is resolved at two ($6.2\times10^{-3}$ at $(61,3)$,
+$1.6\times10^{-2}$ at $(101,7)$; at $(101,3)$ the resolved gap is the flat mode's). At those nine
+pairs the rotation of the plane is not determined by the data at that precision, but it has
 no effect wherever the compression restricted to the plane is **scalar**, which holds at eleven of
 the twelve pairs: a rotation of a plane on which an operator acts as a scalar returns the same
 scalar, so no solver can split those entries. Exactly one pair has both an arbitrary rotation and a

@@ -242,7 +242,7 @@ def report_pair(q: int, c: int, data, bundle=None) -> dict | None:
     )
     print("    covariance spectrum (normalised): "
           f"{np.round(ev_n, 6)}   gap(2,3) = {gap:.2e}   "
-          f"{'DEGENERATE at machine precision' if gap < 1e-12 else 'resolved'}")
+          f"{'degenerate to numerical precision' if gap < 1e-12 else 'resolved'}")
     print("    rotated by the covariance eigenbasis: diag "
           f"{np.round(np.diag(L_sw).real, 6)}   max |off-diagonal| = {off_sw:.6f}")
     blk = L_tilde[1:, 1:]
@@ -250,11 +250,12 @@ def report_pair(q: int, c: int, data, bundle=None) -> dict | None:
         np.allclose(blk, blk[0, 0] * np.eye(blk.shape[0]), atol=1e-9)
     )
     if gap < 1e-12 and not scalar_block:
-        print("      (degenerate plane AND non-scalar block: these two numbers "
-              "are solver-dependent; only the spectrum is invariant)")
+        print("      (plane degenerate to numerical precision AND block non-scalar:"
+              " these two numbers are solver-dependent; only the spectrum is"
+              " invariant)")
     elif gap < 1e-12:
-        print("      (degenerate plane, but the block is scalar there, so no "
-              "rotation can split it: these entries are invariant)")
+        print("      (block is scalar on that plane, so no rotation can split it,"
+              " however the degeneracy is classified: these entries are invariant)")
     print("    spectrum of the compression (invariant): "
           f"{np.round(np.linalg.eigvalsh(L_tilde).real, 6)}")
 

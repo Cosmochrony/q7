@@ -85,7 +85,7 @@ Requirements for an Equivariant Bridge\\[4pt]
 
   \noindent\textbf{Keywords:} Heisenberg group; Weil representation; spectral geometry;
   sub-Riemannian Laplacian; Carnot geometry; spin representations; $\mathfrak{su}(2)$ Casimir;
-  metaplectic symmetry; Cosmochrony.
+  metaplectic symmetry; Rayleigh quotient; Cosmochrony.
 
   \clearpage
   \tableofcontents
@@ -133,10 +133,14 @@ Requirements for an Equivariant Bridge\\[4pt]
         The value $d_\rho = 2$ is the minimality selection of O26~\cite{Beau2026a30}, which also
         records that rank three cannot be inverted to $d_\rho = 2$.
         Paper O27~\cite{Beau2026a31} proves a real-linear factorisation through the admissible
-        quotient $\mathcal{Q}$ (Theorem~4.1(i)), without equivariance; the identification
-        $H_{\mathrm{eff}} \simeq \su(2)$ holds only under O23's supplied carrier together with
-        O27's hypothesis of admissible saturation (Theorem~4.1(ii)), which O27 states is assumed
-        and derived nowhere.
+        quotient $\mathcal{Q}$ (Theorem~4.1(i)), without equivariance.
+        Its identification $H_{\mathrm{eff}}^{\text{O27}} \simeq \su(2)$, where
+        $H_{\mathrm{eff}}^{\text{O27}} = \mathrm{Im}\,\Pi_{\mathrm{adm}} \cap \mathrm{Ntrl}$,
+        holds only under O23's supplied carrier together with O27's hypothesis of admissible
+        saturation (Theorem~4.1(ii)), which O27 states is assumed and derived nowhere; the same
+        hypothesis is what makes that space three-dimensional over $\mathbb{R}$ in O27.
+        It is a statement about O27's own object and not about the measured $\mathbb{C}^3$
+        (Section~\ref{sec:conv}).
 
   \subsection{The Problem}
 
@@ -169,6 +173,7 @@ Requirements for an Equivariant Bridge\\[4pt]
     (Q5a Theorem~6.1); nothing there or elsewhere proves that no bridge can exist.
 
   \subsection{Conventions}
+    \label{sec:conv}
 
     Throughout, $q$ is an odd prime and $G_q = \Heis(\mathbb{Z}/q\mathbb{Z})$.
     We write $\pi_c : V_q \to \Heff = \mathbb{C}^3$ for the admissible projection of the
@@ -181,15 +186,22 @@ Requirements for an Equivariant Bridge\\[4pt]
 
     One notational warning, since the corpus uses one symbol for two objects.
     In O27~\cite{Beau2026a31} the symbol $H_{\mathrm{eff}}$ denotes
-    $\mathrm{Im}\,\Pi_{\mathrm{adm}} \cap \mathrm{Ntrl}$, a \emph{real} three-dimensional space;
+    $\mathrm{Im}\,\Pi_{\mathrm{adm}} \cap \mathrm{Ntrl}$, which that paper calls real
+    three-dimensional \emph{under its hypothesis of admissible saturation}, and not otherwise;
     in O28--O29~\cite{Beau2026a32,Beau2026a33} and in the present paper $\Heff$ denotes the
     \emph{complex} three-dimensional target $\mathbb{C}^3$ of the admissible projection $\pi_c$.
-    O27 states that no dimension count transfers between the two in either direction, and O23
-    warns against writing $\su(2) \cong \Sym^2(\Vr)$ without distinguishing a real from a complex
-    dimension.
+    The warning O27 issues is about \emph{its own} pair of spaces, not about ours: it states that
+    no dimension count of that paper transfers between its $H_{\mathrm{eff}}$ and the
+    complexification $H_{\mathrm{eff}} \otimes_\mathbb{R} \mathbb{C}$ of that same space, in
+    either direction.
+    A fortiori no count transfers to or from the measured $\mathbb{C}^3$ of O28, which O27 does not
+    discuss; that these two three-dimensional spaces are related at all is part of what
+    Hypothesis~[ID] would have to supply.
+    O23~\cite{Beau2026a27} separately warns against writing $\su(2) \cong \Sym^2(\Vr)$ without
+    distinguishing a real from a complex dimension.
     We keep the complex reading throughout, write $W_{\mathrm{sp}}$ for the real spatial sector and
     $W_{\mathrm{sp}} \otimes_\mathbb{R} \mathbb{C}$ for its complexification, and use
-    $H_{\mathrm{eff}}$ with a subscript spelled out whenever the O27 object is meant.
+    $H_{\mathrm{eff}}$ with the source spelled out whenever the O27 object is meant.
 
   \section{Two Independent Notions of Dimension Three}
 
@@ -450,11 +462,12 @@ Requirements for an Equivariant Bridge\\[4pt]
 
     \begin{lemma}[Schr\"{o}dinger quadratic form]
       \label{lem:qform}
-      Let $\varphi : \Sym^2(\Vr) \xrightarrow{\sim} W_{\mathrm{sp}} \otimes_\mathbb{R} \mathbb{C}$
-      be any $\su(2)$-equivariant isomorphism onto the complexified spatial sector (the unique such
-      map up to one scalar, by Lemma~\ref{lem:schur}; the complexification is required, the source
-      being a complex three-dimensional module and $W_{\mathrm{sp}}$ a real three-dimensional
-      space).
+      Write $W_\mathbb{C} := W_{\mathrm{sp}} \otimes_\mathbb{R} \mathbb{C}$ and let
+      $\varphi : \Sym^2(\Vr) \to W_\mathbb{C}$
+      be any $\su(2)$-equivariant isomorphism onto it: unique up to one scalar by
+      Lemma~\ref{lem:schur}.
+      The complexification is required, the source being a complex three-dimensional module and
+      $W_{\mathrm{sp}}$ a real three-dimensional space.
       Then:
       \begin{enumerate}
         \item The quadratic form $Q_{\mathcal{C}}(v) := \langle v, \mathcal{C} v \rangle = 2\|v\|^2$
@@ -697,13 +710,12 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     \label{sec:numval}
     \label{ssec:rayleigh}
 
-    We compute compressions of $L_{\mathrm{Weil}}$ using the Q5a-O5 checkpoints produced
-    by the O25 pipeline~\cite{Beau2026a29}.
-    For each prime $q \in \{61, 101, 151, 211\}$ and each tested character $c$, the checkpoint
-    stores:
-    the GS admissible basis matrix $B_{\mathrm{eff}} \in \mathbb{C}^{q \times q}$ (first three rows
-    give the three admissible directions), and the per-shell $H_{\mathrm{eff}}$-projections
-    $\pi_c(v^{(k)}) \in \mathbb{C}^3$ for $k$ in the fitting window $[n_0, n_1]$.
+    We compute compressions of $L_{\mathrm{Weil}}$ on the Q5a-O5 checkpoints of the O25
+    pipeline~\cite{Beau2026a29}.
+    For each prime $q \in \{61, 101, 151, 211\}$ and each tested character~$c$, the checkpoint
+    stores the Gram--Schmidt admissible basis matrix $B_{\mathrm{eff}}$, a $q \times q$ complex
+    matrix whose first three rows give the three admissible directions, together with the
+    per-shell projections $\pi_c(v^{(k)})$ in $\mathbb{C}^3$, for $k$ in the fitting window.
 
     The computation proceeds in three stages.
     Stage~A computes the per-pair covariance $C_c = N^{-1}\sum_j w_j w_j^\dagger$
@@ -1005,8 +1017,9 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
       two distinct entries differ by the identity~\eqref{eq:gap}, so it discriminates between the
       three cases only through an identification it does not supply.
       No case is currently excluded.
-      (Papers Q8, Q9 and Q10 cite this structure as ``Q7 Remark~6.8'': Q9 restates all three
-      cases, Q8 and Q10 name Case~3 and Case~1 respectively. In the deposited version~1.3 and here
+      (Papers Q8~\cite{BeauQ8}, Q9~\cite{Beau2026q9} and Q10~\cite{Beau2026q10} cite this
+      structure as ``Q7 Remark~6.8'': Q9 restates all three cases, Q8 and Q10 name Case~3 and
+      Case~1 respectively. In the deposited version~1.3 and here
       it is Remark~\ref{rem:threecases}, Corollary~\ref{cor:quasithm} being 6.8. The numbering of
       this paper is unchanged in version~2.0.)
     \end{remark}
@@ -1032,24 +1045,32 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
       spectrum, not of the Rayleigh quotients: equality of the two non-flat entries of $\tilde L$
       says nothing about $C_c$.
       Measured, with eigenvalues normalised by the largest, the gap between the second and third
-      is at machine precision, between $10^{-16}$ and $2 \times 10^{-15}$, at nine pairs, and is
-      resolved at two: $6.2 \times 10^{-3}$ at $(61,3)$ and $1.6 \times 10^{-2}$ at $(101,7)$
-      (at $(101,3)$ the degenerate plane is the same one, the resolved gap being the flat mode's).
-      At the nine degenerate pairs the rotation of that plane is arbitrary.
+      lies between $10^{-16}$ and $2 \times 10^{-15}$ at nine pairs, and is resolved at two:
+      $6.2 \times 10^{-3}$ at $(61,3)$ and $1.6 \times 10^{-2}$ at $(101,7)$ (at $(101,3)$ the
+      near-degenerate plane is the same one, the resolved gap being the flat mode's).
+      A gap of that size is a degeneracy \emph{to numerical precision}, which is all a computation
+      on floating-point data can establish; we do not call it exact, no algebraic argument for it
+      being offered here, and whether the coincidence is structural is a question about the
+      pipeline that this paper does not settle.
+      At those nine pairs the rotation of the plane is accordingly not determined by the data at
+      the precision available: a different eigensolver may return a different basis of it.
       It is nevertheless without effect at eight of them, for a reason worth stating: there the
       restriction of $\tilde L$ to the plane is the \emph{scalar} operator
       $\bigl(4 - 2\cos(2\pi k/q)\bigr) I$, because no difference of the two indices equals
       $\pm c \bmod q$, and a unitary rotation of a plane on which an operator acts as a scalar
       returns the same scalar.
       No solver, ordering or seed can split those entries or create an off-diagonal term there.
-      Exactly one pair has both an arbitrary rotation and a non-scalar block, and it is
+      Exactly one pair has both an undetermined rotation and a non-scalar block, and it is
       $(q,c) = (151,5)$.
+      Note that at the eight scalar-block pairs the conclusion does not depend on how the
+      degeneracy is classified: scalar is scalar, so those entries are invariant whether the gap is
+      exactly zero or merely below the noise floor.
 
     \paragraph{What happens at $(151,5)$.}
       There the two stored indices $\pm 73$ differ by $146 \equiv -5 \equiv -c$, so the restriction
       of $\tilde L$ to their plane is
       $\begin{pmatrix} 5.989188 & -1 \\ -1 & 5.989188 \end{pmatrix}$, which is not scalar, while
-      the covariance plane is degenerate to $1.5 \times 10^{-16}$.
+      the covariance plane is degenerate to within $1.5 \times 10^{-16}$.
       The rotation returned by the solver is not aligned with the stored modes, and it gives
       $L_{\mathrm{sw}} = \mathrm{diag}(2,\, 6.9527,\, 5.0257)$ with an off-diagonal entry of
       modulus $0.2677$ between the two non-flat slots.
