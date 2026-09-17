@@ -479,19 +479,29 @@ Requirements for an Equivariant Bridge\\[4pt]
         on $\Sym^2(\Vr)$ is positive-definite of rank~$3$.
         \item If $A_H > 0$ and $A_z > 0$, then under any equivariant bridge $\varphi$ the pullback
         $\varphi^* h_{\mathrm{sp}}$ is positive-definite of rank~$3$, where $h_{\mathrm{sp}}$ is the
-        \emph{Hermitian} (sesquilinear) extension to $W_\mathbb{C}$ of the real spatial block
-        $g_{\mathrm{sp}} = \mathrm{diag}(A_H, A_H, A_z)$ of $g^{\mu\nu}$.
+        Hermitian extension of the real spatial block
+        $g_{\mathrm{sp}} = \mathrm{diag}(A_H, A_H, A_z)$ of $g^{\mu\nu}$ defined
+        in~\eqref{eq:herm} below.
         The Hermitian extension is the one to use here: the $\mathbb{C}$-bilinear extension of a
         real form is never positive definite on a complex space, since it sends $iv$ to
         $-g(v,v)$.
-        \item The induced form is:
+        \item Fix the adapted isomorphism $\varphi_0$ that sends the weight vectors
+        $(e_+, e_0, e_-)$ to the graded directions of $W_\mathbb{C}$ as in
+        Remark~\ref{rem:grading}, normalised so that $\varphi_0^* h_{\mathrm{sp}}$ acts by $A_H$ on
+        $\{e_+, e_-\}$ and by $A_z$ on $\{e_0\}$, and write $\varphi = \lambda\varphi_0$ with
+        $\lambda \in \mathbb{C}^\times$, which is the freedom Lemma~\ref{lem:schur} leaves.
+        Then
         \begin{equation}
           \varphi^* h_{\mathrm{sp}} = \lambda_H \cdot Q_{\pm} + \lambda_z \cdot Q_0,
+          \qquad \lambda_H = |\lambda|^2 A_H, \quad \lambda_z = |\lambda|^2 A_z,
         \end{equation}
-        where $Q_{\pm}$ is the projection onto the spin-weight $\pm 1$ eigenspace $\{e_+, e_-\}$,
-        $Q_0$ is the projection onto the spin-weight $0$ eigenspace $\{e_0\}$,
-        and $\lambda_H = A_H / |\lambda|^2$, $\lambda_z = A_z / |\lambda|^2$ with $\lambda$ the
-        scalar of Lemma~\ref{lem:schur}, positive under the same proviso.
+        where $Q_{\pm}$ is the projection onto the spin-weight $\pm 1$ eigenspace $\{e_+, e_-\}$ and
+        $Q_0$ the projection onto the spin-weight $0$ eigenspace $\{e_0\}$; both coefficients are
+        positive under the same proviso.
+        The transport multiplies by $|\lambda|^2$, since
+        $(\lambda\varphi_0)^* h(v,w) = h(\lambda\varphi_0 v, \lambda\varphi_0 w)
+        = |\lambda|^2\, h(\varphi_0 v, \varphi_0 w)$; the reciprocal factor would belong to the
+        transport in the other direction, along $\varphi^{-1}$.
         In particular the pullback depends on $\varphi$ only through $|\lambda|$, the phase acting
         trivially, which is why the normalisation discussion of Remark~\ref{rem:rigidity} concerns
         a modulus.
@@ -500,9 +510,26 @@ Requirements for an Equivariant Bridge\\[4pt]
 
     \begin{proof}
       Item~(1) is immediate from $\mathcal{C} = 2 \cdot \mathrm{Id}$ and $\dim \Sym^2(\Vr) = 3$.
-      For items~(2) and~(3): the spatial form $h_{\mathrm{sp}}$, Hermitian on $W_\mathbb{C}$ and
-      equal to $\mathrm{diag}(A_H, A_H, A_z)$
-      in the basis $(\tilde X, \tilde Y, \tilde Z)$ preserves the sub-strata of Remark~\ref{rem:substrata}:
+      For items~(2) and~(3), fix first the real structure used throughout.
+      The space $W_\mathbb{C} = W_{\mathrm{sp}} \otimes_\mathbb{R} \mathbb{C}$ carries the
+      conjugation $\sigma(u \otimes \alpha) = u \otimes \bar\alpha$, an antilinear involution
+      whose fixed-point set is exactly $W_{\mathrm{sp}}$; we write $\bar v := \sigma(v)$.
+      Given the real symmetric form $g_{\mathrm{sp}}$ on $W_{\mathrm{sp}}$, its Hermitian extension
+      is
+      \begin{equation}
+        \label{eq:herm}
+        h_{\mathrm{sp}}(u \otimes \alpha,\, v \otimes \beta)
+          := \bar\alpha\,\beta\; g_{\mathrm{sp}}(u, v),
+        \qquad\text{equivalently}\qquad
+        h_{\mathrm{sp}}(v, w) = g_{\mathrm{sp}}^{\mathbb{C}}(\bar v, w),
+      \end{equation}
+      with $g_{\mathrm{sp}}^{\mathbb{C}}$ the $\mathbb{C}$-bilinear extension.
+      It is sesquilinear, satisfies $h_{\mathrm{sp}}(w,v) = \overline{h_{\mathrm{sp}}(v,w)}$,
+      restricts to $g_{\mathrm{sp}}$ on $W_{\mathrm{sp}}$, and is positive definite exactly when
+      $g_{\mathrm{sp}}$ is.
+      Now $h_{\mathrm{sp}}$, equal to $\mathrm{diag}(A_H, A_H, A_z)$
+      in the basis $(\tilde X, \tilde Y, \tilde Z)$, preserves the sub-strata of
+      Remark~\ref{rem:substrata}:
       it acts by $A_H$ on $V_1 = \mathrm{span}\{\tilde X, \tilde Y\}$ (Carnot degree~$1$) and by $A_z$
       on $V_2 = \mathrm{span}\{\tilde Z\}$ (Carnot degree~$2$).
       The absence of cross terms between $V_1$ and $V_2$ in $g_{\mathrm{sp}}$ follows from
@@ -518,8 +545,9 @@ Requirements for an Equivariant Bridge\\[4pt]
       of~\cite{Beau2026q5b} and not established here.
       Under the grading correspondence of Remark~\ref{rem:grading}, $V_1$ maps to the spin-weight
       $\pm 1$ sector $\{e_+, e_-\}$ and $V_2$ maps to the spin-weight $0$ sector $\{e_0\}$.
-      The pullback $\varphi^* h_{\mathrm{sp}}$ therefore acts by $A_H/|\lambda|^2$ on
-      $\{e_+, e_-\}$ and by $A_z/|\lambda|^2$ on $\{e_0\}$, giving~(3).
+      Under the grading correspondence the adapted $\varphi_0$ therefore pulls $h_{\mathrm{sp}}$
+      back to $A_H$ on $\{e_+, e_-\}$ and $A_z$ on $\{e_0\}$, and
+      $\varphi = \lambda\varphi_0$ multiplies both by $|\lambda|^2$, giving~(3).
       If $A_H, A_z > 0$, the pullback is positive-definite, giving~(2).
       Positivity is a hypothesis here, not an import: $A_H > 0$ is stipulated inside [H-L]
       of~\cite{Beau2026q5b}, and no positivity statement for $A_z$ is available from its
