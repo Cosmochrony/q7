@@ -127,11 +127,11 @@ from q7_symbol_test import (  # noqa: E402
 def fourier_index_and_purity(v: np.ndarray) -> tuple[int, float]:
     """Return (signed Fourier index, purity) of a unit vector v in C^q.
 
-    With e_m(k) = q^{-1/2} exp(2 pi i m k / q), the coefficient of a unit vector v
-    on e_m has modulus q^{-1/2} |numpy.fft.fft(v)_{-m}|, so |fft(v)|^2 / q is the
-    modulus squared of a coefficient and its maximum over the index is the purity.
-    Purity 1 means v is a single mode up to a phase.  (The index printed below is
-    read off the same spectrum, so it is consistent with this convention.)
+    With e_m(k) = q^{-1/2} exp(2 pi i m k / q) one has
+    <e_m, v> = q^{-1/2} numpy.fft.fft(v)_m, so |fft(v)_m|^2 / q is the modulus
+    squared of the coefficient of v on e_m, and its maximum over m is the purity.
+    Purity 1 means v is a single mode up to a phase, and the index reported is the
+    m at which that maximum is attained.
     """
     q = v.size
     spec = np.abs(np.fft.fft(v)) ** 2 / q
@@ -243,12 +243,23 @@ def report_pair(q: int, c: int, data, bundle=None) -> dict | None:
             print(f"      ({i},{j}):      {meas:.6f}    {predicted:.1f}      "
                   f"{diff:4d}   {flag}")
 
-    # The two block decompositions below assume row 0 is the flat mode, which is
-    # how the pipeline stores them; assert it rather than trust it silently.
-    assert rows[0]["index"] == 0, (
-        f"q={q} c={c}: row 0 has Fourier index {rows[0]['index']}, not 0; "
-        "the in-plane and scalar-block verdicts below assume the flat mode first"
-    )
+    # The block decompositions below need two premises: row 0 is the flat mode, and
+    # C_c is block-diagonal with respect to {flat} + {the two other rows}.  Check
+    # both, with a raise rather than an assert so that -O cannot remove the guard,
+    # and print the second so the paper's figure for it is reproducible.
+    if rows[0]["index"] != 0:
+        raise SystemExit(
+            f"q={q} c={c}: row 0 has Fourier index {rows[0]['index']}, not 0; "
+            "the in-plane and scalar-block verdicts below assume the flat mode first"
+        )
+    cov_lead = float(np.linalg.eigvalsh(cov).max())
+    off_block = float(max(abs(cov[0, 1]), abs(cov[0, 2]))) / cov_lead
+    if off_block > 1e-8:
+        raise SystemExit(
+            f"q={q} c={c}: C_c is not block-diagonal with respect to the flat mode "
+            f"(relative off-block entry {off_block:.2e}); the in-plane gap below "
+            "would not describe the plane the rotation acts on"
+        )
 
     # Covariance spectrum: this, and not the equality of the Rayleigh quotients,
     # is what decides whether the Stage-A eigenbasis is free to rotate.
@@ -270,8 +281,11 @@ def report_pair(q: int, c: int, data, bundle=None) -> dict | None:
           f"{np.round(ev_n, 6)}   gap(2,3) = {gap23:.2e}")
     print(f"    gap inside the horizontal plane: {gap:.2e}   "
           f"{'degenerate to numerical precision' if gap < 1e-12 else 'resolved'}")
+    print(f"    C_c off-block entries, relative: {off_block:.2e}")
     print("    rotated by the covariance eigenbasis: diag "
           f"{np.round(np.diag(L_sw).real, 6)}   max |off-diagonal| = {off_sw:.6f}")
+    print("    (the full rotated matrix is not printed; its diagonal and that "
+          "modulus are what the paper quotes)")
     blk = L_tilde[1:, 1:]
     scalar_block = bool(
         np.allclose(blk, blk[0, 0] * np.eye(blk.shape[0]), atol=1e-9)

@@ -78,7 +78,7 @@ $\langle e_m, L_{\mathrm{Weil}} e_m \rangle = 4 - 2\cos(2\pi m/q).$
 **The closed form describes the stored-basis compression, not directly the published entries.**
 The pipeline conjugates that compression by the covariance eigenbasis, and that basis is fixed by
 the data only where the covariance spectrum is non-degenerate. Measured: the gap between the second
-eigenvalues *inside the horizontal plane* — not the gap between the second and third eigenvalues
+the two eigenvalues *inside the horizontal plane* — not the gap between the second and third eigenvalues
 of the whole matrix, which at $(101,3)$ is the flat mode's — is at most $2.1\times10^{-15}$ at ten
 of the twelve pairs, one of them exactly zero: a degeneracy *to numerical precision*, which is all
 floating-point data can establish and which we do not call exact. It is resolved at two
@@ -98,8 +98,11 @@ is shifted at the two that have one. §6.3 of the paper works this out, and reco
 $\rho_{XY} = 0.005$ at $(101,3)$, that no versioned quantity reproduces.
 
 Reproducible diagnostic: `code/q7_mode_diagnostic.py` prints Fourier indices, purities, measured
-and analytic values, residuals, the cross-term check, the covariance spectrum with its degeneracy
-gap, and the rotated matrix with a warning where the entries are solver-dependent. Largest
+and analytic values, residuals, the cross-term check, the covariance spectrum with two gaps (between its second and third
+eigenvalues, and inside the horizontal plane), the relative size of its off-block entries, the
+diagonal of the rotated matrix with the largest modulus of its off-diagonal entries, the spectrum of
+the compression, and a warning distinguishing the pairs where the entries are solver-dependent from
+those where they are not. Largest
 residual: $3.6 \times 10^{-15}$.
 
 It runs from the repository alone: `code/data/q7_stage_inputs.npz` (37 kB) ships the inputs it

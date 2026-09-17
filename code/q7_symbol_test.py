@@ -467,10 +467,10 @@ def run_pair_from_bfs(q, c, verbose=True):
 
 def print_summary(all_results):
     print("\n" + "=" * 80)
-    print("SUMMARY  --  Q7 Criterion 5.1  (Stage C = primary test)")
+    print("SUMMARY  --  Stage C compression checks  (NOT a test of Criterion 5.1)")
     print("=" * 80)
     print(f"{'q':>4}  {'c':>4}  {'A':>5}  {'A_z':>7}  {'A_H':>7}"
-          f"  {'crssZXY':>9}  {'crssXY':>7}  {'iso':>6}  {'C5.1':>6}")
+          f"  {'crssZXY':>9}  {'crssXY':>7}  {'iso':>6}  {'StgC':>6}")
     print("-" * 80)
     for r in all_results:
         if r is None:
@@ -492,9 +492,12 @@ def print_summary(all_results):
         c5_note = (" (c=5: A_H = 4 - 2cos(2*pi*k/q) with k ~ q/2, i.e. the top"
                    " of the L_Weil spectrum -- not an anomaly)")
     print("=" * 80)
-    print(f"Stage C passing (no cross terms + isotropy): {n_pass} / {n_total}{c5_note}")
+    print(f"Stage C compressions with no cross terms and equal horizontal entries: {n_pass} / {n_total}{c5_note}")
     print()
-    print("Note: [F_c, L_Weil] = 0 holds for all q,c with gcd(c,q)=1, which makes a")
+    print("Note: the column above is a property of these compressions, not a verdict on")
+    print("      Q7 Criterion 5.1, which is a test on the continuum symbol and is not")
+    print("      performed here (Q7 2.0 Section 5).")
+    print("      [F_c, L_Weil] = 0 holds for all q,c with gcd(c,q)=1, which makes a")
     print("      compression block-diagonal in an F_c-eigenbasis.  The stored rows are")
     print("      NOT an F_c-eigenbasis (every entry of F_tilde has modulus q^-1/2), and")
     print("      the vanishing of off-diagonal entries here follows instead from the")
@@ -506,7 +509,7 @@ def print_summary(all_results):
 # ---------------------------------------------------------------------------
 
 def main():
-    parser = argparse.ArgumentParser(description="Q7 Criterion 5.1 numerical test")
+    parser = argparse.ArgumentParser(description="Stage A/B/C compression checks on the O25 checkpoints (not a test of Criterion 5.1)")
     parser.add_argument("--primes", nargs="+", type=int, default=PRIMES)
     parser.add_argument("--checkpoint-dir", type=str, default=CHECKPOINT_DIR)
     parser.add_argument("--pairs", nargs="+", type=int, default=None,
