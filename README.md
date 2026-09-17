@@ -72,17 +72,29 @@ $\langle e_m, L_{\mathrm{Weil}} e_m \rangle = 4 - 2\cos(2\pi m/q).$
   $\pm c \bmod q$: this accounts for the two pairs, $(61,3)$ and $(151,5)$, that version 1.3
   reported as finite-size and sector anomalies.
 
-The pipeline additionally conjugates this compression by the covariance eigenbasis. Where the
-two non-flat modes give equal entries that rotation is only fixed up to a unitary transformation
-inside their span, which is what produces the split entries and the off-diagonal term reported at
-$(151,5)$; §6.3 of the paper works this out, and notes one published number, $\rho_{XY} = 0.005$ at
-$(101,3)$, that no versioned quantity reproduces.
+**The closed form describes the stored-basis compression, not directly the published entries.**
+The pipeline conjugates that compression by the covariance eigenbasis, and that basis is fixed by
+the data only where the covariance spectrum is non-degenerate. Measured: the gap between the second
+and third normalised eigenvalues of $C_c$ is at machine precision ($10^{-16}$ to
+$2\times10^{-15}$) at nine of the twelve pairs, and resolved at three ($6.2\times10^{-3}$,
+$1.2\times10^{-2}$, $1.6\times10^{-2}$). At the nine degenerate pairs the individual diagonal and
+off-diagonal entries are solver-dependent and only the eigenvalues are invariant: that is what
+produces the split $6.9527 / 5.0257$ and the off-diagonal $0.2677$ at $(151,5)$, whose ratio to the
+mean diagonal is the published $\rho_{XY} = 0.057$ — a column captioned as the isotropy ratio,
+which is $0.3217$ there. §6.3 of the paper works this out, and records one published number,
+$\rho_{XY} = 0.005$ at $(101,3)$, that no versioned quantity reproduces.
 
-Reproducible diagnostic: `code/q7_mode_diagnostic.py` prints Fourier indices, purities,
-measured and analytic values, residuals and the cross-term check, with the Fourier convention
-and the checkpoints documented. Largest residual: $3.6 \times 10^{-15}$. The O25 checkpoints are
-produced by the Q5a-O5 campaign and are not distributed with this repository; pass
-`--checkpoint-dir` to point at a copy.
+Reproducible diagnostic: `code/q7_mode_diagnostic.py` prints Fourier indices, purities, measured
+and analytic values, residuals, the cross-term check, the covariance spectrum with its degeneracy
+gap, and the rotated matrix with a warning where the entries are solver-dependent. Largest
+residual: $3.6 \times 10^{-15}$.
+
+It runs from the repository alone: `code/data/q7_stage_inputs.npz` (37 kB) ships the inputs it
+needs — per pair, the three stored basis rows, the $3\times3$ covariance, and the character pair —
+with a SHA-256 digest in `code/data/SHA256SUMS` that the script verifies and prints. This is a
+derived extract: reproducing the extraction itself needs the full O25 checkpoints of the Q5a-O5
+campaign, which are not redistributed here (`--from-checkpoints` with `--checkpoint-dir` uses
+them).
 
 ## The One Conditional Obstruction in the Corpus
 

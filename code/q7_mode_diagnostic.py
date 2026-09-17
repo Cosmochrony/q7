@@ -82,6 +82,7 @@ Usage
 from __future__ import annotations
 
 import argparse
+import hashlib
 import os
 import sys
 
@@ -94,6 +95,8 @@ DEFAULT_CHARS = [3, 5, 7]
 # runs from anywhere inside a full workspace checkout.  The checkpoints
 # themselves are produced by the O25 pipeline and are NOT distributed with this
 # repository: pass --checkpoint-dir to point at your own copy.
+BUNDLE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data",
+                      "q7_stage_inputs.npz")
 DEFAULT_DIR = os.path.normpath(
     os.path.join(
         os.path.dirname(os.path.abspath(__file__)),
@@ -147,12 +150,44 @@ def check_mode_actions(q: int, c: int, m: int) -> tuple[float, float]:
     return res_a, res_b
 
 
-def report_pair(q: int, c: int, data) -> dict | None:
-    try:
-        B = extract_Beff_from_checkpoint(data, c)
-    except (KeyError, ValueError) as exc:
-        print(f"  q={q} c={c}: {exc}")
-        return None
+def load_bundle(path: str = BUNDLE):
+    """Load the compact inputs shipped with this repository, checksum first.
+
+    The bundle holds, per (q, c): the three stored basis rows, the 3x3 covariance
+    C_c of the per-shell projections, and the conjugate character pair.  It is
+    what the statements of Section 6 need; the full O25 checkpoints are not
+    redistributed here.  SHA256SUMS sits next to it.
+    """
+    sums = os.path.join(os.path.dirname(path), "SHA256SUMS")
+    digest = hashlib.sha256(open(path, "rb").read()).hexdigest()
+    if os.path.exists(sums):
+        expected = open(sums).read().split()[0]
+        if digest != expected:
+            raise SystemExit(
+                f"bundle checksum mismatch\n  expected {expected}\n  got      {digest}"
+            )
+    print(f"Bundle: {path}\n  sha256 {digest} (verified against SHA256SUMS)")
+    return np.load(path)
+
+
+def report_pair(q: int, c: int, data, bundle=None) -> dict | None:
+    if bundle is not None:
+        key = f"basis_{q}_{c}"
+        if key not in bundle.files:
+            print(f"  q={q} c={c}: not in bundle")
+            return None
+        B = bundle[key]
+        cov = bundle[f"cov_{q}_{c}"]
+        pair = tuple(int(x) for x in bundle[f"pair_{q}_{c}"])
+    else:
+        try:
+            B = extract_Beff_from_checkpoint(data, c)
+        except (KeyError, ValueError) as exc:
+            print(f"  q={q} c={c}: {exc}")
+            return None
+        w = np.asarray(extract_pi_c_from_checkpoint(data, c), dtype=complex)
+        cov = w.conj().T @ w / len(w)
+        pair = tuple(int(x) for x in data["pairs"][_pair_row(data, c)])
 
     L = weil_laplacian(q, c)
     L_tilde = B @ L @ B.conj().T
@@ -176,8 +211,7 @@ def report_pair(q: int, c: int, data) -> dict | None:
             }
         )
 
-    print(f"\n  q={q}  c={c}   (conjugate pair stored as "
-          f"{tuple(int(x) for x in data['pairs'][_pair_row(data, c)])})")
+    print(f"\n  q={q}  c={c}   (conjugate pair stored as {pair})")
     print("    row  index   purity      measured      analytic      residual"
           "    |W_a id|   |W_b id|")
     for r in rows:
@@ -196,7 +230,26 @@ def report_pair(q: int, c: int, data) -> dict | None:
             print(f"      ({i},{j}):      {meas:.6f}    {predicted:.1f}      "
                   f"{diff:4d}   {flag}")
 
-    return {"q": q, "c": c, "rows": rows, "L_tilde": L_tilde}
+    # Covariance spectrum: this, and not the equality of the Rayleigh quotients,
+    # is what decides whether the Stage-A eigenbasis is free to rotate.
+    ev = np.linalg.eigvalsh(cov)[::-1]
+    ev_n = ev / ev[0]
+    gap = float(abs(ev_n[1] - ev_n[2]))
+    U = np.linalg.eigh(cov)[1][:, ::-1]
+    L_sw = U.conj().T @ L_tilde @ U
+    off_sw = float(
+        np.abs(L_sw - np.diag(np.diag(L_sw))).max()
+    )
+    print("    covariance spectrum (normalised): "
+          f"{np.round(ev_n, 6)}   gap(2,3) = {gap:.2e}   "
+          f"{'DEGENERATE at machine precision' if gap < 1e-12 else 'resolved'}")
+    print("    rotated by the covariance eigenbasis: diag "
+          f"{np.round(np.diag(L_sw).real, 6)}   max |off-diagonal| = {off_sw:.6f}")
+    if gap < 1e-12:
+        print("      (that plane is degenerate, so these two numbers are "
+              "solver-dependent; the eigenvalues are the invariant content)")
+
+    return {"q": q, "c": c, "rows": rows, "L_tilde": L_tilde, "cov_gap": gap}
 
 
 def _pair_row(data, c: int) -> int:
@@ -212,22 +265,32 @@ def main() -> int:
     ap.add_argument("--primes", nargs="+", type=int, default=DEFAULT_PRIMES)
     ap.add_argument("--chars", nargs="+", type=int, default=DEFAULT_CHARS)
     ap.add_argument("--checkpoint-dir", type=str, default=DEFAULT_DIR)
+    ap.add_argument("--from-checkpoints", action="store_true",
+                    help="use the full O25 checkpoints instead of the bundled inputs")
     args = ap.parse_args()
 
     print(__doc__)
-    print(f"Checkpoint directory: {os.path.abspath(args.checkpoint_dir)}")
+    bundle = None
+    if not args.from_checkpoints and os.path.exists(BUNDLE):
+        bundle = load_bundle()
+    else:
+        print(f"Checkpoint directory: {os.path.abspath(args.checkpoint_dir)}")
 
     worst_purity = 1.0
     worst_residual = 0.0
     for q in args.primes:
-        try:
-            data, path = load_checkpoint(q, args.checkpoint_dir)
-        except FileNotFoundError as exc:
-            print(f"\n  q={q}: {exc}")
-            continue
-        print(f"\n== q={q}  checkpoint {os.path.basename(path)}")
+        data = None
+        if bundle is None:
+            try:
+                data, path = load_checkpoint(q, args.checkpoint_dir)
+            except FileNotFoundError as exc:
+                print(f"\n  q={q}: {exc}")
+                continue
+            print(f"\n== q={q}  checkpoint {os.path.basename(path)}")
+        else:
+            print(f"\n== q={q}  (bundled inputs)")
         for c in args.chars:
-            out = report_pair(q, c, data)
+            out = report_pair(q, c, data, bundle)
             if out is None:
                 continue
             for r in out["rows"]:

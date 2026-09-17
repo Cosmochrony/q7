@@ -425,11 +425,15 @@ Requirements for an Equivariant Bridge\\[4pt]
       equivariant bridge up to one scalar} between $\Heff$ and a three-dimensional adjoint module.
       Uniqueness is guaranteed by irreducibility; existence, that is non-vanishing of $\varphi$, is
       not, and is the open question.
-      A \emph{positive real} normalisation is a further requirement, not a consequence: it holds
-      once one demands that $\varphi$ carry a chosen positive-definite Hermitian form on
-      $\Sym^2(\Vr)$ to a positive-definite form on $W \otimes \mathbb{C}$, which fixes
-      $|\varphi|$ and leaves a phase.
-      Version~1.3 stated uniqueness ``up to positive scalar'' without that requirement.
+      A \emph{positive real} normalisation is not a consequence of any of this, and it is not
+      delivered by comparing forms either: demanding that $\varphi$ carry a chosen
+      positive-definite Hermitian form on $\Sym^2(\Vr)$ to a positive-definite form on
+      $W \otimes \mathbb{C}$ constrains only the modulus $|\lambda|$ of the scalar, since a phase
+      $e^{i\theta}$ acts trivially on $\varphi^* h(v,v) = |\lambda|^2 h(v,v)$.
+      Fixing the phase is a convention, to be stated wherever it is used; with the modulus fixed and
+      the phase chosen, one may take the scalar to be $1$.
+      Version~1.3 stated uniqueness ``up to positive scalar'' with neither the non-vanishing
+      requirement nor this convention.
     \end{remark}
 
   \subsection{The Schr\"odinger Quadratic Form Lemma}
@@ -1003,18 +1007,30 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
   \subsection{The covariance rotation, and the two pairs where it matters}
     \label{ssec:rotation}
 
-    The two non-flat stored modes $e_{\pm k}$ give equal diagonal entries
-    by~\eqref{eq:rayleigh}, so the covariance eigenbasis $U$ of Stage~A is determined only up to a
-    unitary rotation inside their span, and the reported matrix $L_{\mathrm{sw}}$ depends on which
-    rotation the eigensolver returns.
-    At ten of the twelve pairs $U$ acts as a permutation and $L_{\mathrm{sw}} = \tilde L$ up to
-    reordering. Two pairs behave differently, and they are precisely the two pairs of
-    Table~\ref{tab:numerical} whose stored indices differ by $\pm c \bmod q$.
+    The freedom in $U$ is a property of the covariance, not of the Rayleigh quotients: equality of
+    the two non-flat entries of $\tilde L$ says nothing about $C_c$.
+    What matters is the spectrum of $C_c$ itself.
+    Measured on the twelve pairs, with eigenvalues normalised by the largest, the gap between the
+    second and third eigenvalues is at machine precision, between $10^{-16}$ and
+    $2 \times 10^{-15}$, at nine pairs, and is resolved at three: $6.2 \times 10^{-3}$ at
+    $(61,3)$, $1.2 \times 10^{-2}$ at $(101,3)$ and $1.6 \times 10^{-2}$ at $(101,7)$.
+    At the nine exactly degenerate pairs the eigenvectors spanning that plane are fixed only up to
+    a unitary rotation of the plane, so $L_{\mathrm{sw}}$ there is not determined by the data: it
+    depends on what the eigensolver returns.
+    In particular the eight of those nine pairs that report a vanishing off-diagonal entry are not
+    ``unaffected'' in any intrinsic sense; a different solver, ordering or seed could distribute
+    the same pair of eigenvalues differently across the two slots and produce an off-diagonal term.
+    The invariant content at a degenerate pair is the multiset of eigenvalues of
+    $L_{\mathrm{sw}}$ restricted to that plane, which is $\{4 - 2\cos(2\pi k/q)\}$ with
+    multiplicity two by~\eqref{eq:rayleigh}, together with the flat-mode eigenvalue $2$; the
+    individual diagonal entries and the off-diagonal entry are not invariants.
+    At the three resolved pairs $U$ is determined up to phases and acts as a permutation.
 
     At $(q,c) = (101,3)$ the reordering puts the mode $k = 5$ first, which is the origin of the
     published row $A_z = 2.096$, $A_H = \tfrac12(2.096 + 2.000) = 2.048$.
 
-    At $(q,c) = (151,5)$ the rotation is genuine. In the stored basis
+    At $(q,c) = (151,5)$, one of the nine exactly degenerate pairs (gap $1.5 \times 10^{-16}$), the
+    rotation returned by the solver is not aligned with the stored modes. In the stored basis
     $\tilde L = \mathrm{diag}(2,\, 5.989188,\, 5.989188)$ with one off-diagonal entry of modulus
     $1$; after conjugation, $L_{\mathrm{sw}} = \mathrm{diag}(2,\, 6.9527,\, 5.0257)$ with an
     off-diagonal entry of modulus $0.2677$ between the two non-flat slots.
@@ -1026,8 +1042,10 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     ratio at this pair is $0.3217$ and the cross-term ratio is the $0.0574$ reported.
     The caption is corrected here.
     So the split and the off-diagonal entry at $(151,5)$ are an artefact of an arbitrary rotation
-    inside a degenerate eigenspace, not a measured anisotropy; the invariant content is the pair of
-    eigenvalues, given by~\eqref{eq:rayleigh}.
+    inside an exactly degenerate covariance eigenplane, not a measured anisotropy; the invariant
+    content is the pair of eigenvalues, given by~\eqref{eq:rayleigh}.
+    The same artefact is available at the other eight degenerate pairs and simply did not occur in
+    this run.
 
     One published number is not accounted for.
     The value $\rho_{XY} = 0.005$ printed at $(101,3)$ in version~1.3 is reproduced by no quantity
@@ -1039,9 +1057,20 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
   \subsection{Reproducible diagnostic}
     \label{ssec:diagnostic}
 
-    The statements of Section~\ref{ssec:rayleigh} are checked by the script
-    \texttt{code/q7\_mode\_diagnostic.py} of this repository, which reads the O25 checkpoints
-    \texttt{q\{61,101,151,211\}\_o25.npz} of the Q5a-O5 campaign and prints, for each stored pair:
+    The statements of Sections~\ref{ssec:rayleigh} and~\ref{ssec:rotation} are checked by the
+    script \texttt{code/q7\_mode\_diagnostic.py} of this repository.
+    So that a reader with the repository alone can re-run it, the inputs it needs are shipped with
+    it, in \texttt{code/data/q7\_stage\_inputs.npz} (37\,kB): per tested pair, the three stored
+    basis rows, the $3 \times 3$ covariance $C_c$ of the per-shell projections, and the conjugate
+    character pair, extracted from the O25 checkpoints
+    \texttt{q\{61,101,151,211\}\_o25.npz} of the Q5a-O5 campaign.
+    The bundle carries a SHA-256 digest in \texttt{code/data/SHA256SUMS}, which the script verifies
+    before use and prints; \texttt{--from-checkpoints} recomputes everything from the full
+    checkpoints instead, which are not redistributed here.
+    The reader should note what this does and does not give: the bundle makes the statements of this
+    section reproducible, since they depend only on those arrays, but it is a derived extract, so
+    reproducing the extraction itself requires the campaign's checkpoints.
+    The script prints, for each stored pair:
     the signed Fourier index of each of the three rows of $B_{\mathrm{eff}}$ and its spectral
     purity; the residuals of the two mode-action identities~\eqref{eq:mode-actions}; the measured
     diagonal entry of $\tilde L$, its closed form~\eqref{eq:rayleigh} and the difference; and, for
@@ -1050,10 +1079,14 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     The Fourier convention is the one fixed in Section~\ref{ssec:rayleigh},
     $e_m(k) = q^{-1/2}e^{2\pi i m k/q}$, and the purity of a unit vector at index $m$ is
     $|(Fv)_m|^2/q$, equal to $1$ exactly when the vector is that single mode up to a phase.
+    It also prints the normalised spectrum of $C_c$ with the gap between its second and third
+    eigenvalues, the matrix after conjugation by the covariance eigenbasis, and a warning at the
+    pairs where that plane is degenerate and the individual entries are therefore solver-dependent
+    (Section~\ref{ssec:rotation}).
     On the four primes and three characters reported here the lowest purity is $1.000000$ and the
     largest discrepancy between measurement and closed form is $3.6 \times 10^{-15}$; every
-    off-diagonal modulus matches the index-difference rule, being $1$ at $(61,3)$ and $(151,5)$ and
-    $0$ elsewhere.
+    off-diagonal modulus of the compression in the stored basis matches the index-difference rule,
+    being $1$ at $(61,3)$ (twice) and $(151,5)$ and $0$ elsewhere.
     The numerical agreement is reported here together with the derivation
     of~\eqref{eq:rayleigh}, so that the agreement is explained rather than merely observed.
 
@@ -1089,11 +1122,19 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
       \item The chirped discrete Fourier transform commutes with the discrete Weil Laplacian for
       all $(q,c)$ with $\gcd(c,q) = 1$ (Proposition~\ref{prop:commute}), with the conjugation
       relations~\eqref{eq:fc-conj}.
-      \item Every entry of the compressions computed on the O25 checkpoints is the Rayleigh
-      quotient~\eqref{eq:rayleigh} of $L_{\mathrm{Weil}}$ on a single Fourier mode, with an
-      off-diagonal entry exactly when two stored indices differ by $\pm c \bmod q$
-      (Section~\ref{ssec:rayleigh}, diagnostic in Section~\ref{ssec:diagnostic}). In particular the
-      difference between the two distinct entries is the identity~\eqref{eq:gap}.
+      \item Every entry of the compression computed on the O25 checkpoints \emph{in the stored
+      basis} is the Rayleigh quotient~\eqref{eq:rayleigh} of $L_{\mathrm{Weil}}$ on a single
+      Fourier mode, with an off-diagonal entry exactly when two stored indices differ by
+      $\pm c \bmod q$ (Section~\ref{ssec:rayleigh}, diagnostic in
+      Section~\ref{ssec:diagnostic}). In particular the difference between the two distinct
+      entries is the identity~\eqref{eq:gap}.
+      \item The numbers the pipeline reports are those of the compression \emph{after} conjugation
+      by the covariance eigenbasis. That basis is fixed by the data only where the covariance
+      spectrum is non-degenerate, which on these pairs means three of twelve; at the nine
+      degenerate pairs the individual diagonal and off-diagonal entries are solver-dependent and
+      only the eigenvalues are invariant (Section~\ref{ssec:rotation}). The closed form of
+      Section~\ref{ssec:rayleigh} therefore describes the stored-basis compression exactly, and the
+      published entries only up to that rotation.
     \end{itemize}
 
     \noindent
