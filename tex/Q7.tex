@@ -251,7 +251,7 @@ Requirements for an Equivariant Bridge\\[4pt]
     Paper O23~\cite{Beau2026a27} proves that if the admissible neutral sector is carried by an
     irreducible two-dimensional unitary representation $V_\rho \cong \mathbb{C}^2$ (a supplied
     input), then its traceless sector is $\su(2) \simeq \ImH$, carrying exactly three independent
-    directions (Theorem~3.1); O23's Proposition~3.2 notes that a count of generator axes can stop
+    directions (Theorem~3.1); O23's Proposition~3.4 notes that a count of generator axes can stop
     at two, so ``directions'' is the correct reading.
     The carrier selection and the identification of $\Sigma_c$ with $\dim \su(V_\rho)$ are open
     bridges; the saturation threshold $\Sigma_c(n_3) = 3$ is a supplied selection rule.
@@ -425,11 +425,13 @@ Requirements for an Equivariant Bridge\\[4pt]
       equivariant bridge up to one scalar} between $\Heff$ and a three-dimensional adjoint module.
       Uniqueness is guaranteed by irreducibility; existence, that is non-vanishing of $\varphi$, is
       not, and is the open question.
-      A \emph{positive real} normalisation is not a consequence of any of this, and it is not
-      delivered by comparing forms either: demanding that $\varphi$ carry a chosen
-      positive-definite Hermitian form on $\Sym^2(\Vr)$ to a positive-definite form on
-      $W \otimes \mathbb{C}$ constrains only the modulus $|\lambda|$ of the scalar, since a phase
-      $e^{i\theta}$ acts trivially on $\varphi^* h(v,v) = |\lambda|^2 h(v,v)$.
+      A \emph{positive real} normalisation is not a consequence of any of this, and comparing forms
+      does not deliver it either.
+      Asking only that $\varphi$ carry a positive-definite Hermitian form to a positive-definite
+      one constrains nothing, since $\varphi^* h(v,v) = |\lambda|^2 h(v,v)$ is positive definite for
+      every $\lambda \neq 0$; asking for \emph{equality} with a specified form fixes the modulus
+      $|\lambda|$ and leaves the phase free, a phase $e^{i\theta}$ acting trivially on that
+      expression.
       Fixing the phase is a convention, to be stated wherever it is used; with the modulus fixed and
       the phase chosen, one may take the scalar to be $1$.
       Version~1.3 stated uniqueness ``up to positive scalar'' with neither the non-vanishing
@@ -507,8 +509,9 @@ Item~(3) and the full form of~(2) are conditional on four further premises: the 
 equivariant bridge $\varphi$ (Conjecture~\ref{conj:bridge} below); the existence of the effective
 co-metric, which in~\cite{Beau2026q5b} is Theorem~5.2 under its hypotheses [H-L] and [H-lift],
 with [H-L] not established there; the $J_3$-invariance of the admissible regime; and the
-positivity of the two coefficients, of which $A_H > 0$ is stipulated inside [H-L] and $A_z$ is
-supplied by no source.
+positivity of the two coefficients, of which $A_H > 0$ is stipulated inside [H-L] while $A_z$
+receives no positivity statement from Theorem~5.2 of~\cite{Beau2026q5b}, which puts $0$ in that
+slot; the value asserted downstream is not used here (Section~\ref{ssec:withdrawn}).
 The lemma is therefore to be read as: \emph{if the bridge exists and those premises hold, it is
 isometric in the graded sense} --- and in that case the spatial block is determined up to the two
 constants $A_H$ and $A_z$, which the lemma does not evaluate.
@@ -794,8 +797,9 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     In particular the two pairs at which version~1.3 reported anomalies, $(61,3)$ and $(151,5)$,
     are exactly the two pairs whose stored indices differ by $\pm c$: at $(61,3)$ the flat mode and
     the mode $-3$ differ by $c = 3$, giving $|\tilde L_{01}| = 1$ and hence the reported
-    $\rho_{Z|XY} = 0.485$; at $(151,5)$ the modes $\pm 73$ differ by $146 \equiv -5$, giving the
-    reported $\rho_{XY} = 0.057$.
+    $\rho_{Z|XY} = 0.485$; at $(151,5)$ the modes $\pm 73$ differ by $146 \equiv -5$, which makes the
+    restriction of $\tilde L$ to their plane non-scalar, and the $0.057$ printed in that row follows
+    from that together with the covariance rotation, as Section~\ref{ssec:rotation} works out.
     Neither is a finite-size or finite-coverage effect.
     Since $A_H$ and the flat-mode value are two members of the one-parameter family
     \eqref{eq:rayleigh}, their difference is
@@ -807,10 +811,13 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
 
     \begin{remark}[Universal value $A_z = 2$ and the $\mathfrak{su}(2)$ Casimir]
       \label{rem:az2}
-      The entry $\tilde L_{00}$ equals $2$ exactly, not approximately, in every pair whose Stage~A
-      ordering puts the flat mode first, that is in eleven of the twelve pairs; at
-      $(q,c) = (101,3)$ the ordering puts the mode $k = 5$ first, and the entry $2$ appears in the
-      other diagonal slot.
+      The flat-mode entry of the compression in the stored basis, $\tilde L_{00}$, equals $2$
+      exactly, not approximately, at all twelve pairs.
+      What depends on the Stage~A ordering is where that entry appears in the reported matrix
+      $L_{\mathrm{sw}}$: at eleven pairs the flat mode is ordered first and
+      $(L_{\mathrm{sw}})_{00} = 2$, while at $(q,c) = (101,3)$ the flat mode carries the
+      \emph{smallest} covariance eigenvalue and is ordered last, so the $2$ appears in the last
+      diagonal slot (Section~\ref{ssec:rotation}).
       By~\eqref{eq:rayleigh} this is the flat-mode Rayleigh quotient $4 - 2 - 0$ of
       $L_{\mathrm{Weil}} = 4I - W_a - W_a^\dagger - W_b - W_b^\dagger$: the $4$ of the additive
       normalisation, less $2$ from the shift eigenvalue at $m = 0$, less the vanishing character
@@ -1007,52 +1014,81 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
   \subsection{The covariance rotation, and the two pairs where it matters}
     \label{ssec:rotation}
 
-    The freedom in $U$ is a property of the covariance, not of the Rayleigh quotients: equality of
-    the two non-flat entries of $\tilde L$ says nothing about $C_c$.
-    What matters is the spectrum of $C_c$ itself.
-    Measured on the twelve pairs, with eigenvalues normalised by the largest, the gap between the
-    second and third eigenvalues is at machine precision, between $10^{-16}$ and
-    $2 \times 10^{-15}$, at nine pairs, and is resolved at three: $6.2 \times 10^{-3}$ at
-    $(61,3)$, $1.2 \times 10^{-2}$ at $(101,3)$ and $1.6 \times 10^{-2}$ at $(101,7)$.
-    At the nine exactly degenerate pairs the eigenvectors spanning that plane are fixed only up to
-    a unitary rotation of the plane, so $L_{\mathrm{sw}}$ there is not determined by the data: it
-    depends on what the eigensolver returns.
-    In particular the eight of those nine pairs that report a vanishing off-diagonal entry are not
-    ``unaffected'' in any intrinsic sense; a different solver, ordering or seed could distribute
-    the same pair of eigenvalues differently across the two slots and produce an off-diagonal term.
-    The invariant content at a degenerate pair is the multiset of eigenvalues of
-    $L_{\mathrm{sw}}$ restricted to that plane, which is $\{4 - 2\cos(2\pi k/q)\}$ with
-    multiplicity two by~\eqref{eq:rayleigh}, together with the flat-mode eigenvalue $2$; the
-    individual diagonal entries and the off-diagonal entry are not invariants.
-    At the three resolved pairs $U$ is determined up to phases and acts as a permutation.
+    Two distinct things separate the reported matrix $L_{\mathrm{sw}}$ from the stored-basis
+    compression $\tilde L$, and they must be kept apart because they pick out different pairs.
 
-    At $(q,c) = (101,3)$ the reordering puts the mode $k = 5$ first, which is the origin of the
-    published row $A_z = 2.096$, $A_H = \tfrac12(2.096 + 2.000) = 2.048$.
+    \paragraph{The ordering.}
+      The covariance eigenbasis $U$ is block-diagonal with respect to
+      $\{\text{flat}\} \oplus \{e_{\pm k}\}$ at all twelve pairs, so the flat mode is never mixed
+      into the others; what can change is the slot it occupies.
+      At eleven pairs the flat mode carries the largest covariance eigenvalue and is ordered first.
+      At $(q,c) = (101,3)$ it carries the \emph{smallest} (normalised eigenvalues
+      $1$, $1$, $0.98758$) and is ordered last, which is the whole origin of the published row
+      $A_z = 2.096$, $A_H = \tfrac12(2.096 + 2.000) = 2.048$.
+      That is a resolved gap of about one per cent, not a degeneracy.
 
-    At $(q,c) = (151,5)$, one of the nine exactly degenerate pairs (gap $1.5 \times 10^{-16}$), the
-    rotation returned by the solver is not aligned with the stored modes. In the stored basis
-    $\tilde L = \mathrm{diag}(2,\, 5.989188,\, 5.989188)$ with one off-diagonal entry of modulus
-    $1$; after conjugation, $L_{\mathrm{sw}} = \mathrm{diag}(2,\, 6.9527,\, 5.0257)$ with an
-    off-diagonal entry of modulus $0.2677$ between the two non-flat slots.
-    The value $A_H = 5.989188$ survives only as the mean of the two split entries, by preservation
-    of the trace, and the ratio $0.2677/\bar\lambda = 0.0574$ with $\bar\lambda = 4.6595$ is the
-    number printed as $\rho_{XY} = 0.057$ in version~1.3.
-    That column was captioned as the XY \emph{isotropy} ratio
-    $|\tilde L_{11} - \tilde L_{22}|/|\tilde L_{11}|$, which is a different quantity: the isotropy
-    ratio at this pair is $0.3217$ and the cross-term ratio is the $0.0574$ reported.
-    The caption is corrected here.
-    So the split and the off-diagonal entry at $(151,5)$ are an artefact of an arbitrary rotation
-    inside an exactly degenerate covariance eigenplane, not a measured anisotropy; the invariant
-    content is the pair of eigenvalues, given by~\eqref{eq:rayleigh}.
-    The same artefact is available at the other eight degenerate pairs and simply did not occur in
-    this run.
+    \paragraph{The rotation inside the horizontal plane, and when it is harmless.}
+      Whether $U$ is determined inside the plane of $e_{\pm k}$ is a property of the covariance
+      spectrum, not of the Rayleigh quotients: equality of the two non-flat entries of $\tilde L$
+      says nothing about $C_c$.
+      Measured, with eigenvalues normalised by the largest, the gap between the second and third
+      is at machine precision, between $10^{-16}$ and $2 \times 10^{-15}$, at nine pairs, and is
+      resolved at two: $6.2 \times 10^{-3}$ at $(61,3)$ and $1.6 \times 10^{-2}$ at $(101,7)$
+      (at $(101,3)$ the degenerate plane is the same one, the resolved gap being the flat mode's).
+      At the nine degenerate pairs the rotation of that plane is arbitrary.
+      It is nevertheless without effect at eight of them, for a reason worth stating: there the
+      restriction of $\tilde L$ to the plane is the \emph{scalar} operator
+      $\bigl(4 - 2\cos(2\pi k/q)\bigr) I$, because no difference of the two indices equals
+      $\pm c \bmod q$, and a unitary rotation of a plane on which an operator acts as a scalar
+      returns the same scalar.
+      No solver, ordering or seed can split those entries or create an off-diagonal term there.
+      Exactly one pair has both an arbitrary rotation and a non-scalar block, and it is
+      $(q,c) = (151,5)$.
 
-    One published number is not accounted for.
-    The value $\rho_{XY} = 0.005$ printed at $(101,3)$ in version~1.3 is reproduced by no quantity
-    the versioned script computes: at that pair the isotropy ratio is $0.0469$ and the cross-term
-    ratios vanish.
-    We record this rather than reconstruct it: the number's provenance is unknown, and no statement
-    of this paper depends on it.
+    \paragraph{What happens at $(151,5)$.}
+      There the two stored indices $\pm 73$ differ by $146 \equiv -5 \equiv -c$, so the restriction
+      of $\tilde L$ to their plane is
+      $\begin{pmatrix} 5.989188 & -1 \\ -1 & 5.989188 \end{pmatrix}$, which is not scalar, while
+      the covariance plane is degenerate to $1.5 \times 10^{-16}$.
+      The rotation returned by the solver is not aligned with the stored modes, and it gives
+      $L_{\mathrm{sw}} = \mathrm{diag}(2,\, 6.9527,\, 5.0257)$ with an off-diagonal entry of
+      modulus $0.2677$ between the two non-flat slots.
+      The value $5.989188$ survives only as the mean of the two split entries, by preservation of
+      the trace, and the ratio $0.2677/\bar\lambda = 0.0574$ with $\bar\lambda = 4.6595$ is the
+      number printed as $\rho_{XY} = 0.057$ in version~1.3.
+      Those two entries and that off-diagonal term are therefore solver-dependent, and this is the
+      only pair of which that is true.
+
+    \paragraph{The column label.}
+      Version~1.3 captioned that column as the XY isotropy ratio
+      $|\tilde L_{11} - \tilde L_{22}|/|\tilde L_{11}|$, which at $(151,5)$ evaluates to
+      $0.2772$, whereas the quantity actually printed is the cross-term ratio
+      $|(L_{\mathrm{sw}})_{12}|/\bar\lambda = 0.0574$, and the isotropy ratio as the script
+      computes it, with $A_H$ in the denominator, is $0.3218$.
+      Three different numbers; the caption named neither of the two the script produces.
+      The caption is corrected here.
+
+    \paragraph{The invariant content.}
+      What does not depend on any of this is the spectrum of the compression on the
+      three-dimensional stored span.
+      It is $\{2,\, 4 - 2\cos(2\pi k/q),\, 4 - 2\cos(2\pi k/q)\}$ at the ten pairs where no
+      difference of stored indices equals $\pm c \bmod q$, so there the closed
+      form~\eqref{eq:rayleigh} gives the invariant spectrum outright.
+      At the two pairs that do have such a difference it does not, and the spectrum is shifted by
+      the off-diagonal entries: $\{0.632358,\, 2.094729,\, 3.462371\}$ at $(61,3)$, where the
+      difference involves the flat mode, and $\{2,\, 4.989188,\, 6.989188\}$ at $(151,5)$, where it
+      involves the two non-flat modes.
+      The two criteria are independent: the index-difference rule says where the closed form
+      departs from the invariant spectrum, and the covariance ordering says where the reported
+      entries depart from the stored-basis entries. They coincide only at $(151,5)$.
+
+    \paragraph{One published number is not accounted for.}
+      The value $\rho_{XY} = 0.005$ printed at $(101,3)$ in version~1.3 is reproduced by no
+      quantity the versioned script computes: at that pair the isotropy ratio is $0.0469$ with
+      $A_H$ in the denominator and $0.0458$ with the caption's, and the cross-term ratios vanish to
+      $10^{-15}$.
+      We record this rather than reconstruct it: the number's provenance is unknown, and no
+      statement of this paper depends on it.
 
   \subsection{Reproducible diagnostic}
     \label{ssec:diagnostic}
@@ -1129,12 +1165,17 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
       Section~\ref{ssec:diagnostic}). In particular the difference between the two distinct
       entries is the identity~\eqref{eq:gap}.
       \item The numbers the pipeline reports are those of the compression \emph{after} conjugation
-      by the covariance eigenbasis. That basis is fixed by the data only where the covariance
-      spectrum is non-degenerate, which on these pairs means three of twelve; at the nine
-      degenerate pairs the individual diagonal and off-diagonal entries are solver-dependent and
-      only the eigenvalues are invariant (Section~\ref{ssec:rotation}). The closed form of
-      Section~\ref{ssec:rayleigh} therefore describes the stored-basis compression exactly, and the
-      published entries only up to that rotation.
+      by the covariance eigenbasis, which is block-diagonal with respect to the flat mode and the
+      horizontal plane at all twelve pairs. Two effects separate them from the stored-basis
+      entries, and they are independent (Section~\ref{ssec:rotation}): the ordering of the flat
+      mode, which differs only at $(101,3)$, and the rotation inside the horizontal plane, which is
+      arbitrary at the nine pairs where the covariance is degenerate but has no effect wherever the
+      restriction of the compression to that plane is scalar, that is at eleven of the twelve
+      pairs. One pair, $(151,5)$, has both an arbitrary rotation and a non-scalar block, and it is
+      the only pair whose reported entries are solver-dependent.
+      \item The invariant content is the spectrum of the compression, which the closed
+      form~\eqref{eq:rayleigh} gives outright at the ten pairs with no index difference equal to
+      $\pm c \bmod q$, and which is shifted at the two that have one.
     \end{itemize}
 
     \noindent

@@ -1,15 +1,31 @@
 """
-q7_symbol_test.py  --  Numerical verification of Q7 Criterion 5.1
+q7_symbol_test.py  --  Stage A/B/C computations on the O25 checkpoints
+
+WHAT THIS SCRIPT DOES AND DOES NOT TEST (Q7 version 2.0).  It computes
+compressions of the discrete Weil Laplacian on C^q, not the principal symbol of
+the continuum operator L_eff.  Q7 Criterion 5.1 is a test on that symbol and is
+not performed here: transferring a discrete compression to a symbol coefficient
+needs the identification the criterion presupposes.  q7_mode_diagnostic.py gives
+the closed form of every quantity below, and Q7 Sections 6.2-6.3 say what is
+invariant and what is an artefact of the basis returned by the eigensolver.
+The headings below are those of version 1.3, kept for traceability.
 
 Goal
 ----
-Test whether sigma_2(L_eff) restricted to Sym^2(V_rho) = H_eff has the predicted form
+Test whether sigma_2(L_eff) restricted to Sym^2(V_rho) has the predicted form
 
     sigma_2 = A_H (k_X^2 + k_Y^2) + A_z k_Z^2   (no cross terms)
 
+[The equality Sym^2(V_rho) = H_eff is Hypothesis [ID] of Q7 2.0, supplied by no
+ source; and the numbers below do not evaluate sigma_2, see the header.]
+
 Three-stage pipeline:
-  Stage A  -- covariance block structure  (sanity check vs O28)
-  Stage B  -- metaplectic U(1)/J_3 symmetry test  (key discriminating test)
+  Stage A  -- covariance block structure  (the O28 ratio [1:1/2:1/2] concerns a
+              9x9 covariance in End(H_eff); C_c here is 3x3 in H_eff and meets
+              that ratio at 3 of 12 pairs.  What matters in Q7 2.0 is its
+              degeneracy gap)
+  Stage B  -- metaplectic U(1)/J_3 overlap  (auxiliary; Q7 2.0 Remark 6.6 states
+              that no claim of the paper depends on it)
   Stage C  -- Weil-block Laplacian L_tilde restricted to H_eff
 
 Metaplectic symmetry (Stage B)
@@ -51,7 +67,7 @@ from numpy.linalg import norm
 import os
 import argparse
 
-PRIMES         = [29, 61, 101, 151]
+PRIMES         = [61, 101, 151, 211]
 CHECKPOINT_DIR = "."
 HEFF_DIM       = 3
 CROSS_THRESH   = 0.05
@@ -470,14 +486,17 @@ def print_summary(all_results):
     c5_rows = [r for r in all_results if r and r["c"] == 5]
     c5_note = ""
     if c5_rows and all(abs(r["A_H"] - 6.0) < 0.2 for r in c5_rows):
-        c5_note = " (c=5 anomaly: A_H≈6 for all q -- high-energy Weil sector)"
+        c5_note = (" (c=5: A_H = 4 - 2cos(2*pi*k/q) with k ~ q/2, i.e. the top"
+                   " of the L_Weil spectrum -- not an anomaly)")
     print("=" * 80)
     print(f"Stage C passing (no cross terms + isotropy): {n_pass} / {n_total}{c5_note}")
     print()
-    print("Note: Stage B (F_tilde overlap) is an auxiliary test of trajectory dynamics,")
-    print("      not of operator structure. The primary criterion is Stage C.")
-    print("      [F_c, L_Weil] = 0 is proved analytically for all q,c: cross terms")
-    print("      between Z and XY sectors are structurally zero.")
+    print("Note: [F_c, L_Weil] = 0 holds for all q,c with gcd(c,q)=1, which makes a")
+    print("      compression block-diagonal in an F_c-eigenbasis.  The stored rows are")
+    print("      NOT an F_c-eigenbasis (every entry of F_tilde has modulus q^-1/2), and")
+    print("      the vanishing of off-diagonal entries here follows instead from the")
+    print("      index-difference rule of Q7 2.0 Section 6.2.  No statement about cross")
+    print("      terms of sigma_2(L_eff) follows from these numbers.")
 
 # ---------------------------------------------------------------------------
 # Main

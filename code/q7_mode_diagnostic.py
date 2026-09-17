@@ -245,9 +245,18 @@ def report_pair(q: int, c: int, data, bundle=None) -> dict | None:
           f"{'DEGENERATE at machine precision' if gap < 1e-12 else 'resolved'}")
     print("    rotated by the covariance eigenbasis: diag "
           f"{np.round(np.diag(L_sw).real, 6)}   max |off-diagonal| = {off_sw:.6f}")
-    if gap < 1e-12:
-        print("      (that plane is degenerate, so these two numbers are "
-              "solver-dependent; the eigenvalues are the invariant content)")
+    blk = L_tilde[1:, 1:]
+    scalar_block = bool(
+        np.allclose(blk, blk[0, 0] * np.eye(blk.shape[0]), atol=1e-9)
+    )
+    if gap < 1e-12 and not scalar_block:
+        print("      (degenerate plane AND non-scalar block: these two numbers "
+              "are solver-dependent; only the spectrum is invariant)")
+    elif gap < 1e-12:
+        print("      (degenerate plane, but the block is scalar there, so no "
+              "rotation can split it: these entries are invariant)")
+    print("    spectrum of the compression (invariant): "
+          f"{np.round(np.linalg.eigvalsh(L_tilde).real, 6)}")
 
     return {"q": q, "c": c, "rows": rows, "L_tilde": L_tilde, "cov_gap": gap}
 
@@ -278,6 +287,7 @@ def main() -> int:
 
     worst_purity = 1.0
     worst_residual = 0.0
+    pairs_done = 0
     for q in args.primes:
         data = None
         if bundle is None:
@@ -293,11 +303,18 @@ def main() -> int:
             out = report_pair(q, c, data, bundle)
             if out is None:
                 continue
+            pairs_done += 1
             for r in out["rows"]:
                 worst_purity = min(worst_purity, r["purity"])
                 worst_residual = max(worst_residual, abs(r["residual"]))
 
     print("\nSummary")
+    print(f"  pairs processed                              : {pairs_done}")
+    if pairs_done == 0:
+        print("  NOTHING WAS PROCESSED: no bundle and no readable checkpoint.")
+        print("  The statements below are vacuous; re-run with --checkpoint-dir "
+              "or restore code/data/q7_stage_inputs.npz.")
+        return 2
     print(f"  lowest Fourier purity over all reported rows : {worst_purity:.6f}")
     print(f"  largest |measured - analytic| residual       : {worst_residual:.2e}")
     print("  Every reported diagonal entry is the Rayleigh quotient "

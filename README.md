@@ -21,8 +21,10 @@ structures: the required bridge is a **missing identification**, not a proved ob
       extraction is conditional on its unestablished hypothesis [H-L], with a degenerate
       central slot at principal-symbol order),
     - the admissible 3 from the neutral sector of a supplied spinor carrier
-      (O23 Theorem 3.1, conditional on that carrier) and from the measured projection
-      space $H_{\mathrm{eff}} = \mathbb{C}^3$ of rank three (O28).
+      (O23 Theorem 3.1, conditional on that carrier) and from the projection space
+      $H_{\mathrm{eff}} = \mathbb{C}^3$, which O28 supplies as a parameter consistent with that
+      selection rule, and whose covariance rank three O28 itself calls a finite-data value of its
+      protocol and not an invariant (it also reports a participation-ratio value $8/3$).
 
    These structures are *a priori distinct* and cannot be identified directly.
 
@@ -77,11 +79,17 @@ The pipeline conjugates that compression by the covariance eigenbasis, and that 
 the data only where the covariance spectrum is non-degenerate. Measured: the gap between the second
 and third normalised eigenvalues of $C_c$ is at machine precision ($10^{-16}$ to
 $2\times10^{-15}$) at nine of the twelve pairs, and resolved at three ($6.2\times10^{-3}$,
-$1.2\times10^{-2}$, $1.6\times10^{-2}$). At the nine degenerate pairs the individual diagonal and
-off-diagonal entries are solver-dependent and only the eigenvalues are invariant: that is what
-produces the split $6.9527 / 5.0257$ and the off-diagonal $0.2677$ at $(151,5)$, whose ratio to the
-mean diagonal is the published $\rho_{XY} = 0.057$ — a column captioned as the isotropy ratio,
-which is $0.3217$ there. §6.3 of the paper works this out, and records one published number,
+$1.2\times10^{-2}$, $1.6\times10^{-2}$). At the nine degenerate pairs the rotation of that plane is arbitrary, but it has
+no effect wherever the compression restricted to the plane is **scalar**, which holds at eleven of
+the twelve pairs: a rotation of a plane on which an operator acts as a scalar returns the same
+scalar, so no solver can split those entries. Exactly one pair has both an arbitrary rotation and a
+non-scalar block — $(151,5)$, where the indices $\pm 73$ differ by $-c$ — and there the split
+$6.9527 / 5.0257$ and the off-diagonal $0.2677$ are solver-dependent; the ratio of that
+off-diagonal to the mean diagonal is the published $\rho_{XY} = 0.057$, in a column captioned as
+the isotropy ratio, which evaluates to $0.2772$ under the caption's own formula and to $0.3218$ as
+the script computes it. The invariant content is the spectrum of the compression, which the closed
+form gives outright at the ten pairs with no index difference equal to $\pm c \bmod q$ and which
+is shifted at the two that have one. §6.3 of the paper works this out, and records one published number,
 $\rho_{XY} = 0.005$ at $(101,3)$, that no versioned quantity reproduces.
 
 Reproducible diagnostic: `code/q7_mode_diagnostic.py` prints Fourier indices, purities, measured
