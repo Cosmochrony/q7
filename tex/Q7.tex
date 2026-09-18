@@ -64,14 +64,13 @@ Requirements for an Equivariant Bridge\\[4pt]
     Second, under the identification hypothesis, $\Sym^2(\Vr)$ is, up to isomorphism, the unique
     irreducible three-dimensional complex module of $\su(2)$, so any \emph{non-zero} equivariant
     map to the complexified adjoint module is an isomorphism, unique up to one non-zero complex
-    scalar; reality and positivity of that scalar require separate hypotheses on the forms
-    compared.
+    scalar; choosing it real and positive additionally requires a phase convention.
     Third, the $\su(2)$ Casimir acts on $\Sym^2(\Vr)$ as $2 \cdot \mathrm{Id}$, and a \emph{non-zero}
     equivariant bridge pulls the Hermitian spatial form back to a positive-definite form of rank
     three whenever the two coefficients are positive; invariance under the Cartan generator $J_3$ separates the
     spin-weight $\pm 1$
     sector from the spin-weight $0$ sector and
-    forces isotropy \emph{within the horizontal plane}, but it does not by itself force
+    gives horizontal isotropy when compatible with the real rotation structure, but does not force
     $A_H = A_z$.
     Version~2.0 re-types the numerical section.
     The quantities previously reported as symbol coefficients are compressions of the discrete
@@ -84,10 +83,11 @@ Requirements for an Equivariant Bridge\\[4pt]
     $A_H - 2 = 2(1 - \cos(2\pi k/q))$, so vanishing of the gap is equivalent to
     $\mathrm{dist}(k/q, \mathbb{Z}) \to 0$, a property of the mode-selection rule that remains to
     be established.
-    The bridge is therefore a missing identification, not a proved obstruction.
-    The only obstruction located in the corpus is conditional: under Q5a's depth and weight
-    hypotheses, no common scalar normalisation of the published admissibility form yields a toric
-    differential limit.
+    The broader bridge to an extended target remains a missing construction.
+    The existing Q5b spatial principal symbol has rank two and cannot equal the rank-three
+    Casimir form; the revised conjecture requires a new target.
+    Separately, under Q5a's depth and weight hypotheses, no common scalar normalisation of its
+    published admissibility form yields a toric differential limit.
   \end{abstract}
 
   \noindent\textbf{Keywords:} Heisenberg group; Weil representation; spectral geometry;
@@ -172,15 +172,12 @@ Requirements for an Equivariant Bridge\\[4pt]
     hypothesis of Section~\ref{sec:sym2}, and with the spatial sector carrying the adjoint action
     isolated as [ACT] in Remark~\ref{rem:status}, it is unique up to one scalar by irreducibility
     (Lemma~\ref{lem:schur}); and it must
-    satisfy a specific quadratic-symbol constraint
-    (Criterion~\ref{crit:symbol}) on an effective operator that exists only under the hypotheses
-    of~\cite{Beau2026q5b}.
-    Verdict, in the typing of the programme's bridge discipline: the required identification is
-    \emph{missing}, not ruled out.
-    The only obstruction located in the corpus is conditional and concerns a different route:
-    under the depth and weight hypotheses of Q5a~\cite{Beau2026q5a}, no common scalar
-    normalisation of the published admissibility form produces a toric differential limit
-    (Q5a Theorem~6.1); nothing there or elsewhere proves that no bridge can exist.
+    satisfy a necessary form constraint (Criterion~\ref{crit:symbol}) on a newly supplied
+    extended target.
+    The precise identification with Q5b's rank-two spatial principal symbol is ruled out by rank
+    preservation, whereas the broader extended-target construction remains missing.
+    Separately, under Q5a's depth and weight hypotheses no common scalar normalisation of the
+    published admissibility form produces a toric differential limit (Q5a Theorem~6.1).
 
   \subsection{Conventions}
     \label{sec:conv}
@@ -272,7 +269,8 @@ Requirements for an Equivariant Bridge\\[4pt]
     The admissible ``3'' arises at the representation-theoretic level.
     Paper O23~\cite{Beau2026a27} proves that if the admissible neutral sector is carried by an
     irreducible $\mathrm{SU}(2)$-valued two-dimensional representation
-    $V_\rho \cong \mathbb{C}^2$ (a supplied input), then its traceless anti-Hermitian sector is $\su(2) \simeq \ImH$, carrying exactly
+    $V_\rho \cong \mathbb{C}^2$ (a supplied input), then its traceless anti-Hermitian sector is
+    $\su(2) \simeq \ImH$, carrying exactly
     three independent
     directions (Theorem~3.1); O23's Proposition~3.4, with its Remark~3.5, notes that a count of
     generator axes can stop
@@ -413,12 +411,10 @@ Requirements for an Equivariant Bridge\\[4pt]
       horizontal generators $\tilde X, \tilde Y$, and the pair $(m, d) = (0, 2)$
       (spin-weight $m = 0$ within the $j = 1$ module, Carnot degree $2$) corresponds to the central
       generator $\tilde Z = [\tilde X, \tilde Y]$.
-      The pattern is: the two generators entering the principal symbol of $\Delta_H$ (at leading order)
-      have $|m| = 1$, while the generator entering via sub-principal corrections (at sub-leading order)
-      has $m = 0$.
-      This grading correspondence is not a Lie algebra isomorphism (Proposition~\ref{prop:noniso}), but
-      it shows that the two sub-strata of the spatial sector identified in Remark~\ref{rem:substrata}
-      map to the two spin-weight sectors of the spin-$1$ triplet in a grading-compatible way.
+      This is a proposed correspondence of subspaces, not a derivation of a differential symbol.
+      In the Carnot grading $Z$ has degree two, whereas $Z^2$ has degree four.
+      A commutator producing $Z$ does not by itself produce a quadratic term in $k_Z$.
+      The correspondence is not a Lie algebra isomorphism (Proposition~\ref{prop:noniso}).
     \end{remark}
 
   \subsection{Rigidity of Any Bridge: Schur's Lemma}
@@ -456,17 +452,21 @@ Requirements for an Equivariant Bridge\\[4pt]
       equivariant bridge up to one scalar} between $\Heff$ and a three-dimensional adjoint module.
       That the real spatial sector \emph{is} such a module is the separate hypothesis [ACT] of
       Remark~\ref{rem:status}, which no source supplies.
-      Uniqueness is guaranteed by irreducibility; existence, that is non-vanishing of $\varphi$, is
-      not, and is the open question.
+      Once both isomorphic modules are supplied, non-zero intertwiners exist because their
+      space has complex dimension one.
+      The open question concerns the geometric origin of [ACT] and the additional compatibility
+      with a spatial form, not the existence of an abstract intertwiner under these premises.
       A \emph{positive real} normalisation is not a consequence of any of this, and comparing forms
       does not deliver it either.
       Asking only that $\varphi$ carry a positive-definite Hermitian form to a positive-definite
-      one constrains nothing, since $\varphi^* h(v,v) = |\lambda|^2 h(v,v)$ is positive definite for
-      every $\lambda \neq 0$; asking for \emph{equality} with a specified form fixes the modulus
-      $|\lambda|$ and leaves the phase free, a phase $e^{i\theta}$ acting trivially on that
-      expression.
-      Fixing the phase is a convention, to be stated wherever it is used; with the modulus fixed and
-      the phase chosen, one may take the scalar to be $1$.
+      one constrains nothing, since
+      $\varphi^*h=|\lambda|^2\varphi_0^*h$ is positive definite for every $\lambda\neq0$.
+      Equality with a specified form fixes the modulus only if that form is a positive scalar
+      multiple of $\varphi_0^*h$; otherwise no scalar achieves equality.
+      The phase remains free because it acts trivially on the pullback.
+      Fixing the phase is a convention, to be stated wherever it is used.
+      A unit scalar is available only when the chosen reference normalisation also fixes its
+      modulus to one.
       Version~1.3 stated uniqueness ``up to positive scalar'' with neither the non-vanishing
       requirement nor this convention.
     \end{remark}
@@ -502,7 +502,13 @@ Requirements for an Equivariant Bridge\\[4pt]
         The Hermitian extension is the one to use here: the $\mathbb{C}$-bilinear extension of a
         real form is never positive definite on a complex space, since it sends $iv$ to
         $-g(v,v)$.
-        \item Fix the adapted isomorphism $\varphi_0$ that sends the weight vectors
+        \item Assume additionally [ADAPT]: there is an equivariant isomorphism $\varphi_0$
+        unitary for the chosen standard Hermitian form on the source and the Hermitian extension
+        of the auxiliary real form $r_0=\mathrm{diag}(1,1,1)$ on the target, mapping the
+        weight-$\pm1$ plane to the horizontal plane and the weight-$0$ line to the central line.
+        This is a compatibility hypothesis on the action, grading and reference normalisation,
+        not a consequence of [ACT] or Schur's lemma.
+        Fix such an adapted isomorphism $\varphi_0$, which sends the weight vectors
         $(e_+, e_0, e_-)$ to the graded directions of $W_\mathbb{C}$ as in
         Remark~\ref{rem:grading}, normalised so that $\varphi_0^* h_{\mathrm{sp}}$ acts by $A_H$ on
         $\{e_+, e_-\}$ and by $A_z$ on $\{e_0\}$, and write $\varphi = \lambda\varphi_0$ with
@@ -549,20 +555,21 @@ Requirements for an Equivariant Bridge\\[4pt]
       Remark~\ref{rem:substrata}:
       it acts by $A_H$ on $V_1 = \mathrm{span}\{\tilde X, \tilde Y\}$ (Carnot degree~$1$) and by $A_z$
       on $V_2 = \mathrm{span}\{\tilde Z\}$ (Carnot degree~$2$).
-      The absence of cross terms between $V_1$ and $V_2$ in $g_{\mathrm{sp}}$ follows from
-      invariance under the $\mathrm{U}(1)$ generated by $J_3$: weight spaces of distinct
-      $J_3$-weight are orthogonal for any $J_3$-invariant Hermitian form, so such a form cannot mix
-      the weight-$\pm 1$ sector with the weight-$0$ sector, and it is constant on the
-      two-dimensional weight-$\pm 1$ sector.
-      That is, $J_3$-invariance forces isotropy \emph{within the horizontal plane}; it does not by
-      itself force $A_H = A_z$, since the weight-$0$ sector is a distinct isotypic component whose
-      coefficient it leaves free.
-      The $\mathrm{U}(1)$ argument is independent of the existence of the full bridge $\varphi$, but
-      it requires the admissible regime to be $J_3$-invariant.
-      That is a hypothesis of the present paper, isolated here as [INV], and it is not supplied by
-      any source: \cite{Beau2026q5b} states its results in a ``homogeneous isotropic'' and
-      ``homogeneous and quasi-isotropic'' regime, which is a restriction on the regime and not a
-      named invariance hypothesis, and it contains no $J_3$ or $\mathrm{U}(1)$ statement at all.
+      The displayed diagonal form is an input to the lemma.
+      A sufficient invariance contract, denoted [INV], is that the target action generated by
+      $J_3$ is the complexification of the standard real rotations of the horizontal plane,
+      fixes the central line, and preserves the real symmetric form $g_{\mathrm{sp}}$.
+      Rotation invariance makes that real form scalar on the horizontal plane and eliminates
+      its cross terms with the central line.
+      Equivalently, its Hermitian extension is invariant and compatible with the real
+      conjugation: $h_{\mathrm{sp}}(\sigma v,\sigma w)=\overline{h_{\mathrm{sp}}(v,w)}$.
+      In a normalised weight basis this conjugation exchanges the two nonzero weights, so their
+      diagonal coefficients agree.
+      Hermitian $J_3$-invariance alone only makes the three weight spaces orthogonal:
+      $\mathrm{diag}(a,b,c)$ is invariant for arbitrary positive $a,b,c$, and need not have $a=c$.
+      Neither the real rotation argument nor [INV] forces $A_H=A_z$.
+      No source establishes this action and real-form compatibility for the proposed spatial
+      identification; it is an additional hypothesis here.
       Under the grading correspondence of Remark~\ref{rem:grading}, $V_1$ maps to the spin-weight
       $\pm 1$ sector $\{e_+, e_-\}$ and $V_2$ maps to the spin-weight $0$ sector $\{e_0\}$.
       Under the grading correspondence the adapted $\varphi_0$ therefore pulls $h_{\mathrm{sp}}$
@@ -576,20 +583,27 @@ Requirements for an Equivariant Bridge\\[4pt]
 
     \begin{remark}[Status of Lemma~\ref{lem:qform}]
       \label{rem:status}
-Item~(1) is structural: it is the statement that the Casimir acts on the spin-$1$ module as
-$2 \cdot \mathrm{Id}$, and it holds under Hypothesis~[ID] alone.
-Item~(3) and the full form of~(2) are conditional on five further premises: the existence of the
-equivariant bridge $\varphi$ (Conjecture~\ref{conj:bridge} below); the existence of the effective
-co-metric, which in~\cite{Beau2026q5b} is Theorem~5.2 under its hypotheses [H-L] and [H-lift],
-with [H-L] not established there; the $\su(2)$-action on the real spatial sector that makes it the
-adjoint module, which Lemma~\ref{lem:schur} requires of its target and which no source supplies
-either, isolated here as [ACT]; the $J_3$-invariance [INV] of the admissible regime; and the
-positivity of the two coefficients, of which $A_H > 0$ is stipulated inside [H-L] while $A_z$
-receives no positivity statement from Theorem~5.2 of~\cite{Beau2026q5b}, which puts $0$ in that
-slot; the value asserted downstream is not used here (Section~\ref{ssec:withdrawn}).
-The lemma is therefore to be read as: \emph{if the bridge exists and those premises hold, it is
-isometric in the graded sense} --- and in that case the spatial block is determined up to the two
-constants $A_H$ and $A_z$, which the lemma does not evaluate.
+      Item~(1) holds on the supplied spin-$1$ module without [ID]; [ID] is needed only to
+      apply it to the measured $\Heff$.
+      Item~(2) is the elementary preservation of positivity by an isomorphism, conditional on
+      a supplied positive spatial form and on the target module [ACT].
+      Abstract non-zero intertwiners then exist by Lemma~\ref{lem:schur}.
+      Item~(3) additionally requires [ADAPT]; [INV], with its real-structure compatibility,
+      explains the input two-coefficient form but does not establish [ADAPT].
+      For example, in Cartesian coordinates of the real spin-$1$ module, let
+      $S=\mathrm{diag}(1,1,2)$ and give the target the action
+      $\rho_W=S\rho_{\mathrm{std}}S^{-1}$.
+      It satisfies [ACT] and has the same horizontal rotations, hence satisfies [INV] for
+      $g_{\mathrm{sp}}=\mathrm{diag}(A_H,A_H,A_z)$.
+      Every intertwiner is $\lambda S$, whose pullback is
+      $|\lambda|^2\mathrm{diag}(A_H,A_H,4A_z)$.
+      No common scalar removes the relative factor four when both coefficients are positive.
+      Thus [ADAPT] cannot be replaced by a choice of scalar under the earlier hypotheses.
+      Q5b Theorem~5.2 supplies only a spatial principal form of rank two under [H-L] and
+      [H-lift], with zero central slot in the adapted frame.
+      It does not supply the positive rank-three form assumed here.
+      Any such form is an additional construction, not a consequence of this lemma or an
+      established import from Q5b; downstream asserted values are not used here.
     \end{remark}
 
   \subsection{The Bridge Conjecture}
@@ -598,34 +612,41 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     The results above constrain the form of any equivariant bridge.
     We now state the remaining open question as a falsifiable conjecture.
 
-    \begin{conjecture}[Bridge existence]
+    \begin{conjecture}[Bridge existence: extended target]
       \label{conj:bridge}
-      Under Hypothesis~[ID], there exists a non-zero $\su(2)$-equivariant map
+      A spatial construction beyond the rank-two principal form of Q5b supplies a positive
+      rank-three form on $W_{\mathrm{sp}}$, an adjoint action [ACT], and the grading and real
+      compatibility [INV] and [ADAPT].
+      Under [ID], an equivariant identification then relates the measured space to this target;
+      its pullback has the two-coefficient form of Lemma~\ref{lem:qform}(3).
+      The map has the same type as in the earlier formulation,
       \begin{equation}
-        \varphi : \Sym^2(\Vr) \xrightarrow{\sim} W_{\mathrm{sp}} \otimes_\mathbb{R} \mathbb{C},
+        \varphi:\Sym^2(\Vr)\xrightarrow{\sim}W_{\mathrm{sp}}\otimes_\mathbb{R}\mathbb{C},
       \end{equation}
-      where $W_{\mathrm{sp}} = \mathrm{span}_\mathbb{R}\{\tilde X, \tilde Y, \tilde Z\}$ is the
-      three-dimensional real spatial sector of the effective co-metric, taken to carry the adjoint
-      $\su(2)$-action [ACT].
-      The map is required to be compatible with the Schr\"{o}dinger representation in the following
-      sense.
-      The compatibility is understood at the level of quadratic forms induced by the generators,
-      not at the level of Lie algebra homomorphisms (which do not exist, by
-      Proposition~\ref{prop:noniso}).
-      Concretely: the quadratic form $Q_{\mathcal{C}} = 2\|\cdot\|^2$ on $\Sym^2(\Vr)$, when
-      transported to $W_{\mathrm{sp}}$ via $\varphi$, matches the spatial block of
-      $\sigma_2(L_{\mathrm{eff}})$, where $L_{\mathrm{eff}}$ is the effective operator whose
-      existence is Theorem~5.2 of~\cite{Beau2026q5b} under its hypotheses [H-L] and [H-lift].
+      but its target form must now come from the new construction specified here.
+      The construction must specify the operator or effective form producing this target and
+      its relation to Q5b's horizontal geometry.
+      This is a conjecture about supplying compatible geometric data, not about abstract
+      intertwiners between already supplied isomorphic modules.
     \end{conjecture}
 
     \noindent
-    The contract of the conjecture must be stated precisely, because both of its sides are
-    conditional.
-    Its source side is Hypothesis~[ID].
-    Its target side exists only under [H-L], which \cite{Beau2026q5b} declares not established,
-    the Lorentzian reading carrying the further hyperbolicity hypothesis of its Theorem~6.1; and
-    that target carries the adjoint $\su(2)$-action [ACT] only by hypothesis, no source supplying
-    it.
+    The conjecture no longer asks for equality with Q5b's existing spatial principal symbol.
+    Under [H-L] and [H-lift], that symbol is
+    \[
+      A_H\bigl[(k_x+\tfrac y2 k_z)^2+(k_y-\tfrac x2 k_z)^2\bigr].
+    \]
+    Its rank is two everywhere, with kernel generated by $(-y/2,x/2,1)$.
+    Congruence by an isomorphism preserves rank, so it cannot equal the positive rank-three
+    Casimir form $2\|\cdot\|^2$, even without equivariance.
+    Adding terms of strictly lower ordinary differential order cannot change that principal
+    symbol.
+    The previous target contract is therefore ruled out under Q5b's stated hypotheses;
+    the broader construction in Conjecture~\ref{conj:bridge} remains missing, not ruled out.
+    Even for a new positive target, equality with the transported Casimir is a stronger condition
+    than the graded form: under [ADAPT] it requires $A_H=A_z$ and a scale choice.
+    Neither that equality nor an absolute coefficient is asserted by the revised conjecture.
+
     Version~1.3 formulated the target as the spatial block of $\sigma_2(L_{\mathrm{eff}})$
     ``restricted to the admissible sector of $L^2(\mathbb{R})$ in the large-$q$ limit of Q5a''.
     That object is not supplied by Q5a and the formulation is withdrawn: in the published version
@@ -639,8 +660,8 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     scalar normalisations of the published form on toric targets.
     It does not exclude a bridge obtained on a different filtration, with an anisotropic or
     non-scalar renormalisation, or on a non-toric target, and it proves nothing about the
-    existence of $\varphi$.
-    By Lemma~\ref{lem:schur}, if the map exists it is unique up to one scalar; by
+    existence of a bridge to a different, explicitly constructed target.
+    By Lemma~\ref{lem:schur}, the supplied adjoint modules admit intertwiners unique up to scale; by
     Lemma~\ref{lem:qform}, if it exists and the premises listed in Remark~\ref{rem:status} hold,
     the spatial block takes the graded form~(3).
     The conjecture is therefore an existence question about a missing identification, in the sense
@@ -652,15 +673,19 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
 
   Lemma~\ref{lem:schur} removes the ambiguity about \emph{what} to test: under Hypothesis~[ID],
   and with the target carrying the adjoint action [ACT], a non-zero equivariant bridge is unique up
-  to one scalar, so a single criterion suffices.
+  to one scalar.
+  This does not establish the target geometry or the adapted normalisation [ADAPT].
   It does not make the question binary in the sense of a no-go: a negative outcome bears on the
   tested realisation, as stated after Conjecture~\ref{conj:bridge}.
 
   \begin{criterion}[Symbol restriction to $\Sym^2(\Vr)$]
     \label{crit:symbol}
-    Let $\sigma_2(L_{\mathrm{eff}})$ be the principal symbol of the effective operator
-    $L_{\mathrm{eff}}$ on $\mathbb{R}_\tau \times \Heis(\mathbb{R})$, evaluated on the spatial block
-    $(k_X, k_Y, k_Z)$.
+    Let $L_{\mathrm{ext}}$ be a candidate continuum operator supplying the extended target of
+    Conjecture~\ref{conj:bridge}, with spatial principal symbol on $(k_X,k_Y,k_Z)$.
+    This is additional input, not the rank-two operator $L_{\mathrm{eff}}$ of Q5b.
+    Under [ADAPT], use the source conjugation
+    $\sigma_S=\varphi_0^{-1}\sigma\varphi_0$ and choose normalised weight phases so that
+    $\sigma_S(e_+)=e_-$ and $\sigma_S(e_0)=e_0$.
     Via the grading correspondence of Remark~\ref{rem:grading}, identify the real spatial cotangent
     directions with a real basis of the image of $W_{\mathrm{sp}}$ inside
     $W_{\mathrm{sp}} \otimes_\mathbb{R} \mathbb{C} \simeq \Sym^2(\Vr)$: the horizontal pair
@@ -671,12 +696,13 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     real cotangent coordinates with complex weight vectors and is corrected here.)
     Test whether:
     \begin{equation}
-      \sigma_2(L_{\mathrm{eff}})\big|_{\Sym^2(\Vr)} = A_H (k_X^2 + k_Y^2) + A_z k_Z^2,
+      \sigma_2(L_{\mathrm{ext}})\big|_{\Sym^2(\Vr)} = A_H (k_X^2 + k_Y^2) + A_z k_Z^2,
       \quad A_H, A_z > 0.
     \end{equation}
-    The criterion is a test on the principal symbol of the continuum operator
-    $L_{\mathrm{eff}}$ of~\cite{Beau2026q5b}.
-    No such computation is performed in this paper or, to our knowledge, elsewhere in the corpus;
+    This is a necessary form test for the proposed extended continuum target, not a sufficient
+    test of its geometric origin or equivariance.
+    Applied instead to Q5b's existing operator, it fails by the rank argument above.
+    No candidate extended operator is constructed or tested here;
     Section~\ref{sec:numerical} computes a different object, namely compressions of the discrete
     Weil Laplacian.
     A failure of the identity would show that the tested realisation does not provide the bridge;
@@ -691,7 +717,7 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     $L_{\mathrm{Weil}}$ onto rows lying in distinct $F_c$-eigenspaces is block-diagonal
     (Corollary~\ref{cor:blockdiag}).
     Both are statements about the discrete operator on $\mathbb{C}^q$.
-    They do not evaluate $\sigma_2(L_{\mathrm{eff}})$, and the transfer of a discrete compression
+    They do not evaluate $\sigma_2(L_{\mathrm{ext}})$, and the transfer of a discrete compression
     to a continuum symbol coefficient is exactly the identification that Criterion~\ref{crit:symbol}
     presupposes and that no source supplies.
     Version~1.3 reported the isotropy condition as resolved, citing Q8~\cite{BeauQ8} for
@@ -1117,30 +1143,22 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
 
     \begin{remark}[Three-case structure of the isotropy question]
       \label{rem:threecases}
-      Criterion~\ref{crit:symbol} requires both the vanishing of cross terms and the equality
-      $A_H = A_z$, for the symbol of the continuum operator.
-      Neither condition is settled by the present data (Corollary~\ref{cor:quasithm}).
-      For the equality, three genuinely distinct outcomes remain possible, with separate physical
-      implications.
+      Criterion~\ref{crit:symbol} tests a positive graded form, not the equality $A_H=A_z$.
+      If a new continuum target and compatible identification have independently been supplied,
+      its coefficients admit the following cases; none establishes the identification by itself.
       \begin{enumerate}
-        \item $A_H = A_z > 0$: the bridge exists and the effective spatial geometry is isotropic.
-        The three spatial directions are metrically equivalent.
-        This is the strongest conclusion: the two ``3''s are fully identified.
-        \item $A_H \neq A_z$, both positive: the bridge exists but the effective spatial geometry is
-        anisotropic.
-        The three spatial directions are metrically distinct ($A_H$ for the horizontal, $A_z$ for the
-        central).
-        This is still a positive result: the diagonal structure is confirmed and the bridge is real,
-        but the spatial metric is genuinely non-isotropic.
-        \item $A_z \leq 0$ or structurally unstable: this realisation of the bridge fails, and the
-        two ``3''s are not identified by it.
-        Note that even this outcome would not prove that no bridge exists.
+        \item $A_H=A_z>0$: the supplied form is isotropic in the adapted reference frame.
+        Equality to a transported Casimir still requires its scale to be specified.
+        \item $A_H\neq A_z$, both positive: the form is positive and graded but anisotropic.
+        It meets the form test, not the stronger Casimir equality.
+        \item $A_H\leq0$ or $A_z\leq0$: the form fails the positivity test for this realisation.
+        This does not exclude another constructed target.
       \end{enumerate}
       Version~1.3 read Table~\ref{tab:numerical} as pointing to case~(1).
       That reading is withdrawn: the table contains compressions of the discrete operator, whose
       two distinct entries differ by the identity~\eqref{eq:gap}, so it discriminates between the
       three cases only through an identification it does not supply.
-      No case is currently excluded.
+      These data exclude no case for a new target; Q5b's existing symbol has its known rank-two obstruction.
       (Papers Q8~\cite{BeauQ8}, Q9~\cite{Beau2026q9} and Q10~\cite{Beau2026q10} cite this
       structure as ``Q7 Remark~6.8'': Q9 restates all three cases, Q8 and Q10 name Case~3 and
       Case~1 respectively. In the deposited version~1.3 and here
@@ -1265,7 +1283,7 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     it, in \texttt{code/data/q7\_stage\_inputs.npz} (37\,kB): per tested pair, the three stored
     basis rows, the $3 \times 3$ covariance $C_c$ of the per-shell projections, and the conjugate
     character pair, extracted from the O25 checkpoints
-    \texttt{q\{61,101,151,211\}\_o25.npz} of the Q5a-O5 campaign.
+    $q\in\{61,101,151,211\}$, with filenames \texttt{q<q>\_o25.npz} of the Q5a-O5 campaign.
     The bundle carries a SHA-256 digest in \texttt{code/data/SHA256SUMS}, which the script verifies
     before use and prints; \texttt{--from-checkpoints} recomputes everything from the full
     checkpoints instead, which are not redistributed here and which the loader materialises whole,
@@ -1332,17 +1350,17 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
       equivariant bridge, with both coefficients positive, the pullback of the Hermitian spatial
       form is graded as in Lemma~\ref{lem:qform}, with the premises listed in
       Remark~\ref{rem:status}. Invariance under the Cartan
-      generator forces isotropy
-      within the horizontal plane; it does not force $A_H = A_z$.
+      generator, together with the real compatibility [INV], gives horizontal isotropy;
+      the coefficient transport additionally assumes [ADAPT] and does not force $A_H=A_z$.
       \item The grading correspondence (Remark~\ref{rem:grading}) connects the Carnot degree-$(1,2)$
       decomposition of $\heis$ to the spin-weight-$(\pm 1, 0)$ decomposition of $\Sym^2(\Vr)$,
-      which is why the $\tilde Z$ direction enters at sub-principal order. The two-dimensional
+      as a proposed matching of subspaces, without deriving a central differential term. The two-dimensional
       horizontal distribution and the three-dimensional spatial sector are distinct objects and are
       kept distinct throughout.
       \item The chirped discrete Fourier transform commutes with the discrete Weil Laplacian for
       all $(q,c)$ with $\gcd(c,q) = 1$ (Proposition~\ref{prop:commute}), with the conjugation
       relations~\eqref{eq:fc-conj}.
-      \item Every entry of the compression computed on the O25 checkpoints \emph{in the stored
+      \item Every diagonal entry of the compression computed on the O25 checkpoints \emph{in the stored
       basis} is the Rayleigh quotient~\eqref{eq:rayleigh} of $L_{\mathrm{Weil}}$ on a single
       Fourier mode, with an off-diagonal entry exactly when two stored indices differ by
       $\pm c \bmod q$ (Section~\ref{ssec:rayleigh}, diagnostic in
@@ -1372,15 +1390,14 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
 
   \subsection{Relation to Open Problem Q5b-O2}
 
-    Open problem Q5b-O2 of~\cite{Beau2026q5b} asks for the extension of the effective co-metric
-    to a full-rank spatial block including the $\tilde Z$-direction, via sub-principal corrections
-    to the symbol of $L_{\mathrm{eff}}$.
-    The present paper contributes a conditional statement of form, not a value: under
-    Hypothesis~[ID] and the premises of Remark~\ref{rem:status}, if an equivariant bridge exists
-    then the $\tilde Z$-direction contributes a term $A_z k_Z^2$ without cross terms with
-    $(k_X, k_Y)$, and the horizontal pair enters isotropically.
-    The coefficient $A_z$ is not evaluated here, and no computation of the sub-principal symbol of
-    $L_{\mathrm{eff}}$ is performed in this paper.
+    Open problem Q5b-O2 concerns a possible full-rank spatial extension.
+    The present lemma only describes the transport of such a form if it is supplied, together
+    with [ACT], [INV] and [ADAPT]; it neither produces a central differential term nor fixes a
+    coefficient.
+    A term of lower ordinary differential order leaves Q5b's principal symbol unchanged.
+    A proposed extension must therefore specify a new effective operator or another explicitly
+    defined effective-form construction, rather than identify its positive form with the
+    unchanged rank-two symbol.
     Version~1.3 reported the problem as resolved at the algebraic level, citing Q8~\cite{BeauQ8}
     for $A_z = C_{\mathfrak{su}(2)} = 2$, with Q10~\cite{Beau2026q10} and
     U1~\cite{Beau2026u1} for $A_H \to 2$, and treated the absence of cross terms as a theorem about
@@ -1394,12 +1411,11 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     continuum symbol, the programme would hold a structural identification candidate between the
     three spatial directions of the effective geometry and the three-dimensional irreducible
     module of $\su(2)$.
-    The three-dimensionality of space would then follow from the uniqueness of that module,
-    conditionally on the supplied spinor carrier of O23~\cite{Beau2026a27} (Theorem~3.1, whose
-    carrier selection is an open bridge), on O26's minimality selection~\cite{Beau2026a30}, and on
-    the existence of the effective operator, which requires [H-L] of~\cite{Beau2026q5b}.
-    That is a chain of three supplied premises, and it should be presented as such wherever the
-    result is used.
+    Such a construction would identify two supplied three-dimensional spaces; it would not
+    independently select the dimension of physical space.
+    Besides the supplied spinor carrier of O23~\cite{Beau2026a27} and O26's minimality selection,
+    it would require [ID], [ACT], [INV], [ADAPT] and a construction of the extended spatial target.
+    Q5b's [H-L] does not supply that full-rank extension.
 
   \subsection{If the Identification Fails}
 
@@ -1491,14 +1507,14 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
   spatial sector carrying the adjoint action [ACT], any equivariant bridge is either zero or an
   isomorphism unique up to one scalar; and, if that bridge is non-zero, the Hermitian spatial form
   pulls back to a graded form on the module, isotropic within the horizontal plane under the
-  $J_3$-invariance [INV], and determined by the two constants $A_H$ and $A_z$, neither of which is
-  evaluated here.
-  None of [ID], [ACT] and [INV] is supplied by any source.
+  real rotation compatibility [INV] and the adapted normalisation [ADAPT], with two constants
+  $A_H$ and $A_z$, neither evaluated here.
+  None of [ID], [ACT], [INV] and [ADAPT] is established for this geometric construction.
   The open question is thereby given a precise contract rather than a resolution.
 
   The numerical section has been re-typed in version~2.0.
   The quantities it computes are compressions of the discrete Weil Laplacian onto three stored
-  basis rows, and those rows are pure Fourier modes, so every entry is the Rayleigh quotient
+  basis rows, and those rows are pure Fourier modes, so every diagonal entry is the Rayleigh quotient
   $4 - 2\cos(2\pi m/q)$: exactly $2$ at the flat mode, and $2 + 4\sin^2(\pi k/q)$ at the selected
   index~$k$, with an off-diagonal entry of modulus~$1$ exactly when two stored indices differ by
   $\pm c \bmod q$.
@@ -1513,7 +1529,9 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
 
   What remains open is what was open before those supports were claimed: the bridge is a missing
   identification, in the sense of verdict~3 of the programme's bridge discipline.
-  The corpus contains one conditional obstruction, on a different route and under the depth and
+  The exact rank-two principal symbol of Q5b is incompatible with a rank-three positive form;
+  the revised conjecture leaves open a different, explicitly constructed target.
+  A separate conditional obstruction applies under the depth and
   weight hypotheses of Q5a~\cite{Beau2026q5a}: no common scalar normalisation of the published
   admissibility form yields a toric differential limit, so that route supplies no spatial
   second-order operator.
@@ -1521,9 +1539,8 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
   renormalisation, or on a non-toric target.
   Two concrete tasks would advance the question: a derivation of the mode-selection rule
   $q \mapsto k(q,c)$ from the traversal and the Gram--Schmidt step, which would make
-  Conjecture~\ref{conj:isotropy} testable; and a computation of the sub-principal symbol of
-  $L_{\mathrm{eff}}$ on the admissible sector, which is what Criterion~\ref{crit:symbol} actually
-  tests and what no paper of the corpus has yet performed.
+  Conjecture~\ref{conj:isotropy} testable; and a construction of an extended spatial target with
+  a specified operator and compatible action, to which Criterion~\ref{crit:symbol} could apply.
 
   \clearpage
   \bibliographystyle{plain}

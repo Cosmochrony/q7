@@ -40,27 +40,29 @@ structures: the required bridge is a **missing identification**, not a proved ob
    No source supplies it: O29 states that no calculation there identifies these objects,
    and $d_\rho = 2$ is O26's minimality selection.
 
-4. **Requirements under [ID]**  
-   Up to isomorphism, $\mathrm{Sym}^2(V_\rho)$ is the unique irreducible three-dimensional
-   complex module of $\mathfrak{su}(2)$, isomorphic to the complexified adjoint. Hence any
-   equivariant bridge is **either zero or an isomorphism, unique up to one non-zero complex
-   scalar**; reality and positivity of that scalar are a further requirement. The rigidity also
-   requires the target to carry the $\mathfrak{su}(2)$-action that makes it the adjoint module,
-   isolated in the paper as **[ACT]** and supplied by no source. The Casimir
-   acts as $2 \cdot \mathrm{Id}$, and invariance under the Cartan generator forces isotropy
-   *within the horizontal plane* only: it does not force $A_H = A_z$. That invariance is itself a
-   hypothesis on the admissible regime, isolated as **[INV]** and likewise supplied by no source.
+4. **Representation rigidity and geometric compatibility**
+   The supplied spin-1 module and a supplied complexified adjoint target have a one-dimensional
+   space of intertwiners, so nonzero intertwiners exist and are unique up to a complex scalar.
+   [ID] transfers this statement to the measured space; [ACT] supplies the target action.
+   The open problem is their geometric origin and compatibility, not abstract intertwiner existence.
+   Real rotation invariance [INV] gives horizontal isotropy; Hermitian weight invariance alone does not.
+   Transport of the exact coefficients also requires an adapted unitary intertwiner [ADAPT],
+   not implied by Schur. The paper gives a counterexample to that implication.
+   A positive phase convention is separate from fixing the scalar's modulus.
 
-5. **Reduction to a symbol criterion**  
-   An identification would have to satisfy
-   $\sigma_2(L_{\mathrm{eff}})\big|_{\mathrm{Sym}^2(V_\rho)} = A_H(k_X^2 + k_Y^2) + A_z k_Z^2$,
-   a test on the continuum operator of Q5b. No such computation exists in the corpus.
+5. **A necessary criterion for an extended target**
+   Q5b's existing spatial principal symbol has rank two everywhere, whereas the positive Casimir
+   form has rank three. No invertible transport can identify them.
+   The revised Conjecture 4.7 therefore asks for a new positive spatial target with a specified
+   effective operator and compatible action. Criterion 5.1 tests its graded positive form;
+   it does not construct the target or establish equivariance, nor does it assert equality to the Casimir.
+   Terms of lower ordinary differential order cannot repair the rank of the existing principal symbol.
 
 ## What the O25 Checkpoints Measure
 
 Version 2.0 re-types the numerical section. The three stored basis rows are **pure Fourier
 modes** of indices $\{0, -k, +k\}$ (purity 1.000000 on all twelve tested pairs), so every
-entry of the compression $\tilde L = B_{\mathrm{eff}} L_{\mathrm{Weil}} B_{\mathrm{eff}}^\dagger$
+diagonal entry of the compression $\tilde L = B_{\mathrm{eff}} L_{\mathrm{Weil}} B_{\mathrm{eff}}^\dagger$
 is a Rayleigh quotient in closed form:
 
 $\langle e_m, L_{\mathrm{Weil}} e_m \rangle = 4 - 2\cos(2\pi m/q).$
@@ -140,7 +142,7 @@ derived extract: reproducing the extraction itself needs the full O25 checkpoint
 campaign, which are not redistributed here (`--from-checkpoints` with `--checkpoint-dir` uses
 them).
 
-## The One Conditional Obstruction in the Corpus
+## Scoped Obstructions and the Remaining Open Construction
 
 Under Q5a's depth and weight hypotheses, every subsequential limit of the rescaled admissibility
 forms on toric targets with finitely many Fourier modes is the zero form, a bounded multiplication
@@ -220,6 +222,6 @@ Critical feedback, independent analyses, and formal scrutiny are welcome.
 Please open an issue to discuss:
 
 - the mode-selection rule $q \mapsto k(q,c)$, on which the isotropy conjecture now depends,
-- Hypotheses [ID], [ACT] and [INV], and any route that would supply them,
+- Hypotheses [ID], [ACT], [INV] and [ADAPT], and any route that would supply them,
 - potential counterexamples,
 - extensions to larger primes or alternative admissible sectors.

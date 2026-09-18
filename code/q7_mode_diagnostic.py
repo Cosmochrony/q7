@@ -50,8 +50,8 @@ Two consequences, both tested below.
 1.  The m = 0 (flat) mode gives exactly 4 - 2 - 0 = 2, for every q and every c.
     The 2 is the additive `4 I` term of L_Weil minus the shift eigenvalue at
     m = 0; it is independent of q and of c by construction, and it is not a
-    limit.  Rescaling L_Weil moves it (L/2 gives 1, L - 2I gives 0) while
-    leaving every ratio unchanged.
+    limit. Multiplication by 1/2 moves it to 1 and preserves ratios of nonzero
+    coefficients. Subtraction of 2I moves it to 0 but does not preserve ratios.
 
 2.  For a mode of index m = k, (*) gives 4 - 2 cos(2 pi k / q), so
 
