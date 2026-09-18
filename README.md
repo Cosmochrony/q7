@@ -97,10 +97,16 @@ $6.9527 / 5.0257$ and the off-diagonal $0.2677$ are solver-dependent; the ratio 
 off-diagonal to the mean diagonal is the published $\rho_{XY} = 0.057$, in a column that version 1.3's
 running text called the isotropy ratio and its caption called a cross-term ratio. The running
 text's formula, on the stored-basis compression it names, gives $0$; read on the rotated matrix it
-gives $0.2772$; and the script's own isotropy variable gives $0.3218$. The per-pair covariance is the same Hermitian object O29 reports pooled over all conjugate pairs
-at a prime; `--pooled` reproduces O29's two published spectra exactly ([1, 0.5584, 0.5584] at
-$q=29$, [1, 0.7527, 0.7513] at $q=61$) from the checkpoints, so the per-pair and published figures
-are two aggregations of one measurement rather than a disagreement.
+gives $0.2772$; and the script's own isotropy variable gives $0.3218$. Four readings, four values.
+
+The per-pair covariance is the same Hermitian object whose spectrum O29 publishes as
+$[1:0.6:0.6]$ at $q=29$ and $[1:0.8:0.8]$ at $q=61$. O29 does not state its aggregation for those
+two figures; pooling the projections is the one aggregation of this object that lands on both.
+`--pooled --primes 29 61` computes it from the checkpoints and gives $[1, 0.5584, 0.5584]$ and
+$[1, 0.7527, 0.7513]$ — O29's figures at their published one-decimal precision, though the pooled
+$q=61$ spectrum is not exactly degenerate. So the per-pair and published figures are two
+aggregations of one measurement rather than a disagreement. The shipped bundle cannot reproduce
+this, holding one covariance per pair and nothing at $q=29$.
 
 The invariant content is the spectrum of the compression, which the closed
 form gives outright at the ten pairs with no index difference equal to $\pm c \bmod q$ and which
@@ -112,8 +118,10 @@ and analytic values, residuals, the cross-term check, the covariance spectrum wi
 third
 eigenvalues, and inside the horizontal plane), the relative size of its off-block entries, the
 diagonal of the rotated matrix with the largest modulus of its off-diagonal entries, the spectrum of
-the compression, and a warning distinguishing the pairs where the entries are solver-dependent from
-those where they are not. Largest residual: below $10^{-14}$.
+the compression, the residuals of the three metaplectic identities with the largest deviation of the
+$\tilde F$ eigenvalue phases from a multiple of $90^\circ$, and a warning distinguishing the pairs
+where the entries are solver-dependent from those where they are not. Largest residual: below
+$10^{-14}$. `--pooled` reports the pooled covariance instead, and needs the checkpoints.
 
 It runs from the repository alone: `code/data/q7_stage_inputs.npz` (37 kB) ships the inputs it
 needs — per pair, the three stored basis rows, the $3\times3$ covariance, and the character pair —

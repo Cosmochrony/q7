@@ -450,9 +450,10 @@ Requirements for an Equivariant Bridge\\[4pt]
 
     \begin{remark}[Consequence for the bridge]
       \label{rem:rigidity}
-      Lemma~\ref{lem:schur} implies that, under Hypothesis~[ID] and [ACT], \emph{there is at most
-      one equivariant bridge up to one scalar} between $\Heff$ and a three-dimensional adjoint
-      module.
+      Lemma~\ref{lem:schur} implies that, under Hypothesis~[ID], \emph{there is at most one
+      equivariant bridge up to one scalar} between $\Heff$ and a three-dimensional adjoint module.
+      That the real spatial sector \emph{is} such a module is the separate hypothesis [ACT] of
+      Remark~\ref{rem:status}, which no source supplies.
       Uniqueness is guaranteed by irreducibility; existence, that is non-vanishing of $\varphi$, is
       not, and is the open question.
       A \emph{positive real} normalisation is not a consequence of any of this, and comparing forms
@@ -602,9 +603,10 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
         \varphi : \Sym^2(\Vr) \xrightarrow{\sim} W_{\mathrm{sp}} \otimes_\mathbb{R} \mathbb{C},
       \end{equation}
       where $W_{\mathrm{sp}} = \mathrm{span}_\mathbb{R}\{\tilde X, \tilde Y, \tilde Z\}$ is the
-      three-dimensional real spatial sector of the effective co-metric, carrying the $\su(2)$-action
-      [ACT] that makes it an adjoint module, compatible with the Schr\"{o}dinger representation in
-      the following sense.
+      three-dimensional real spatial sector of the effective co-metric, taken to carry the adjoint
+      $\su(2)$-action [ACT].
+      The map is required to be compatible with the Schr\"{o}dinger representation in the following
+      sense.
       The compatibility is understood at the level of quadratic forms induced by the generators,
       not at the level of Lie algebra homomorphisms (which do not exist, by
       Proposition~\ref{prop:noniso}).
@@ -619,7 +621,8 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     conditional.
     Its source side is Hypothesis~[ID]; its target side exists only under [H-L], which
     \cite{Beau2026q5b} declares not established, with the Lorentzian reading carrying the further
-    hyperbolicity hypothesis of its Theorem~6.1.
+    hyperbolicity hypothesis of its Theorem~6.1, and carries the adjoint $\su(2)$-action [ACT] only
+    by hypothesis, no source supplying it.
     Version~1.3 formulated the target as the spatial block of $\sigma_2(L_{\mathrm{eff}})$
     ``restricted to the admissible sector of $L^2(\mathbb{R})$ in the large-$q$ limit of Q5a''.
     That object is not supplied by Q5a and the formulation is withdrawn: in the published version
@@ -788,19 +791,25 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     It is, on the other hand, the same object as the linear Hermitian covariance
     $\langle w w^\dagger \rangle$ whose spectrum O29~\cite{Beau2026a33} reports; the two differ only
     in aggregation, and the difference is worth stating because the figures look unrelated.
-    O29 pools the projections over all conjugate pairs at a given prime, whereas the protocol here
-    keeps them separate, one covariance per pair.
+    The protocol here keeps the conjugate pairs separate, one covariance per pair.
     Per pair the normalised spectrum is $[1, 0.672, 0.666]$ at $(61,3)$, $[1, 0.920, 0.920]$ at
-    $(61,5)$ and $[1, 0.500, 0.500]$ at $(61,7)$; pooled over all the conjugate pairs stored at that
-    prime it is $[1, 0.7527, 0.7513]$, which is O29's $[1:0.8:0.8]$, and the same pooling at $q = 29$
-    gives $[1, 0.5584, 0.5584]$, which is O29's $[1:0.6:0.6]$.
-    Both of O29's published spectra are therefore reproduced from the inputs used here, and the
-    per-pair figures are not in disagreement with them: they are a finer aggregation of the same
-    measurement. Nothing in this paper depends on either.
+    $(61,5)$ and $[1, 0.500, 0.500]$ at $(61,7)$, and the per-pair median is $[1, 0.736, 0.732]$ at
+    $q = 61$ and $[1, 0.512, 0.512]$ at $q = 29$, neither of which rounds to a figure O29 publishes.
+    Pooling the projections instead, over the pairs that hold any, gives $[1, 0.7527, 0.7513]$ at
+    $q = 61$ and $[1, 0.5584, 0.5584]$ at $q = 29$, which round to O29's $[1:0.8:0.8]$ and
+    $[1:0.6:0.6]$.
+    O29 does not state its aggregation for these two figures, so the inference here is only that
+    pooling is the one aggregation of this object that lands on both of them; the agreement is at
+    O29's one-decimal precision, and the pooled spectrum at $q = 61$ is not exactly degenerate,
+    whereas O29's remark records $\lambda_2 = \lambda_3$.
+    The per-pair figures are therefore not in disagreement with O29: they are a finer aggregation of
+    the same measurement. Nothing in this paper depends on either.
     The pooled figures are the one numerical statement in this section that the shipped bundle
     cannot reproduce, since it stores one covariance per pair and the pooling is not recoverable
-    from those; \texttt{--pooled} in the diagnostic of Section~\ref{ssec:diagnostic} computes them
-    from the checkpoints, and prints the pair and projection counts with each.
+    from those; \texttt{--pooled --primes 29 61} in the diagnostic of
+    Section~\ref{ssec:diagnostic} computes them from the checkpoints, and prints with each the
+    number of stored pairs, the number that hold projections and the number of projections pooled.
+    Those counts differ at $q = 29$, where $5$ of the $14$ stored pairs hold any.
     Stage~B checks that the $F_c$-eigenvalue phases of $\tilde{F} = B_{\mathrm{eff}} F_c B_{\mathrm{eff}}^\dagger$
     are multiples of $90^\circ$ (consistent with $F_c^4 = I$).
     Stage~C computes $\tilde{L} = B_{\mathrm{eff}} L_{\mathrm{Weil}} B_{\mathrm{eff}}^\dagger$,
@@ -1191,7 +1200,7 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
       Read as an isotropy ratio on that rotated matrix the formula would give $0.2772$, and the
       script's own isotropy variable, which divides by $A_H$ rather than by
       $|\tilde L_{11}|$, gives $0.3218$.
-      Four readings, three distinct values, and the published column is the one its running text
+      Four readings, four distinct values, and the published column is the one its running text
       does not describe. The label is corrected here.
 
     \paragraph{The invariant content.}

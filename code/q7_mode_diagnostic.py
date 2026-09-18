@@ -170,12 +170,6 @@ def load_bundle(path: str = BUNDLE):
     redistributed here.  SHA256SUMS sits next to it.
     """
     sums = os.path.join(os.path.dirname(path), "SHA256SUMS")
-    if not os.path.exists(path):
-        raise SystemExit(
-            f"input bundle not found: {path}\n"
-            "  Either restore code/data/q7_stage_inputs.npz from the repository, or pass\n"
-            "  --from-checkpoints --checkpoint-dir <dir> to recompute from the O25 checkpoints."
-        )
     digest = hashlib.sha256(open(path, "rb").read()).hexdigest()
     if os.path.exists(sums):
         expected = open(sums).read().split()[0]
@@ -338,9 +332,11 @@ def report_pair(q: int, c: int, data, bundle=None) -> dict | None:
 def pooled_spectrum(q: int, checkpoint_dir: str) -> dict | None:
     """Pool the H_eff projections over every conjugate pair stored at q.
 
-    Section 6 keeps one covariance per conjugate pair; O29 reports the same
-    Hermitian covariance <w w^dag> pooled over all pairs at a prime.  This
-    reproduces the pooled figure, so the two aggregations can be compared.
+    Section 6 keeps one covariance per conjugate pair.  O29 publishes a spectrum
+    of the same Hermitian covariance <w w^dag> without stating its aggregation;
+    pooling is the one aggregation of this object that lands on both of its
+    published figures.  This computes the pooled figure so the two can be
+    compared.
     Needs the O25 checkpoints: the shipped bundle holds per-pair covariances
     only, and the pooling cannot be recovered from them.
     """
@@ -349,11 +345,14 @@ def pooled_spectrum(q: int, checkpoint_dir: str) -> dict | None:
     except FileNotFoundError as exc:
         print(f"  q={q}: {exc}")
         return None
+    stored = np.asarray(data["pairs"])[:, 0]
     vectors, pairs_used = [], 0
-    for c in np.asarray(data["pairs"])[:, 0]:
+    for c in stored:
         try:
             w = extract_pi_c_from_checkpoint(data, int(c))
         except Exception:
+            continue
+        if len(w) == 0:          # stored but holding no projection: not a contributor
             continue
         vectors.extend(w)
         pairs_used += 1
@@ -364,10 +363,11 @@ def pooled_spectrum(q: int, checkpoint_dir: str) -> dict | None:
     cov = W.conj().T @ W / len(W)
     ev = np.linalg.eigvalsh(cov)[::-1]
     ev = ev / ev[0]
-    print(f"  q={q:>4}  {pairs_used} pairs, {len(W)} projections pooled"
-          f"  ->  normalised spectrum "
+    print(f"  q={q:>4}  {len(stored)} pairs stored, {pairs_used} holding projections,"
+          f" {len(W)} projections pooled  ->  normalised spectrum "
           f"[{ev[0]:.4f}, {ev[1]:.4f}, {ev[2]:.4f}]")
-    return {"q": q, "pairs": pairs_used, "n": len(W), "spectrum": ev}
+    return {"q": q, "stored": len(stored), "pairs": pairs_used, "n": len(W),
+            "spectrum": ev}
 
 
 def _pair_row(data, c: int) -> int:
@@ -384,8 +384,9 @@ def main() -> int:
     ap.add_argument("--chars", nargs="+", type=int, default=DEFAULT_CHARS)
     ap.add_argument("--checkpoint-dir", type=str, default=DEFAULT_DIR)
     ap.add_argument("--pooled", action="store_true",
-                    help="report the covariance pooled over all conjugate pairs at each prime, "
-                         "the aggregation O29 uses (requires the checkpoints)")
+                    help="report the covariance pooled over the conjugate pairs at each prime, "
+                         "the aggregation that matches O29's published spectra "
+                         "(requires the checkpoints)")
     ap.add_argument("--from-checkpoints", action="store_true",
                     help="use the full O25 checkpoints instead of the bundled inputs")
     args = ap.parse_args()
@@ -393,8 +394,8 @@ def main() -> int:
     print(__doc__)
     if args.pooled:
         print(f"Checkpoint directory: {os.path.abspath(args.checkpoint_dir)}")
-        print("\nCovariance pooled over all conjugate pairs at each prime "
-              "(the O29 aggregation):")
+        print("\nCovariance pooled over the conjugate pairs holding projections, "
+              "per prime:")
         got = [pooled_spectrum(q, args.checkpoint_dir) for q in args.primes]
         if not any(got):
             print("\n  NOTHING WAS PROCESSED: no checkpoint was found. "
