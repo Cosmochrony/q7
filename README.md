@@ -101,17 +101,19 @@ gives $0.2772$; and the script's own isotropy variable gives $0.3218$. Four read
 
 The per-pair covariance is the same Hermitian object whose spectrum O29 publishes as
 $[1:0.6:0.6]$ at $q=29$ and $[1:0.8:0.8]$ at $q=61$. O29 does not state its aggregation for those
-two figures in its text, but it ships the routine: the `pooled` function of its
-`variety_summary.py` concatenates the trajectories over the pairs of a prime, and returns these
-same spectra when applied to this covariance. `--pooled --primes 29 61` computes them from the
-checkpoints and gives $[1, 0.5584, 0.5584]$ and $[1, 0.7527, 0.7513]$ — O29's figures at their
-published one decimal, though the pooled $q=61$ spectrum is not exactly degenerate. It also prints
-the median of the per-pair spectra, $[1, 0.5115, 0.5115]$ and $[1, 0.7363, 0.7323]$, which rounds
-to neither published figure. So the per-pair and published figures are two aggregations of one
-measurement rather than a disagreement. The bundle cannot reproduce them, and the obstacle is
-coverage, not form: the pooled covariance is the projection-count-weighted mean of the per-pair
-covariances, both of which the bundle carries, but it holds three of the thirty pairs at $q=61$
-and nothing at $q=29$.
+two figures in the remark that gives them, but its protocol pools: its summary script,
+`variety_summary.py`, has a `pooled` function concatenating the trajectories over the pairs of a
+prime. Forming $\langle w w^\dagger \rangle$ on that output gives O29's figures — that last step
+is this paper's, since every covariance in O29's code is the $9\times9$ one on vectorised outer
+products. `--pooled --primes 29 61` does it from the checkpoints and gives $[1, 0.5584, 0.5584]$
+and $[1, 0.7527, 0.7513]$ — O29's figures at their published one decimal, though the pooled $q=61$
+spectrum is not exactly degenerate. It also prints the componentwise median of the per-pair
+spectra, over the five contributing pairs at $q=29$ and all thirty at $q=61$:
+$[1, 0.5115, 0.5115]$ and $[1, 0.7363, 0.7323]$, matching neither published figure. So the per-pair
+and published figures are two aggregations of one measurement rather than a disagreement. The
+obstacle to reproducing them from the bundle is coverage, not form: the pooled covariance is the
+projection-count-weighted mean of the per-pair covariances, which the bundle carries, but it holds
+three of the thirty pairs at $q=61$ and nothing at $q=29$.
 
 The invariant content is the spectrum of the compression, which the closed
 form gives outright at the ten pairs with no index difference equal to $\pm c \bmod q$ and which

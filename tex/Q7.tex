@@ -169,8 +169,9 @@ Requirements for an Equivariant Bridge\\[4pt]
     but is \emph{not yet settled} within the corpus.
     The present work does not prove the identification.
     It states the requirements an identification would have to meet: under the identification
-    hypothesis of Section~\ref{sec:sym2} it is unique up to one scalar by irreducibility
-    (Lemma~\ref{lem:schur}), and it must satisfy a specific quadratic-symbol constraint
+    hypothesis of Section~\ref{sec:sym2}, and with the spatial sector carrying the adjoint action
+    [ACT], it is unique up to one scalar by irreducibility (Lemma~\ref{lem:schur}); and it must
+    satisfy a specific quadratic-symbol constraint
     (Criterion~\ref{crit:symbol}) on an effective operator that exists only under the hypotheses
     of~\cite{Beau2026q5b}.
     Verdict, in the typing of the programme's bridge discipline: the required identification is
@@ -797,24 +798,32 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     Per pair the normalised spectrum is $[1, 0.672, 0.666]$ at $(61,3)$, $[1, 0.920, 0.920]$ at
     $(61,5)$ and $[1, 0.500, 0.500]$ at $(61,7)$; these are three of the thirty conjugate pairs
     stored at $q = 61$, and the pairs differ widely.
-    Taken over all thirty, the median of the per-pair spectra is $[1, 0.736, 0.732]$, and over the
+    Taken over all thirty, the componentwise median of the per-pair spectra is $[1, 0.736, 0.732]$,
+    which is the spectrum of no single pair, and over the
     five pairs that hold projections at $q = 29$ it is $[1, 0.512, 0.512]$; neither rounds to a
     figure O29 publishes.
     Pooling the projections instead, over the pairs that hold any, gives $[1, 0.7527, 0.7513]$ at
     $q = 61$ and $[1, 0.5584, 0.5584]$ at $q = 29$, which round to O29's $[1:0.8:0.8]$ and
     $[1:0.6:0.6]$.
-    O29 does not state its aggregation for these two figures in its text, but it ships the routine:
-    the \texttt{pooled} function of its \texttt{variety\_summary.py}, which concatenates the
-    trajectories over the pairs of a prime, returns these same two spectra when applied to this
-    covariance.
+    O29 states no aggregation in the remark that gives these two figures, but its protocol pools:
+    elsewhere it reports a quantity as ``computed on the pooled Q5a-O5 checkpoints with the summary
+    script'', and that script, \texttt{variety\_summary.py}, has a \texttt{pooled} function which
+    concatenates the trajectories over the pairs of a prime.
+    Forming $\langle w w^\dagger \rangle$ on its output gives the two spectra above.
+    That last step is this paper's, not O29's: every covariance computed in O29's code is the
+    $9 \times 9$ one on vectorised outer products, and no routine there forms this $3 \times 3$
+    matrix.
     The agreement is at O29's one-decimal precision, and the pooled spectrum at $q = 61$ is not
     exactly degenerate, whereas O29's remark records $\lambda_2 = \lambda_3$.
     The per-pair figures are therefore not in disagreement with O29: they are a finer aggregation of
     the same measurement. Nothing in this paper depends on either.
-    The pooled and median figures are the statements of this section that the shipped bundle cannot
-    reproduce, and the obstacle is coverage rather than form: the pooled covariance is the mean of
-    the per-pair covariances weighted by their projection counts, both of which the bundle carries,
-    but the bundle holds three of the thirty pairs at $q = 61$ and nothing at $q = 29$.
+    The obstacle to reproducing the pooled and median figures from the shipped bundle is coverage,
+    not form: the pooled covariance is the mean of the per-pair covariances weighted by their
+    projection counts, and the bundle carries the covariances, but it holds three of the thirty
+    pairs at $q = 61$ and nothing at $q = 29$.
+    Its projection counts sit beside it in \texttt{q7\_stage\_inputs\_meta.json}, which no script
+    reads and which the digest does not cover.
+    The same coverage limit puts the pair counts quoted here out of the bundle's reach.
     \texttt{--pooled --primes 29 61} in the diagnostic of Section~\ref{ssec:diagnostic} computes
     both from the checkpoints and prints with each the number of stored pairs, the number that hold
     projections and the number of projections pooled; the first two coincide at $q = 61$ and differ
@@ -1206,9 +1215,10 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
       at every pair, both entries being equal there, while the quantity the script prints is the
       cross-term ratio $|(L_{\mathrm{sw}})_{12}|/\bar\lambda$ of the covariance-rotated matrix,
       $0.0574$ at $(151,5)$.
-      Read as an isotropy ratio on that rotated matrix, with $|(L_{\mathrm{sw}})_{11}| = 6.9527$ in
-      the denominator as the formula prescribes, it would give $0.2772$; the script's own isotropy
-      variable divides the same numerator by the mean $A_H$ instead and gives $0.3218$.
+      Read as an isotropy ratio on that rotated matrix, the numerator is
+      $|(L_{\mathrm{sw}})_{11} - (L_{\mathrm{sw}})_{22}| = 1.9270$; over the
+      $|(L_{\mathrm{sw}})_{11}| = 6.9527$ the formula prescribes it gives $0.2772$, and over the
+      mean $A_H = 5.9892$ the script's own isotropy variable uses it gives $0.3218$.
       Four readings, four distinct values, and the published column is the one its running text
       does not describe. The label is corrected here.
 
@@ -1271,10 +1281,10 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     the plane is
     degenerate and the block is not scalar, so that the individual entries are solver-dependent,
     from those where the block is scalar and they are not (Section~\ref{ssec:rotation}).
-    The \texttt{--pooled} flag instead reports, per prime, the covariance pooled over the conjugate
-    pairs that hold projections and the median of their per-pair spectra, the aggregation that
-    matches O29's published figures; that path needs the checkpoints, for the reason given in
-    Section~\ref{ssec:rayleigh}.
+    The \texttt{--pooled} flag instead reports, per prime, two aggregations: the covariance pooled
+    over the conjugate pairs that hold projections, which is the one matching O29's published
+    figures, and the componentwise median of the per-pair spectra, which matches neither.
+    That path needs the checkpoints, for the reason given in Section~\ref{ssec:rayleigh}.
     On the four primes and three characters reported here the lowest purity is $1.000000$ and the
     largest discrepancy between measurement and closed form is below $10^{-14}$; every
     off-diagonal modulus of the compression in the stored basis matches the index-difference rule,

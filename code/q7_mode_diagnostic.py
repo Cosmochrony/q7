@@ -86,6 +86,7 @@ Usage
 -----
     python3 q7_mode_diagnostic.py [--primes 61 101 151 211] [--chars 3 5 7]
     python3 q7_mode_diagnostic.py --from-checkpoints --checkpoint-dir <dir>
+    python3 q7_mode_diagnostic.py --pooled --primes 29 61
 """
 
 from __future__ import annotations
@@ -333,14 +334,16 @@ def pooled_spectrum(q: int, checkpoint_dir: str) -> dict | None:
     """Pool the H_eff projections over the conjugate pairs at q that hold any.
 
     Section 6 keeps one covariance per conjugate pair.  O29 publishes a spectrum
-    of the same Hermitian covariance <w w^dag> without stating its aggregation in
-    its text, but ships the routine: the pooled() function of its
-    variety_summary.py concatenates the trajectories over the pairs of a prime,
-    and returns these same spectra when applied to this covariance.  This
-    computes the pooled spectrum and, for contrast, the median of the per-pair
-    spectra, which does not match O29's figures.
-    Needs the O25 checkpoints: the shipped bundle holds per-pair covariances
-    only, and the pooling cannot be recovered from them.
+    of the same Hermitian covariance <w w^dag> and states no aggregation in that
+    remark, but its protocol pools: its summary script, variety_summary.py, has a
+    pooled() function concatenating the trajectories over the pairs of a prime.
+    Forming <w w^dag> on that output is this script's step, not O29's: every
+    covariance in O29's code is the 9x9 one on vectorised outer products.
+    This computes the pooled spectrum and, for contrast, the componentwise median
+    of the per-pair spectra, which matches neither published figure.
+    Needs the O25 checkpoints.  The pooled covariance IS recoverable in form from
+    per-pair covariances, being their projection-count-weighted mean; the bundle
+    falls short on coverage, holding 3 of the 30 pairs at q=61 and none at q=29.
     """
     try:
         data, path = load_checkpoint(q, checkpoint_dir)
@@ -371,7 +374,7 @@ def pooled_spectrum(q: int, checkpoint_dir: str) -> dict | None:
     med = np.median(np.asarray(per_pair), axis=0)
     print(f"  q={q:>4}  {len(stored)} pairs stored, {pairs_used} holding projections,"
           f" {len(W)} projections pooled")
-    print(f"          pooled spectrum          "
+    print(f"          pooled spectrum            "
           f"[{ev[0]:.4f}, {ev[1]:.4f}, {ev[2]:.4f}]")
     print(f"          median of per-pair spectra "
           f"[{med[0]:.4f}, {med[1]:.4f}, {med[2]:.4f}]")
@@ -393,8 +396,9 @@ def main() -> int:
     ap.add_argument("--chars", nargs="+", type=int, default=DEFAULT_CHARS)
     ap.add_argument("--checkpoint-dir", type=str, default=DEFAULT_DIR)
     ap.add_argument("--pooled", action="store_true",
-                    help="report the covariance pooled over the conjugate pairs at each prime, "
-                         "the aggregation that matches O29's published spectra "
+                    help="per prime, report the covariance pooled over the conjugate pairs that "
+                         "hold projections, which matches O29's published spectra, and the "
+                         "componentwise median of the per-pair spectra, which matches neither "
                          "(requires the checkpoints)")
     ap.add_argument("--from-checkpoints", action="store_true",
                     help="use the full O25 checkpoints instead of the bundled inputs")
