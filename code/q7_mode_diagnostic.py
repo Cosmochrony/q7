@@ -330,13 +330,15 @@ def report_pair(q: int, c: int, data, bundle=None) -> dict | None:
 
 
 def pooled_spectrum(q: int, checkpoint_dir: str) -> dict | None:
-    """Pool the H_eff projections over every conjugate pair stored at q.
+    """Pool the H_eff projections over the conjugate pairs at q that hold any.
 
     Section 6 keeps one covariance per conjugate pair.  O29 publishes a spectrum
-    of the same Hermitian covariance <w w^dag> without stating its aggregation;
-    pooling is the one aggregation of this object that lands on both of its
-    published figures.  This computes the pooled figure so the two can be
-    compared.
+    of the same Hermitian covariance <w w^dag> without stating its aggregation in
+    its text, but ships the routine: the pooled() function of its
+    variety_summary.py concatenates the trajectories over the pairs of a prime,
+    and returns these same spectra when applied to this covariance.  This
+    computes the pooled spectrum and, for contrast, the median of the per-pair
+    spectra, which does not match O29's figures.
     Needs the O25 checkpoints: the shipped bundle holds per-pair covariances
     only, and the pooling cannot be recovered from them.
     """
@@ -346,7 +348,7 @@ def pooled_spectrum(q: int, checkpoint_dir: str) -> dict | None:
         print(f"  q={q}: {exc}")
         return None
     stored = np.asarray(data["pairs"])[:, 0]
-    vectors, pairs_used = [], 0
+    vectors, per_pair, pairs_used = [], [], 0
     for c in stored:
         try:
             w = extract_pi_c_from_checkpoint(data, int(c))
@@ -356,6 +358,9 @@ def pooled_spectrum(q: int, checkpoint_dir: str) -> dict | None:
             continue
         vectors.extend(w)
         pairs_used += 1
+        Wp = np.asarray(w, dtype=complex)
+        evp = np.linalg.eigvalsh(Wp.conj().T @ Wp / len(Wp))[::-1]
+        per_pair.append(evp / evp[0])
     if not vectors:
         print(f"  q={q}: no projections found in {os.path.basename(path)}")
         return None
@@ -363,11 +368,15 @@ def pooled_spectrum(q: int, checkpoint_dir: str) -> dict | None:
     cov = W.conj().T @ W / len(W)
     ev = np.linalg.eigvalsh(cov)[::-1]
     ev = ev / ev[0]
+    med = np.median(np.asarray(per_pair), axis=0)
     print(f"  q={q:>4}  {len(stored)} pairs stored, {pairs_used} holding projections,"
-          f" {len(W)} projections pooled  ->  normalised spectrum "
+          f" {len(W)} projections pooled")
+    print(f"          pooled spectrum          "
           f"[{ev[0]:.4f}, {ev[1]:.4f}, {ev[2]:.4f}]")
+    print(f"          median of per-pair spectra "
+          f"[{med[0]:.4f}, {med[1]:.4f}, {med[2]:.4f}]")
     return {"q": q, "stored": len(stored), "pairs": pairs_used, "n": len(W),
-            "spectrum": ev}
+            "spectrum": ev, "median": med}
 
 
 def _pair_row(data, c: int) -> int:
@@ -394,8 +403,8 @@ def main() -> int:
     print(__doc__)
     if args.pooled:
         print(f"Checkpoint directory: {os.path.abspath(args.checkpoint_dir)}")
-        print("\nCovariance pooled over the conjugate pairs holding projections, "
-              "per prime:")
+        print("\nPer prime: the covariance pooled over the conjugate pairs holding\n"
+              "projections, and the median of the per-pair spectra.")
         got = [pooled_spectrum(q, args.checkpoint_dir) for q in args.primes]
         if not any(got):
             print("\n  NOTHING WAS PROCESSED: no checkpoint was found. "

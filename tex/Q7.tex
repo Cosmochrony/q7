@@ -619,10 +619,11 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     \noindent
     The contract of the conjecture must be stated precisely, because both of its sides are
     conditional.
-    Its source side is Hypothesis~[ID]; its target side exists only under [H-L], which
-    \cite{Beau2026q5b} declares not established, with the Lorentzian reading carrying the further
-    hyperbolicity hypothesis of its Theorem~6.1, and carries the adjoint $\su(2)$-action [ACT] only
-    by hypothesis, no source supplying it.
+    Its source side is Hypothesis~[ID].
+    Its target side exists only under [H-L], which \cite{Beau2026q5b} declares not established,
+    the Lorentzian reading carrying the further hyperbolicity hypothesis of its Theorem~6.1; and
+    that target carries the adjoint $\su(2)$-action [ACT] only by hypothesis, no source supplying
+    it.
     Version~1.3 formulated the target as the spatial block of $\sigma_2(L_{\mathrm{eff}})$
     ``restricted to the admissible sector of $L^2(\mathbb{R})$ in the large-$q$ limit of Q5a''.
     That object is not supplied by Q5a and the formulation is withdrawn: in the published version
@@ -647,8 +648,9 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
   \section{Falsifiability Criterion}
   \label{sec:falsif}
 
-  Lemma~\ref{lem:schur} removes the ambiguity about \emph{what} to test: under Hypothesis~[ID] a
-  non-zero equivariant bridge is unique up to one scalar, so a single criterion suffices.
+  Lemma~\ref{lem:schur} removes the ambiguity about \emph{what} to test: under Hypothesis~[ID],
+  and with the target carrying the adjoint action [ACT], a non-zero equivariant bridge is unique up
+  to one scalar, so a single criterion suffices.
   It does not make the question binary in the sense of a no-go: a negative outcome bears on the
   tested realisation, as stated after Conjecture~\ref{conj:bridge}.
 
@@ -793,23 +795,30 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     in aggregation, and the difference is worth stating because the figures look unrelated.
     The protocol here keeps the conjugate pairs separate, one covariance per pair.
     Per pair the normalised spectrum is $[1, 0.672, 0.666]$ at $(61,3)$, $[1, 0.920, 0.920]$ at
-    $(61,5)$ and $[1, 0.500, 0.500]$ at $(61,7)$, and the per-pair median is $[1, 0.736, 0.732]$ at
-    $q = 61$ and $[1, 0.512, 0.512]$ at $q = 29$, neither of which rounds to a figure O29 publishes.
+    $(61,5)$ and $[1, 0.500, 0.500]$ at $(61,7)$; these are three of the thirty conjugate pairs
+    stored at $q = 61$, and the pairs differ widely.
+    Taken over all thirty, the median of the per-pair spectra is $[1, 0.736, 0.732]$, and over the
+    five pairs that hold projections at $q = 29$ it is $[1, 0.512, 0.512]$; neither rounds to a
+    figure O29 publishes.
     Pooling the projections instead, over the pairs that hold any, gives $[1, 0.7527, 0.7513]$ at
     $q = 61$ and $[1, 0.5584, 0.5584]$ at $q = 29$, which round to O29's $[1:0.8:0.8]$ and
     $[1:0.6:0.6]$.
-    O29 does not state its aggregation for these two figures, so the inference here is only that
-    pooling is the one aggregation of this object that lands on both of them; the agreement is at
-    O29's one-decimal precision, and the pooled spectrum at $q = 61$ is not exactly degenerate,
-    whereas O29's remark records $\lambda_2 = \lambda_3$.
+    O29 does not state its aggregation for these two figures in its text, but it ships the routine:
+    the \texttt{pooled} function of its \texttt{variety\_summary.py}, which concatenates the
+    trajectories over the pairs of a prime, returns these same two spectra when applied to this
+    covariance.
+    The agreement is at O29's one-decimal precision, and the pooled spectrum at $q = 61$ is not
+    exactly degenerate, whereas O29's remark records $\lambda_2 = \lambda_3$.
     The per-pair figures are therefore not in disagreement with O29: they are a finer aggregation of
     the same measurement. Nothing in this paper depends on either.
-    The pooled figures are the one numerical statement in this section that the shipped bundle
-    cannot reproduce, since it stores one covariance per pair and the pooling is not recoverable
-    from those; \texttt{--pooled --primes 29 61} in the diagnostic of
-    Section~\ref{ssec:diagnostic} computes them from the checkpoints, and prints with each the
-    number of stored pairs, the number that hold projections and the number of projections pooled.
-    Those counts differ at $q = 29$, where $5$ of the $14$ stored pairs hold any.
+    The pooled and median figures are the statements of this section that the shipped bundle cannot
+    reproduce, and the obstacle is coverage rather than form: the pooled covariance is the mean of
+    the per-pair covariances weighted by their projection counts, both of which the bundle carries,
+    but the bundle holds three of the thirty pairs at $q = 61$ and nothing at $q = 29$.
+    \texttt{--pooled --primes 29 61} in the diagnostic of Section~\ref{ssec:diagnostic} computes
+    both from the checkpoints and prints with each the number of stored pairs, the number that hold
+    projections and the number of projections pooled; the first two coincide at $q = 61$ and differ
+    at $q = 29$, where $5$ of the $14$ stored pairs hold any.
     Stage~B checks that the $F_c$-eigenvalue phases of $\tilde{F} = B_{\mathrm{eff}} F_c B_{\mathrm{eff}}^\dagger$
     are multiples of $90^\circ$ (consistent with $F_c^4 = I$).
     Stage~C computes $\tilde{L} = B_{\mathrm{eff}} L_{\mathrm{Weil}} B_{\mathrm{eff}}^\dagger$,
@@ -1197,9 +1206,9 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
       at every pair, both entries being equal there, while the quantity the script prints is the
       cross-term ratio $|(L_{\mathrm{sw}})_{12}|/\bar\lambda$ of the covariance-rotated matrix,
       $0.0574$ at $(151,5)$.
-      Read as an isotropy ratio on that rotated matrix the formula would give $0.2772$, and the
-      script's own isotropy variable, which divides by $A_H$ rather than by
-      $|\tilde L_{11}|$, gives $0.3218$.
+      Read as an isotropy ratio on that rotated matrix, with $|(L_{\mathrm{sw}})_{11}| = 6.9527$ in
+      the denominator as the formula prescribes, it would give $0.2772$; the script's own isotropy
+      variable divides the same numerator by the mean $A_H$ instead and gives $0.3218$.
       Four readings, four distinct values, and the published column is the one its running text
       does not describe. The label is corrected here.
 
@@ -1262,8 +1271,9 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     the plane is
     degenerate and the block is not scalar, so that the individual entries are solver-dependent,
     from those where the block is scalar and they are not (Section~\ref{ssec:rotation}).
-    The \texttt{--pooled} flag instead reports the covariance pooled over all conjugate pairs at
-    each prime, the aggregation O29 uses; that path needs the checkpoints, for the reason given in
+    The \texttt{--pooled} flag instead reports, per prime, the covariance pooled over the conjugate
+    pairs that hold projections and the median of their per-pair spectra, the aggregation that
+    matches O29's published figures; that path needs the checkpoints, for the reason given in
     Section~\ref{ssec:rayleigh}.
     On the four primes and three characters reported here the lowest purity is $1.000000$ and the
     largest discrepancy between measurement and closed form is below $10^{-14}$; every
