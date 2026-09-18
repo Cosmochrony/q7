@@ -811,14 +811,18 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     Pooling the projections instead, over the pairs that hold any, gives $[1, 0.7527, 0.7513]$ at
     $q = 61$ and $[1, 0.5584, 0.5584]$ at $q = 29$, which round to O29's $[1:0.8:0.8]$ and
     $[1:0.6:0.6]$.
-    O29 states no aggregation in the remark that gives these two figures, but its protocol pools:
-    elsewhere it reports three trailing singular values as ``[c]omputed on the pooled Q5a-O5
-    checkpoints with the summary script'', and that script, \texttt{variety\_summary.py}, has a
-    \texttt{pooled} function which concatenates the trajectories over the pairs of a prime.
-    Forming $\langle w w^\dagger \rangle$ on its output gives the two spectra above.
-    That last step is this paper's, not O29's: no routine in O29's code forms this $3 \times 3$
-    matrix, its covariances being those of vectorised outer products, on
-    $\mathrm{End}(\Heff)$ and on a two-dimensional truncation of it.
+    O29 states no aggregation in the remark that gives these two figures, but it both pools and
+    computes them.
+    Its \texttt{variety\_characterization.py} concatenates the trajectory over all pairs at
+    $q \in \{29, 61\}$ and prints the normalised singular values of the pooled $N \times 3$ matrix;
+    those values are $[1, 0.747, 0.747]$ and $[1, 0.868, 0.867]$, whose squares are the two spectra
+    above, because the eigenvalues of $\langle w w^\dagger \rangle$ are the squared singular values
+    of that matrix.
+    What this paper adds is only the identification of that quantity with the figures O29's remark
+    publishes: O29 never assembles the $3 \times 3$ matrix, and the covariances it does assemble are
+    those of vectorised outer products, on $\mathrm{End}(\Heff)$ and on
+    $\mathrm{End}(U^{(2)}_c)$, the endomorphisms of a two-dimensional principal-subspace truncation
+    of $\Heff$.
     The agreement is at O29's one-decimal precision, and the pooled spectrum at $q = 61$ is not
     exactly degenerate, whereas O29's remark records $\lambda_2 = \lambda_3$.
     The per-pair figures are therefore not in disagreement with O29: they are a finer aggregation of
@@ -1256,7 +1260,8 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
 
     The statements of Sections~\ref{ssec:rayleigh} and~\ref{ssec:rotation} are checked by the
     script \texttt{code/q7\_mode\_diagnostic.py} of this repository.
-    So that a reader with the repository alone can re-run it, the inputs it needs are shipped with
+    So that a reader with the repository alone can re-run its default path, the inputs that path
+    needs are shipped with
     it, in \texttt{code/data/q7\_stage\_inputs.npz} (37\,kB): per tested pair, the three stored
     basis rows, the $3 \times 3$ covariance $C_c$ of the per-shell projections, and the conjugate
     character pair, extracted from the O25 checkpoints
@@ -1293,8 +1298,8 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     degenerate and the block is not scalar, so that the individual entries are solver-dependent,
     from those where the block is scalar and they are not (Section~\ref{ssec:rotation}).
     The \texttt{--pooled} flag instead reports, per prime, two aggregations: the covariance pooled
-    over the conjugate pairs that hold projections, which is the one matching O29's published
-    figures, and the componentwise median of the per-pair spectra, which matches neither.
+    over the conjugate pairs that hold projections, which is the one matching the two figures at
+    issue here, and the componentwise median of the per-pair spectra, which matches neither of them.
     That path needs the checkpoints, for the reason given in Section~\ref{ssec:rayleigh}.
     On the four primes and three characters reported here the lowest purity is $1.000000$ and the
     largest discrepancy between measurement and closed form is below $10^{-14}$; every

@@ -335,13 +335,12 @@ def pooled_spectrum(q: int, checkpoint_dir: str) -> dict | None:
 
     Section 6 keeps one covariance per conjugate pair.  O29 publishes a spectrum
     of the same Hermitian covariance <w w^dag> and states no aggregation in that
-    remark, but its protocol pools: its summary script, variety_summary.py, has a
-    pooled() function concatenating the trajectories over the pairs of a prime.
-    Forming <w w^dag> on that output is this script's step, not O29's: no
-    routine in O29's code forms this 3x3 matrix, its covariances being those of
-    vectorised outer products.
-    This computes the pooled spectrum and, for contrast, the componentwise median
-    of the per-pair spectra, which matches neither published figure.
+    remark, but it both pools and computes it: variety_characterization.py
+    concatenates the trajectory over all pairs at q in {29, 61} and prints the
+    normalised singular values of the pooled N x 3 matrix, whose squares are that
+    spectrum.  This computes it directly, and for contrast the componentwise
+    median of the per-pair spectra, which matches neither of the two figures at
+    issue.
     Needs the O25 checkpoints.  The pooled covariance IS recoverable in form from
     per-pair covariances, being their projection-count-weighted mean; the bundle
     falls short on coverage, holding 3 of the 30 pairs at q=61 and none at q=29.
@@ -398,9 +397,9 @@ def main() -> int:
     ap.add_argument("--checkpoint-dir", type=str, default=DEFAULT_DIR)
     ap.add_argument("--pooled", action="store_true",
                     help="per prime, report the covariance pooled over the conjugate pairs that "
-                         "hold projections, which matches O29's published spectra, and the "
-                         "componentwise median of the per-pair spectra, which matches neither "
-                         "(requires the checkpoints)")
+                         "hold projections, which matches O29's two published spectra, and the "
+                         "componentwise median of the per-pair spectra, which matches neither of "
+                         "them (requires the checkpoints)")
     ap.add_argument("--from-checkpoints", action="store_true",
                     help="use the full O25 checkpoints instead of the bundled inputs")
     args = ap.parse_args()

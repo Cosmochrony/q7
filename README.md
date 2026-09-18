@@ -101,11 +101,10 @@ gives $0.2772$; and the script's own isotropy variable gives $0.3218$. Four read
 
 The per-pair covariance is the same Hermitian object whose spectrum O29 publishes as
 $[1:0.6:0.6]$ at $q=29$ and $[1:0.8:0.8]$ at $q=61$. O29 does not state its aggregation for those
-two figures in the remark that gives them, but its protocol pools: its summary script,
-`variety_summary.py`, has a `pooled` function concatenating the trajectories over the pairs of a
-prime. Forming $\langle w w^\dagger \rangle$ on that output gives the two spectra below — that
-last step is this paper's, since no routine in O29's code forms this $3\times3$ matrix, its
-covariances being those of vectorised outer products. `--pooled --primes 29 61` does it from the checkpoints and gives $[1, 0.5584, 0.5584]$
+two figures in the remark that gives them, but it both pools and computes them: its
+`variety_characterization.py` concatenates the trajectory over all pairs at $q\in\{29,61\}$ and
+prints the normalised singular values of the pooled $N\times3$ matrix, whose squares are those
+spectra. This paper adds only the identification of that quantity with the published figures. `--pooled --primes 29 61` does it from the checkpoints and gives $[1, 0.5584, 0.5584]$
 and $[1, 0.7527, 0.7513]$ — O29's figures at their published one decimal, though the pooled $q=61$
 spectrum is not exactly degenerate. It also prints the componentwise median of the per-pair
 spectra, over the five contributing pairs at $q=29$ and all thirty at $q=61$:
@@ -134,8 +133,8 @@ where the entries are solver-dependent from those where they are not. Largest re
 $10^{-14}$. `--pooled` reports the pooled covariance and the median of the per-pair spectra
 instead, and needs the checkpoints.
 
-It runs from the repository alone: `code/data/q7_stage_inputs.npz` (37 kB) ships the inputs it
-needs — per pair, the three stored basis rows, the $3\times3$ covariance, and the character pair —
+Its default path runs from the repository alone: `code/data/q7_stage_inputs.npz` (37 kB) ships
+the inputs that path needs — per pair, the three stored basis rows, the $3\times3$ covariance, and the character pair —
 with a SHA-256 digest in `code/data/SHA256SUMS` that the script verifies and prints. This is a
 derived extract: reproducing the extraction itself needs the full O25 checkpoints of the Q5a-O5
 campaign, which are not redistributed here (`--from-checkpoints` with `--checkpoint-dir` uses
