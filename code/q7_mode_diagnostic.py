@@ -337,8 +337,9 @@ def pooled_spectrum(q: int, checkpoint_dir: str) -> dict | None:
     of the same Hermitian covariance <w w^dag> and states no aggregation in that
     remark, but its protocol pools: its summary script, variety_summary.py, has a
     pooled() function concatenating the trajectories over the pairs of a prime.
-    Forming <w w^dag> on that output is this script's step, not O29's: every
-    covariance in O29's code is the 9x9 one on vectorised outer products.
+    Forming <w w^dag> on that output is this script's step, not O29's: no
+    routine in O29's code forms this 3x3 matrix, its covariances being those of
+    vectorised outer products.
     This computes the pooled spectrum and, for contrast, the componentwise median
     of the per-pair spectra, which matches neither published figure.
     Needs the O25 checkpoints.  The pooled covariance IS recoverable in form from

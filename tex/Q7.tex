@@ -170,7 +170,8 @@ Requirements for an Equivariant Bridge\\[4pt]
     The present work does not prove the identification.
     It states the requirements an identification would have to meet: under the identification
     hypothesis of Section~\ref{sec:sym2}, and with the spatial sector carrying the adjoint action
-    [ACT], it is unique up to one scalar by irreducibility (Lemma~\ref{lem:schur}); and it must
+    isolated as [ACT] in Remark~\ref{rem:status}, it is unique up to one scalar by irreducibility
+    (Lemma~\ref{lem:schur}); and it must
     satisfy a specific quadratic-symbol constraint
     (Criterion~\ref{crit:symbol}) on an effective operator that exists only under the hypotheses
     of~\cite{Beau2026q5b}.
@@ -799,20 +800,25 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     $(61,5)$ and $[1, 0.500, 0.500]$ at $(61,7)$; these are three of the thirty conjugate pairs
     stored at $q = 61$, and the pairs differ widely.
     Taken over all thirty, the componentwise median of the per-pair spectra is $[1, 0.736, 0.732]$,
-    which is the spectrum of no single pair, and over the
-    five pairs that hold projections at $q = 29$ it is $[1, 0.512, 0.512]$; neither rounds to a
-    figure O29 publishes.
+    which is the spectrum of no single pair there, and over the five pairs that hold projections at
+    $q = 29$ it is $[1, 0.512, 0.512]$, which at that prime does coincide with one pair's spectrum.
+    Neither rounds to either of the two figures at issue here, O29's $[1:0.6:0.6]$ and
+    $[1:0.8:0.8]$.
+    The $q = 29$ median does round to $[1:0.5:0.5]$, which is the figure O29's Figure~1 caption
+    gives as a median normalised spectrum; that caption reports the leading three eigenvalues of the
+    $9 \times 9$ covariance, a different object, and the coincidence is noted here only so that a
+    reader who meets it is not left to suppose an agreement that is not claimed.
     Pooling the projections instead, over the pairs that hold any, gives $[1, 0.7527, 0.7513]$ at
     $q = 61$ and $[1, 0.5584, 0.5584]$ at $q = 29$, which round to O29's $[1:0.8:0.8]$ and
     $[1:0.6:0.6]$.
     O29 states no aggregation in the remark that gives these two figures, but its protocol pools:
-    elsewhere it reports a quantity as ``computed on the pooled Q5a-O5 checkpoints with the summary
-    script'', and that script, \texttt{variety\_summary.py}, has a \texttt{pooled} function which
-    concatenates the trajectories over the pairs of a prime.
+    elsewhere it reports three trailing singular values as ``[c]omputed on the pooled Q5a-O5
+    checkpoints with the summary script'', and that script, \texttt{variety\_summary.py}, has a
+    \texttt{pooled} function which concatenates the trajectories over the pairs of a prime.
     Forming $\langle w w^\dagger \rangle$ on its output gives the two spectra above.
-    That last step is this paper's, not O29's: every covariance computed in O29's code is the
-    $9 \times 9$ one on vectorised outer products, and no routine there forms this $3 \times 3$
-    matrix.
+    That last step is this paper's, not O29's: no routine in O29's code forms this $3 \times 3$
+    matrix, its covariances being those of vectorised outer products, on
+    $\mathrm{End}(\Heff)$ and on a two-dimensional truncation of it.
     The agreement is at O29's one-decimal precision, and the pooled spectrum at $q = 61$ is not
     exactly degenerate, whereas O29's remark records $\lambda_2 = \lambda_3$.
     The per-pair figures are therefore not in disagreement with O29: they are a finer aggregation of
@@ -1100,8 +1106,9 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
       Consequently no conclusion of the form $A_H = A_z = C_{\mathfrak{su}(2)} = 2$ is available
       from these data, and Conjecture~\ref{conj:bridge} is neither confirmed nor refuted by them.
       What remains is the conditional structure of Section~\ref{sec:bridge}: under
-      Hypothesis~[ID], an equivariant bridge is unique up to one scalar, and if it exists the
-      spatial block is graded as in Lemma~\ref{lem:qform}.
+      Hypothesis~[ID], and with the spatial sector carrying the adjoint action [ACT], an equivariant
+      bridge is unique up to one scalar, and if it exists and the further premises of
+      Remark~\ref{rem:status} hold, the spatial block is graded as in Lemma~\ref{lem:qform}.
     \end{corollary}
 
     \begin{remark}[Three-case structure of the isotropy question]
@@ -1258,9 +1265,13 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     before use and prints; \texttt{--from-checkpoints} recomputes everything from the full
     checkpoints instead, which are not redistributed here and which the loader materialises whole,
     so that path needs about 4.5\,GB of memory at $q = 151$ and 9.3\,GB at $q = 211$.
-    The reader should note what this does and does not give: the bundle makes the statements of this
-    section reproducible, since they depend only on those arrays, but it is a derived extract, so
-    reproducing the extraction itself requires the campaign's checkpoints.
+    The reader should note what this does and does not give.
+    The bundle makes the per-pair statements of Sections~\ref{ssec:rayleigh}
+    and~\ref{ssec:rotation} reproducible, those depending only on its arrays; the pooled and median
+    figures and the pair counts are out of its reach, for the coverage reason given in
+    Section~\ref{ssec:rayleigh}.
+    It is in any case a derived extract, so reproducing the extraction itself requires the
+    campaign's checkpoints.
     The script prints, for each stored pair:
     the signed Fourier index of each of the three rows of $B_{\mathrm{eff}}$ and its spectral
     purity; the residuals of the two mode-action identities~\eqref{eq:mode-actions}; the measured
@@ -1350,8 +1361,9 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
     \noindent
     What the paper does \emph{not} establish is the identification of the two ``3''s.
     Its status is verdict~3 of the programme's bridge discipline: the required object, an
-    equivariant bridge together with the module structure on the measured space, is not supplied by
-    the audited corpus, and no result proves that it cannot exist.
+    equivariant bridge together with the module structure on the measured space and the adjoint
+    action on the spatial sector, is not supplied by the audited corpus, and no result proves that
+    it cannot exist.
 
   \subsection{Relation to Open Problem Q5b-O2}
 
@@ -1470,11 +1482,13 @@ constants $A_H$ and $A_z$, which the lemma does not evaluate.
   These two ``3''s are numerically equal and algebraically distinct: $\su(2) \not\simeq \heis$.
   This paper states what an identification between them would require, and proves the requirements
   that follow from representation theory on the supplied carrier.
-  Under Hypothesis~[ID], which identifies the measured space with the spin-$1$ module and which no
-  source supplies, any equivariant bridge is either zero or an isomorphism unique up to one scalar,
-  and, if that bridge is non-zero, the Hermitian spatial form pulls back to a graded form on the
-  module, isotropic within the horizontal plane and determined by the two constants $A_H$ and
-  $A_z$, neither of which is evaluated here.
+  Under Hypothesis~[ID], which identifies the measured space with the spin-$1$ module, and with the
+  spatial sector carrying the adjoint action [ACT], any equivariant bridge is either zero or an
+  isomorphism unique up to one scalar; and, if that bridge is non-zero, the Hermitian spatial form
+  pulls back to a graded form on the module, isotropic within the horizontal plane under the
+  $J_3$-invariance [INV], and determined by the two constants $A_H$ and $A_z$, neither of which is
+  evaluated here.
+  None of [ID], [ACT] and [INV] is supplied by any source.
   The open question is thereby given a precise contract rather than a resolution.
 
   The numerical section has been re-typed in version~2.0.

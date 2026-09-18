@@ -103,13 +103,16 @@ The per-pair covariance is the same Hermitian object whose spectrum O29 publishe
 $[1:0.6:0.6]$ at $q=29$ and $[1:0.8:0.8]$ at $q=61$. O29 does not state its aggregation for those
 two figures in the remark that gives them, but its protocol pools: its summary script,
 `variety_summary.py`, has a `pooled` function concatenating the trajectories over the pairs of a
-prime. Forming $\langle w w^\dagger \rangle$ on that output gives O29's figures — that last step
-is this paper's, since every covariance in O29's code is the $9\times9$ one on vectorised outer
-products. `--pooled --primes 29 61` does it from the checkpoints and gives $[1, 0.5584, 0.5584]$
+prime. Forming $\langle w w^\dagger \rangle$ on that output gives the two spectra below — that
+last step is this paper's, since no routine in O29's code forms this $3\times3$ matrix, its
+covariances being those of vectorised outer products. `--pooled --primes 29 61` does it from the checkpoints and gives $[1, 0.5584, 0.5584]$
 and $[1, 0.7527, 0.7513]$ — O29's figures at their published one decimal, though the pooled $q=61$
 spectrum is not exactly degenerate. It also prints the componentwise median of the per-pair
 spectra, over the five contributing pairs at $q=29$ and all thirty at $q=61$:
-$[1, 0.5115, 0.5115]$ and $[1, 0.7363, 0.7323]$, matching neither published figure. So the per-pair
+$[1, 0.5115, 0.5115]$ and $[1, 0.7363, 0.7323]$, matching neither of the two figures at issue. The
+$q=29$ median does round to $[1:0.5:0.5]$, the figure O29's Figure 1 caption gives as a median
+normalised spectrum of the $9\times9$ covariance — a different object, noted so the coincidence is
+not mistaken for an agreement. So the per-pair
 and published figures are two aggregations of one measurement rather than a disagreement. The
 obstacle to reproducing them from the bundle is coverage, not form: the pooled covariance is the
 projection-count-weighted mean of the per-pair covariances, which the bundle carries, but it holds
