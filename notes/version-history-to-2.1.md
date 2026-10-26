@@ -90,7 +90,7 @@ index b025581..043a87f 100644
  - Hypotheses [ID], [ACT], [INV] and [ADAPT], and any route that would supply them,
  - potential counterexamples,
 diff --git a/tex/Q7.tex b/tex/Q7.tex
-index 8aceade..091a94f 100644
+index 8aceade..a55e3c0 100644
 --- a/tex/Q7.tex
 +++ b/tex/Q7.tex
 @@ -8,5 +8,5 @@
@@ -130,7 +130,7 @@ index 8aceade..091a94f 100644
 +      Two sub-programmes independently produce the integer~$3$ as a structural output.
  
        \paragraph{The geometric ``3'' (Q-series).}
-@@ -234,8 +233,10 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -234,8 +233,11 @@ Requirements for an Equivariant Bridge\\[4pt]
        principal-symbol level); its positivity is stipulated inside [H-L], not derived,
        \item the central slot is \emph{degenerate at this order}: Theorem~5.2
 -      of~\cite{Beau2026q5b} puts $0$ there and defers a full-rank spatial block to sub-principal
@@ -140,12 +140,13 @@ index 8aceade..091a94f 100644
 +      of~\cite{Beau2026q5b} puts $0$ there; no term of lower differential order changes it, and a
 +      non-degenerate co-metric requires a new operator (Remark~5.4 of~\cite{Beau2026q5b} and open
 +      problem Q5b-O2). No value of $A_z$ is established in the sources cited here: Q5b establishes
-+      none, and Q8~\cite{BeauQ8} shows that a supplied positive rank-three form invariant under the
-+      full $\su(2)$ action has $A_H = A_z$ with the common value free
++      none, and Q8~\cite{BeauQ8} shows that a positive rank-three form supplied with the
++      compatibility conditions of this paper and invariant under the full $\su(2)$ action has
++      $A_H = A_z$ with the common value free
 +      (Section~\ref{ssec:withdrawn}).
      \end{itemize}
      Theorem~6.1 of~\cite{Beau2026q5b} is a separate statement, on the Lorentzian signature, and is
-@@ -243,5 +244,6 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -243,5 +245,6 @@ Requirements for an Equivariant Bridge\\[4pt]
      Throughout this paper, $A_z$ denotes the coefficient of $k_Z^2$ that a full-rank spatial block
      would carry. It is treated here as an unevaluated parameter: no value for it is derived in this
 -    paper, and the value asserted downstream is not used (Section~\ref{ssec:withdrawn}).
@@ -153,7 +154,7 @@ index 8aceade..091a94f 100644
 +    (Section~\ref{ssec:withdrawn}).
  
      \begin{remark}[Horizontal vs.\ derived: two sub-strata of the spatial sector]
-@@ -394,6 +396,7 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -394,6 +397,7 @@ Requirements for an Equivariant Bridge\\[4pt]
        part of $\mathrm{End}(\Heff)$, of complex dimension six, whereas
        $\Sym^2_\mathbb{C}(\Vr)$ has complex dimension three; the two spaces must not be conflated.
 -      Version~1.3 of this paper inferred [ID] from O29 and reported $d_\rho = 2$ as an O29 result.
@@ -163,14 +164,14 @@ index 8aceade..091a94f 100644
 +      (Section~\ref{ssec:withdrawn}).
  
    \subsection{Grading Correspondence}
-@@ -468,6 +471,4 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -468,6 +472,4 @@ Requirements for an Equivariant Bridge\\[4pt]
        A unit scalar is available only when the chosen reference normalisation also fixes its
        modulus to one.
 -      Version~1.3 stated uniqueness ``up to positive scalar'' with neither the non-vanishing
 -      requirement nor this convention.
      \end{remark}
  
-@@ -599,10 +600,10 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -599,10 +601,10 @@ Requirements for an Equivariant Bridge\\[4pt]
        $|\lambda|^2\mathrm{diag}(A_H,A_H,4A_z)$.
        No common scalar removes the relative factor four when both coefficients are positive.
 -      Thus [ADAPT] cannot be replaced by a choice of scalar under the earlier hypotheses.
@@ -183,7 +184,7 @@ index 8aceade..091a94f 100644
 +      established import from Q5b; no value of either coefficient is imported from the cited sources.
      \end{remark}
  
-@@ -620,9 +621,9 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -620,9 +622,9 @@ Requirements for an Equivariant Bridge\\[4pt]
        Under [ID], an equivariant identification then relates the measured space to this target;
        its pullback has the two-coefficient form of Lemma~\ref{lem:qform}(3).
 -      The map has the same type as in the earlier formulation,
@@ -195,14 +196,14 @@ index 8aceade..091a94f 100644
 +      and its target form comes from the construction specified here.
        The construction must specify the operator or effective form producing this target and
        its relation to Q5b's horizontal geometry.
-@@ -632,5 +633,5 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -632,5 +634,5 @@ Requirements for an Equivariant Bridge\\[4pt]
  
      \noindent
 -    The conjecture no longer asks for equality with Q5b's existing spatial principal symbol.
 +    The conjecture does not ask for equality with Q5b's existing spatial principal symbol.
      Under [H-L] and [H-lift], that symbol is
      \[
-@@ -642,14 +643,13 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -642,14 +644,13 @@ Requirements for an Equivariant Bridge\\[4pt]
      Adding terms of strictly lower ordinary differential order cannot change that principal
      symbol.
 -    The previous target contract is therefore ruled out under Q5b's stated hypotheses;
@@ -222,7 +223,7 @@ index 8aceade..091a94f 100644
 +    supply that object: in Q5a~\cite{Beau2026q5a}, under its depth hypothesis [H-depth] and its weight hypothesis
      [H-$w'$], every subsequential limit of the rescaled admissibility forms on toric targets with
      finitely many Fourier modes is the zero form, a bounded multiplication form containing no
-@@ -693,6 +693,5 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -693,6 +694,5 @@ Requirements for an Equivariant Bridge\\[4pt]
      span a real two-dimensional subspace of the weight-$\pm 1$ sector, and the central direction
      $k_Z$ with $e_0$.
 -    (The pairing $k_X \leftrightarrow e_+$, $k_Y \leftrightarrow e_-$ used in version~1.3 matched
@@ -230,7 +231,7 @@ index 8aceade..091a94f 100644
 +    (Real cotangent coordinates are not paired directly with the complex weight vectors $e_\pm$.)
      Test whether:
      \begin{equation}
-@@ -721,9 +720,9 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -721,9 +721,9 @@ Requirements for an Equivariant Bridge\\[4pt]
      to a continuum symbol coefficient is exactly the identification that Criterion~\ref{crit:symbol}
      presupposes and that no source supplies.
 -    Version~1.3 reported the isotropy condition as resolved, citing Q8~\cite{BeauQ8} for
@@ -245,7 +246,7 @@ index 8aceade..091a94f 100644
 +    U1~\cite{Beau2026u1} leaves [U] open (Section~\ref{ssec:withdrawn}).
    \end{remark}
  
-@@ -750,10 +749,9 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -750,10 +750,9 @@ Requirements for an Equivariant Bridge\\[4pt]
        F_c W_a F_c^\dagger = W_b, \qquad F_c W_b F_c^\dagger = W_a^\dagger .
      \end{equation}
 -    (Version~1.3 printed the first relation as $F_c W_a F_c^\dagger = W_b^\dagger$; the sign is
@@ -261,7 +262,7 @@ index 8aceade..091a94f 100644
 +    with its adjoint.)
  
      \begin{proposition}[Metaplectic symmetry]
-@@ -787,7 +785,7 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -787,7 +786,7 @@ Requirements for an Equivariant Bridge\\[4pt]
  
      \noindent
 -    The mathematical content of Corollary~\ref{cor:blockdiag} is unaffected by this revision: it is
@@ -272,21 +273,21 @@ index 8aceade..091a94f 100644
 +    It does not \emph{apply} to the O25 data, on two counts.
      First, its hypothesis is not met by those data: the three stored rows are not
      $F_c$-eigenvectors, the off-diagonal entries of
-@@ -797,5 +795,5 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -797,5 +796,5 @@ Requirements for an Equivariant Bridge\\[4pt]
      Second, even with the hypothesis met, the conclusion would concern off-diagonal entries of a
      compression of the discrete operator $L_{\mathrm{Weil}}$ on $\mathbb{C}^q$, not cross terms of
 -    $\sigma_2(L_{\mathrm{eff}})$: version~1.3 asserted the latter, which requires the missing
 +    $\sigma_2(L_{\mathrm{eff}})$; a statement about the latter would require the missing
      identification of Criterion~\ref{crit:symbol}.
      What does hold for these data, exactly and for the reason given in
-@@ -872,5 +870,5 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -872,5 +871,5 @@ Requirements for an Equivariant Bridge\\[4pt]
      $\rho_{Z|XY} = \max(|(L_{\mathrm{sw}})_{01}|, |(L_{\mathrm{sw}})_{02}|)/\bar\lambda$ and
      $|(L_{\mathrm{sw}})_{12}|/\bar\lambda$, where $\bar\lambda$ is the mean diagonal entry.
 -    The quantities historically named $A_z := (L_{\mathrm{sw}})_{00}$ and
 +    The quantities labelled $A_z := (L_{\mathrm{sw}})_{00}$ and
      $A_H := \tfrac12\bigl((L_{\mathrm{sw}})_{11} + (L_{\mathrm{sw}})_{22}\bigr)$ are therefore
      diagonal entries of a compression of an operator on $\mathbb{C}^q$, read in the covariance
-@@ -920,8 +918,8 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -920,8 +919,8 @@ Requirements for an Equivariant Bridge\\[4pt]
          exactly when an off-diagonal entry of modulus $1$ appears; at $(61,3)$ this happens for two
          pairs of indices, at $(151,5)$ for one.
 -        Historically, $A_z$ and $A_H$ were read off this table after the Stage~A ordering; that
@@ -299,7 +300,7 @@ index 8aceade..091a94f 100644
 +        $A_H = \tfrac12(2.096 + 2.000) = 2.048$ at that pair.}
        \label{tab:numerical}
        \smallskip
-@@ -953,9 +951,9 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -953,9 +952,9 @@ Requirements for an Equivariant Bridge\\[4pt]
      not in phase, and at $(101,3)$ and $(151,5)$ they differ outright, as
      Section~\ref{ssec:rotation} works out.
 -    In particular the two pairs at which version~1.3 reported anomalies, $(61,3)$ and $(151,5)$,
@@ -311,7 +312,7 @@ index 8aceade..091a94f 100644
 +    restriction of $\tilde L$ to their plane non-scalar, and the $0.057$ the pipeline reports in that row follows
      from that together with the covariance rotation, as Section~\ref{ssec:rotation} works out.
      Neither is a finite-size or finite-coverage effect.
-@@ -988,7 +986,6 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -988,7 +987,6 @@ Requirements for an Equivariant Bridge\\[4pt]
        $j(j+1) = 2$ is untouched, and every ratio of entries is unchanged; under
        $L_{\mathrm{Weil}} \mapsto L_{\mathrm{Weil}} - 2I$ it becomes $0$.
 -      Version~1.3 read this coincidence as a spectral signature of the bridge, and described the
@@ -321,21 +322,21 @@ index 8aceade..091a94f 100644
 +      is not a finite-window correction (Section~\ref{ssec:withdrawn}).
        What survives is the identity~\eqref{eq:rayleigh} and the observation that any test of
        Criterion~\ref{crit:symbol} must compare normalisation-independent quantities.
-@@ -998,5 +995,5 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -998,5 +996,5 @@ Requirements for an Equivariant Bridge\\[4pt]
        \label{rem:finite}
        The cross-term ratio $\rho_{Z|XY} = 0.485$ at $(q,c)=(61,3)$ is not an outlier and not a
 -      finite-size artefact of the short window, as version~1.3 stated.
 +      finite-size artefact of the short window.
        The stored indices there are $\{0, -3, +3\}$ and the character is $c = 3$, so the flat mode
        differs from \emph{both} non-flat modes by $\pm c$ ($0 - (-3) = 3$ and $0 - 3 = -3$); by the
-@@ -1013,5 +1010,5 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -1013,5 +1011,5 @@ Requirements for an Equivariant Bridge\\[4pt]
        For all tested primes, the character $c=5$ gives a mode entry close to $6$, against $2$ at
        the flat mode.
 -      The mechanism is now explicit: the stored index at $c=5$ is $k = 29, 49, 73, 102$ for
 +      The mechanism is explicit: the stored index at $c=5$ is $k = 29, 49, 73, 102$ for
        $q = 61, 101, 151, 211$, that is $k \approx q/2$, and~\eqref{eq:rayleigh} gives
        $4 - 2\cos(2\pi k/q) \approx 4 + 2 = 6$ at the top of the spectrum of
-@@ -1032,6 +1029,6 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -1032,6 +1030,6 @@ Requirements for an Equivariant Bridge\\[4pt]
        characters: the metaplectic overlap is $0.72$ ($c=3$), $0.60$ ($c=5$) and $0.38$ ($c=7$),
        all below the threshold $0.75$.
 -      Version~1.3 attributed this to low trajectory coverage, by analogy with the $(61,3)$
@@ -344,7 +345,7 @@ index 8aceade..091a94f 100644
 +      configuration; the following is what the quantity is.
        Stage~B does not test an entry of $\tilde F = B_{\mathrm{eff}} F_c B_{\mathrm{eff}}^\dagger$;
        it compares two unit vectors of $\mathbb{C}^3$, the dominant eigenvector of the covariance
-@@ -1060,6 +1057,5 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -1060,6 +1058,5 @@ Requirements for an Equivariant Bridge\\[4pt]
          The values are identities, by~\eqref{eq:gap}, once $k(q)$ is read from the checkpoint; they
          are not measurements of a metric anisotropy.
 -        The $c = 3$ column is included because it is not monotone, which the version~1.3 reading
@@ -352,7 +353,7 @@ index 8aceade..091a94f 100644
 +        The $c = 3$ column is included because it is not monotone: $k(q) = 3, 5, 7, 10$ gives $k/q = 0.049, 0.050, 0.046, 0.047$.}
        \label{tab:asymp}
        \smallskip
-@@ -1074,8 +1070,4 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -1074,8 +1071,4 @@ Requirements for an Equivariant Bridge\\[4pt]
          \hline
        \end{tabular}
 -
@@ -361,14 +362,14 @@ index 8aceade..091a94f 100644
 -      $\Delta$.}
      \end{table}
  
-@@ -1084,5 +1076,5 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -1084,5 +1077,5 @@ Requirements for an Equivariant Bridge\\[4pt]
      decreases with it; for $c = 3$ it does not, $k/q$ staying in $[0.046, 0.050]$ across the four
      primes.
 -    The four-point fit $\Delta \approx 0.364\,q^{-0.52}$ reported in version~1.3 is a fit to the
 +    A four-point fit $\Delta \approx 0.364\,q^{-0.52}$ is a fit to the
      sequence $4\sin^2(\pi k(q)/q)$ for the four selected indices $k = 2,3,4,5$: recomputing it from
      those indices alone returns the same exponent to two decimals.
-@@ -1105,6 +1097,5 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -1105,6 +1098,5 @@ Requirements for an Equivariant Bridge\\[4pt]
      \noindent
      The equivalence is immediate from~\eqref{eq:gap}, since $\sin^2(\pi x)$ vanishes exactly on the
 -    integers, and it separates the conjecture from the numerical support version~1.3 offered for
@@ -376,14 +377,14 @@ index 8aceade..091a94f 100644
 +    integers, and it separates the conjecture from any fit to the tabulated values.
      A power-law fit to four values of $\Delta$ cannot establish the conjecture, because those four
      values are determined by four integers $k$ read off the same checkpoints; the fitted exponent
-@@ -1118,5 +1109,5 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -1118,5 +1110,5 @@ Requirements for an Equivariant Bridge\\[4pt]
      \begin{corollary}[Status of the bridge identification]
        \label{cor:quasithm}
 -      The following is the status of the three claims this corollary carried in version~1.3.
 +      The status of three claims about these data is as follows.
        \begin{enumerate}
          \item The vanishing of off-diagonal entries of the compression $\tilde L$ holds, for the
-@@ -1127,6 +1118,6 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -1127,6 +1119,6 @@ Requirements for an Equivariant Bridge\\[4pt]
          identification presupposed by Criterion~\ref{crit:symbol}.
          \item The flat-mode entry equals $2$ exactly and by construction
 -        (Remark~\ref{rem:az2}); its reading as a universal coefficient
@@ -392,7 +393,7 @@ index 8aceade..091a94f 100644
 +        $A_z = C_{\mathfrak{su}(2)}$.
          \item The claim $|A_H - A_z| < 0.05$ for $c \in \{3,7\}$, decreasing with $q$, is false as
          stated: at $c = 3$ the gap is $0.0947$ at $q = 61$ and $0.0842$ at $q = 151$, and it is not
-@@ -1155,15 +1146,9 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -1155,15 +1147,9 @@ Requirements for an Equivariant Bridge\\[4pt]
          This does not exclude another constructed target.
        \end{enumerate}
 -      Version~1.3 read Table~\ref{tab:numerical} as pointing to case~(1).
@@ -410,14 +411,14 @@ index 8aceade..091a94f 100644
 -      this paper is unchanged in version~2.0.)
      \end{remark}
  
-@@ -1182,5 +1167,5 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -1182,5 +1168,5 @@ Requirements for an Equivariant Bridge\\[4pt]
        At eleven pairs the flat mode carries the largest covariance eigenvalue and is ordered first.
        At $(q,c) = (101,3)$ it carries the \emph{smallest} (normalised eigenvalues
 -      $1$, $1$, $0.98758$) and is ordered last, which is the whole origin of the published row
 +      $1$, $1$, $0.98758$) and is ordered last, which alone produces the pipeline row
        $A_z = 2.096$, $A_H = \tfrac12(2.096 + 2.000) = 2.048$.
        What is resolved there, by about one per cent, is the flat mode's separation from the plane;
-@@ -1231,24 +1216,20 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -1231,24 +1217,20 @@ Requirements for an Equivariant Bridge\\[4pt]
        The value $5.989188$ survives only as the mean of the two split entries, by preservation of
        the trace, and the ratio $0.2677/\bar\lambda = 0.0574$ with $\bar\lambda = 4.6595$ is the
 -      number printed as $\rho_{XY} = 0.057$ in version~1.3.
@@ -454,7 +455,7 @@ index 8aceade..091a94f 100644
 +      These are distinct quantities, and only the first is the one the column reports.
  
      \paragraph{The invariant content.}
-@@ -1266,12 +1247,4 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -1266,12 +1248,4 @@ Requirements for an Equivariant Bridge\\[4pt]
        entries depart from the stored-basis entries. They coincide only at $(151,5)$.
  
 -    \paragraph{One published number is not accounted for.}
@@ -467,7 +468,7 @@ index 8aceade..091a94f 100644
 -
    \subsection{Reproducible diagnostic}
      \label{ssec:diagnostic}
-@@ -1399,9 +1372,9 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -1399,9 +1373,9 @@ Requirements for an Equivariant Bridge\\[4pt]
      defined effective-form construction, rather than identify its positive form with the
      unchanged rank-two symbol.
 -    Version~1.3 reported the problem as resolved at the algebraic level, citing Q8~\cite{BeauQ8}
@@ -482,7 +483,7 @@ index 8aceade..091a94f 100644
 +    symbol (Section~\ref{ssec:withdrawn}).
      Q5b-O2 is, from the point of view of this paper, open.
  
-@@ -1425,72 +1398,63 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -1425,72 +1399,64 @@ Requirements for an Equivariant Bridge\\[4pt]
      It would bound the scope of the tested construction.
      It would not establish that the two ``3''s are structurally independent, which would require a
 -    proof that no admissible bridge exists; no such proof is available, and version~1.3's wording
@@ -594,8 +595,9 @@ index 8aceade..091a94f 100644
 +    \paragraph{What downstream results supply.}
 +      None of Q8, Q10, U1 and Q11 resolves the isotropy condition, and Criterion~\ref{crit:symbol}
 +      is not confirmed by them: on established inputs none of them supplies the required values.
-+      Q8~\cite{BeauQ8} shows that a supplied positive rank-three form invariant under the full
-+      $\su(2)$ action has $A_H = A_z = 2\lambda$ with $\lambda > 0$ free; the Casimir eigenvalue
++      Q8~\cite{BeauQ8} shows that a positive rank-three form supplied with the compatibility
++      conditions of this paper and invariant under the full $\su(2)$ action has
++      $A_H = A_z = 2\lambda$ with $\lambda > 0$ free; the Casimir eigenvalue
 +      fixes the normalisation of one invariant form, not a coefficient.
 +      Q10~\cite{Beau2026q10} bounds the ratio $A_H/A_z$ under [U], [W], [R] and [T], and gives an
 +      absolute value of $A_H$ under its scale input [S], which supplies $A_z$ independently of $A_H$;
@@ -608,7 +610,7 @@ index 8aceade..091a94f 100644
 +      corroborate an identification that the family does not supply.
  
    \section{Conclusion}
-@@ -1513,6 +1477,5 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -1513,6 +1479,5 @@ Requirements for an Equivariant Bridge\\[4pt]
    The open question is thereby given a precise contract rather than a resolution.
  
 -  The numerical section has been re-typed in version~2.0.
@@ -616,7 +618,7 @@ index 8aceade..091a94f 100644
 +  The quantities the numerical section computes are compressions of the discrete Weil Laplacian onto three stored
    basis rows, and those rows are pure Fourier modes, so every diagonal entry is the Rayleigh quotient
    $4 - 2\cos(2\pi m/q)$: exactly $2$ at the flat mode, and $2 + 4\sin^2(\pi k/q)$ at the selected
-@@ -1523,13 +1486,13 @@ Requirements for an Equivariant Bridge\\[4pt]
+@@ -1523,13 +1488,13 @@ Requirements for an Equivariant Bridge\\[4pt]
    $\mathrm{dist}(k/q, \mathbb{Z}) \to 0$, a property of the pipeline's mode-selection rule that no
    paper of the corpus derives.
 -  Accordingly the identification of the central value with the $\su(2)$ Casimir eigenvalue, the
