@@ -53,14 +53,14 @@ structures: the required bridge is a **missing identification**, not a proved ob
 5. **A necessary criterion for an extended target**
    Q5b's existing spatial principal symbol has rank two everywhere, whereas the positive Casimir
    form has rank three. No invertible transport can identify them.
-   The revised Conjecture 4.7 therefore asks for a new positive spatial target with a specified
+   Conjecture 4.7 therefore asks for a new positive spatial target with a specified
    effective operator and compatible action. Criterion 5.1 tests its graded positive form;
    it does not construct the target or establish equivariance, nor does it assert equality to the Casimir.
    Terms of lower ordinary differential order cannot repair the rank of the existing principal symbol.
 
 ## What the O25 Checkpoints Measure
 
-Version 2.0 re-types the numerical section. The three stored basis rows are **pure Fourier
+The three stored basis rows are **pure Fourier
 modes** of indices $\{0, -k, +k\}$ (purity 1.000000 on all twelve tested pairs), so every
 diagonal entry of the compression $\tilde L = B_{\mathrm{eff}} L_{\mathrm{Weil}} B_{\mathrm{eff}}^\dagger$
 is a Rayleigh quotient in closed form:
@@ -77,10 +77,10 @@ $\langle e_m, L_{\mathrm{Weil}} e_m \rangle = 4 - 2\cos(2\pi m/q).$
   $\mathrm{dist}(k/q, \mathbb{Z}) \to 0$, a property of the pipeline's mode-selection rule,
   which no paper of the corpus derives.
 - An off-diagonal entry of modulus 1 appears exactly when two stored indices differ by
-  $\pm c \bmod q$: this accounts for the two pairs, $(61,3)$ and $(151,5)$, that version 1.3
-  reported as finite-size and sector anomalies.
+  $\pm c \bmod q$: this accounts for the two pairs, $(61,3)$ and $(151,5)$, whose pipeline output
+  looks anomalous; neither is a finite-size or sector effect.
 
-**The closed form describes the stored-basis compression, not directly the published entries.**
+**The closed form describes the stored-basis compression, not directly the reported entries.**
 The pipeline conjugates that compression by the covariance eigenbasis, and that basis is fixed by
 the data only where the covariance spectrum is non-degenerate. Measured: the gap between the two eigenvalues *inside
 the horizontal plane* — not the gap between the second and third eigenvalues
@@ -96,10 +96,9 @@ scalar, so no solver can split those entries. Exactly one pair has both an arbit
 non-scalar block — $(151,5)$, where the indices $\pm 73$ differ by $-c$ — and there the
 split
 $6.9527 / 5.0257$ and the off-diagonal $0.2677$ are solver-dependent; the ratio of that
-off-diagonal to the mean diagonal is the published $\rho_{XY} = 0.057$, in a column that version 1.3's
-running text called the isotropy ratio and its caption called a cross-term ratio. The running
-text's formula, on the stored-basis compression it names, gives $0$; read on the rotated matrix it
-gives $0.2772$; and the script's own isotropy variable gives $0.3218$. Four readings, four values.
+off-diagonal to the mean diagonal is the pipeline's $\rho_{XY} = 0.057$, a cross-term ratio of the
+rotated matrix. It is not the XY isotropy ratio: on the stored-basis compression that ratio is $0$,
+read on the rotated matrix it gives $0.2772$, and the script's own isotropy variable gives $0.3218$.
 
 The per-pair covariance is the same Hermitian object whose spectrum O29 publishes as
 $[1:0.6:0.6]$ at $q=29$ and $[1:0.8:0.8]$ at $q=61$. O29 does not state its aggregation for those
@@ -121,8 +120,7 @@ three of the thirty pairs at $q=61$ and nothing at $q=29$.
 
 The invariant content is the spectrum of the compression, which the closed
 form gives outright at the ten pairs with no index difference equal to $\pm c \bmod q$ and which
-is shifted at the two that have one. §6.3 of the paper works this out, and records one published number,
-$\rho_{XY} = 0.005$ at $(101,3)$, that no versioned quantity reproduces.
+is shifted at the two that have one. §6.3 of the paper works this out.
 
 Reproducible diagnostic: `code/q7_mode_diagnostic.py` prints Fourier indices, purities, the two
 mode-action residuals, measured and analytic values with their difference, the cross-term check, the covariance spectrum with two gaps (between its second and
@@ -151,16 +149,19 @@ obstruction to one route, for common scalar normalisations of the published form
 bridge on a different filtration, under an anisotropic or non-scalar renormalisation, or on a
 non-toric target, and it proves nothing about the existence of the equivariant map.
 
-## Claims No Longer Asserted in Version 2.0
+## What the Cited Sources and the Computations Do Not Supply
 
-Q7 withdraws its own assertions and evidential uses; it takes no position on the editorial
-status of the papers cited. Notably: the reading of the central value as a Casimir signature;
-the fit $|A_H - A_z| \approx 0.364\,q^{-0.52}$ as evidence for asymptotic isotropy; the
-transfer of block-diagonality from a discrete compression to cross terms of the continuum
-symbol; the attributions to O29 ($H_{\mathrm{eff}} \simeq \mathrm{Sym}^2(V_\rho)$, $d_\rho = 2$),
-to O27 (unconditional factorisation through $\mathfrak{su}(2)$), to Q5b Theorem 6.1 (a
-co-metric with $A_z > 0$) and Theorem 3.2 (an $O(q^{-1/2})$ rate); and the supports invoked
-from Q8, Q10, U1 and Q11 for $A_z = 2$ and $A_H \to 2$.
+The paper states what it may rely on, without taking a position on the editorial status of the
+papers cited. The central value is not a Casimir signature, and the fit
+$|A_H - A_z| \approx 0.364\,q^{-0.52}$ is no evidence for asymptotic isotropy. Block-diagonality
+of a discrete compression says nothing about cross terms of the continuum symbol. O29 does not
+identify $H_{\mathrm{eff}} \simeq \mathrm{Sym}^2(V_\rho)$ or establish $d_\rho = 2$; O27 gives no
+unconditional factorisation through $\mathfrak{su}(2)$; Q5b supplies no $A_z$ (its co-metric,
+Theorem 5.2, has $0$ in the central slot) and no convergence rate. On established inputs, Q8, Q10,
+U1 and Q11 supply no coefficient value: Q8 leaves the common value $2\lambda$ of an invariant form
+free; Q10 bounds $A_H/A_z$ under [U], [W], [R], [T] and gives an absolute value of $A_H$ only under
+its scale input [S], none of which is established; U1 leaves [U] open; Q11 leaves $A_\tau$
+independent of the spatial coefficients.
 
 ## What This Paper Does Not Assume
 
@@ -221,7 +222,7 @@ This repository is intended as a research reference.
 Critical feedback, independent analyses, and formal scrutiny are welcome.  
 Please open an issue to discuss:
 
-- the mode-selection rule $q \mapsto k(q,c)$, on which the isotropy conjecture now depends,
+- the mode-selection rule $q \mapsto k(q,c)$, on which the isotropy conjecture depends,
 - Hypotheses [ID], [ACT], [INV] and [ADAPT], and any route that would supply them,
 - potential counterexamples,
 - extensions to larger primes or alternative admissible sectors.
