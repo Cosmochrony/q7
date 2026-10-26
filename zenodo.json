@@ -2,6 +2,7 @@
   "bib_key": "Beau2026q7",
   "web_url": "https://cosmochrony.org/science/emergent-geometry/q7/",
   "main_tex": "tex/Q7.tex",
+  "notes": "Version 2.1 states the current result only and corrects present-tense statements about other papers: no cited source supplies a value of A_z on established inputs. Q8 shows that a positive rank-three form supplied with the compatibility conditions of Q7 and invariant under the full su(2) action has A_H = A_z = 2 lambda with lambda free; Q5b establishes no central coefficient and requires a new operator for a full-rank block; Q10 bounds the ratio A_H/A_z under [U], [W], [R] and [T] and gives an absolute value only under its scale input [S], none of which is established; U1 leaves [U] open; Q11 leaves A_tau independent of the spatial coefficients. Version narration is removed; theorem, remark and section numbers are unchanged. Cited bibliography entries are synced with the programme registry.",
   "zenodo_id": 19802123,
   "doi": "10.5281/zenodo.19802123"
 }
